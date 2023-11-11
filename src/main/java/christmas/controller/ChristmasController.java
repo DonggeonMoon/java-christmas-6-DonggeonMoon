@@ -3,11 +3,11 @@ package christmas.controller;
 import christmas.view.ChristmasInputView;
 import christmas.view.ChristmasOutputView;
 
-public class ChristmasController {
+public class ChristmasController extends AbstractRetry {
     private final ChristmasOutputView outputView;
     private final ChristmasInputView inputView;
 
-    public ChristmasController(ChristmasOutputView outputView, ChristmasInputView inputView) {
+    public ChristmasController(final ChristmasOutputView outputView, final ChristmasInputView inputView) {
         this.outputView = outputView;
         this.inputView = inputView;
     }
@@ -18,6 +18,9 @@ public class ChristmasController {
 
     public void start() {
         outputView.printEventPlannerMessage();
-        inputView.askVisitDate();
+        run(() -> {
+            inputView.askVisitDate();
+            return null;
+        });
     }
 }

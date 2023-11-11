@@ -1,5 +1,6 @@
 package christmas.ui;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -23,14 +24,15 @@ public abstract class UiTest {
     }
 
     protected void input(final String... arguments) {
-        final byte[] bytes = String.join("\n").getBytes();
+        final byte[] bytes = String.join("\n", arguments).getBytes();
         System.setIn(new ByteArrayInputStream(bytes));
     }
 
     @AfterEach
-    protected void destroy() {
+    protected void cleanUp() {
         System.setOut(systemOut);
         System.out.println(captor);
+        Console.close();
     }
 
 }

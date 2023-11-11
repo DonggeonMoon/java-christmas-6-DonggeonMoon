@@ -2,6 +2,8 @@ package christmas.view;
 
 import static christmas.constant.Message.VISIT_DATE_INPUT_PROMPT;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class ChristmasInputView extends AbstractView {
     private ChristmasInputView() {
     }
@@ -10,7 +12,8 @@ public class ChristmasInputView extends AbstractView {
         return new ChristmasInputView();
     }
 
-    public void askVisitDate() {
+    public String askVisitDate() {
         printMessage(VISIT_DATE_INPUT_PROMPT);
+        return Console.readLine();
     }
 }
