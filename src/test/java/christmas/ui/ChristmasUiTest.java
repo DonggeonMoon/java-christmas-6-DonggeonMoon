@@ -47,9 +47,10 @@ public class ChristmasUiTest extends UiTest {
     @ValueSource(strings = {"1", "2", "31"})
     void readVisitDate2(String input) {
         input(input);
-        int integer = inputView.readVisitDate();
+        int inputDay = inputView.readVisitDate();
 
-        assertThat(integer).isEqualTo(Integer.parseInt(input));
+        assertThat(inputDay)
+                .isEqualTo(Integer.parseInt(input));
     }
 
     @ParameterizedTest
@@ -70,5 +71,15 @@ public class ChristmasUiTest extends UiTest {
 
         assertThat(getOutput())
                 .contains(MENU_AND_COUNT_INPUT_PROMPT.getText());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"해산물파스타-2,레드와인-1,초코케이크-1"})
+    void readMenuAndCount2(String input) {
+        input(input);
+        String inputMenuAndCount = inputView.readMenuAndCount();
+
+        assertThat(inputMenuAndCount)
+                .isEqualTo(input);
     }
 }

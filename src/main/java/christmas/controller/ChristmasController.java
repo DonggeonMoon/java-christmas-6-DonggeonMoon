@@ -36,7 +36,7 @@ public class ChristmasController extends AbstractRetry {
         });
 
         run(() -> {
-            inputView.readMenuAndCount();
+            String string = inputView.readMenuAndCount();
             return null;
         });
     }
