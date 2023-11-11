@@ -9,10 +9,6 @@ public enum MaxRetry {
         this.value = value;
     }
 
-    public int getValue() {
-        return value;
-    }
-
     public boolean isUnder(final int count) {
         return this.value < count;
     }

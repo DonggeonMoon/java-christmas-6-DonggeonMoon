@@ -1,6 +1,7 @@
 package christmas.ui;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
 
 import christmas.constant.Message;
 import christmas.view.ChristmasInputView;
@@ -30,9 +31,9 @@ public class ChristmasUiTest extends UiTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "2", "31"})
-    void askVisitDate(String input) {
+    void readVisitDate(String input) {
         input(input);
-        inputView.askVisitDate();
+        inputView.readVisitDate();
 
         assertThat(getOutput())
                 .contains(Message.VISIT_DATE_INPUT_PROMPT.getText());
@@ -40,10 +41,10 @@ public class ChristmasUiTest extends UiTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "2", "31"})
-    void askVisitDate2(String input) {
+    void readVisitDate2(String input) {
         input(input);
-        String string = inputView.askVisitDate();
+        int integer = inputView.readVisitDate();
 
-        assertThat(string).contains(input);
+        assertThat(integer).isEqualTo(Integer.parseInt(input));
     }
 }

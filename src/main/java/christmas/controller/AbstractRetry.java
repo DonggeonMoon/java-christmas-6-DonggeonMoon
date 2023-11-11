@@ -1,6 +1,6 @@
 package christmas.controller;
 
-import christmas.constant.ErrorMessage;
+import christmas.constant.exception.StateException;
 import christmas.constant.MaxRetry;
 import java.util.function.Supplier;
 
@@ -15,6 +15,6 @@ public abstract class AbstractRetry {
             }
             retryCount++;
         }
-        throw new IllegalStateException(ErrorMessage.EXCEEDING_MAX_RETRY.getText());
+        throw StateException.EXCEEDING_MAX_RETRY.exception();
     }
 }

@@ -12,4 +12,4 @@ public enum Message {
     public String getText() {
         return text;
     }
-    }
+}

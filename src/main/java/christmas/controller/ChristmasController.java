@@ -19,7 +19,7 @@ public class ChristmasController extends AbstractRetry {
     public void start() {
         outputView.printEventPlannerMessage();
         run(() -> {
-            inputView.askVisitDate();
+            inputView.readVisitDate();
             return null;
         });
     }
