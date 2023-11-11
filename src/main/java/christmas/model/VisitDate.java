@@ -25,4 +25,8 @@ public class VisitDate {
             throw INVALID_DATE.exception();
         }
     }
+
+    public LocalDate getDate() {
+        return date;
+    }
 }

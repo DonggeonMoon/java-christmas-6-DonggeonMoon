@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.dto.VisitDateDto;
 import christmas.service.ChristmasService;
 import christmas.view.ChristmasInputView;
 import christmas.view.ChristmasOutputView;
@@ -29,9 +30,9 @@ public class ChristmasController extends AbstractRetry {
 
     public void start() {
         outputView.printEventPlannerMessage();
-        run(() -> {
-            inputView.readVisitDate();
-            return null;
+        VisitDateDto visitDateDto = run(() -> {
+            int inputDay = inputView.readVisitDate();
+            return service.generateVisitDate(inputDay);
         });
     }
 }

@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.dto.VisitDateDto;
 import christmas.model.VisitDate;
 
 public class ChristmasService {
@@ -10,7 +11,8 @@ public class ChristmasService {
         return new ChristmasService();
     }
 
-    public void generateVisitDate(int inputDay) {
-        VisitDate.from(inputDay);
+    public VisitDateDto generateVisitDate(int inputDay) {
+        VisitDate visitDate = VisitDate.from(inputDay);
+        return VisitDateDto.from(visitDate);
     }
 }
