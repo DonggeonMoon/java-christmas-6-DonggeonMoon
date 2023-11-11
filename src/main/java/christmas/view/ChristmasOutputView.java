@@ -2,9 +2,7 @@ package christmas.view;
 
 import static christmas.constant.Message.EVENT_PLANNER;
 
-import christmas.controller.ChristmasController;
-
-public class ChristmasOutputView implements View {
+public class ChristmasOutputView extends AbstractView {
     private ChristmasOutputView() {
     }
 

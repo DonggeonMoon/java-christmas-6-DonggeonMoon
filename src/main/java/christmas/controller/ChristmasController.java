@@ -1,19 +1,23 @@
 package christmas.controller;
 
+import christmas.view.ChristmasInputView;
 import christmas.view.ChristmasOutputView;
 
 public class ChristmasController {
     private final ChristmasOutputView outputView;
+    private final ChristmasInputView inputView;
 
-    private ChristmasController(final ChristmasOutputView outputView) {
+    public ChristmasController(ChristmasOutputView outputView, ChristmasInputView inputView) {
         this.outputView = outputView;
+        this.inputView = inputView;
     }
 
-    public static ChristmasController from(final ChristmasOutputView outputView) {
-        return new ChristmasController(outputView);
+    public static ChristmasController from(final ChristmasOutputView outputView, final ChristmasInputView inputView) {
+        return new ChristmasController(outputView, inputView);
     }
 
     public void start() {
-        // TODO: 컨트롤러 동작 로직 구현
+        outputView.printEventPlannerMessage();
+        inputView.askVisitDate();
     }
 }
