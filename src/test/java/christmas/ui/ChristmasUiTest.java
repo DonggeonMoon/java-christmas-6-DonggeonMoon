@@ -1,10 +1,11 @@
 package christmas.ui;
 
+import static christmas.constant.Message.EVENT_PLANNER;
+import static christmas.constant.Message.MENU_AND_COUNT_INPUT_PROMPT;
+import static christmas.constant.Message.VISIT_DATE_INPUT_PROMPT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.in;
 
-import christmas.constant.Message;
 import christmas.constant.exception.ArgumentException;
 import christmas.view.ChristmasInputView;
 import christmas.view.ChristmasOutputView;
@@ -29,7 +30,7 @@ public class ChristmasUiTest extends UiTest {
         outputView.printEventPlannerMessage();
 
         assertThat(getOutput())
-                .contains(Message.EVENT_PLANNER.getText());
+                .contains(EVENT_PLANNER.getText());
     }
 
     @ParameterizedTest
@@ -39,7 +40,7 @@ public class ChristmasUiTest extends UiTest {
         inputView.readVisitDate();
 
         assertThat(getOutput())
-                .contains(Message.VISIT_DATE_INPUT_PROMPT.getText());
+                .contains(VISIT_DATE_INPUT_PROMPT.getText());
     }
 
     @ParameterizedTest
@@ -59,5 +60,15 @@ public class ChristmasUiTest extends UiTest {
         assertThatThrownBy(() -> inputView.readVisitDate())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ArgumentException.INVALID_DATE.exception().getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"해산물파스타-2,레드와인-1,초코케이크-1"})
+    void readMenuAndCount(String input) {
+        input(input);
+        inputView.readMenuAndCount();
+
+        assertThat(getOutput())
+                .contains(MENU_AND_COUNT_INPUT_PROMPT.getText());
     }
 }

@@ -34,5 +34,10 @@ public class ChristmasController extends AbstractRetry {
             int inputDay = inputView.readVisitDate();
             return service.generateVisitDate(inputDay);
         });
+
+        run(() -> {
+            inputView.readMenuAndCount();
+            return null;
+        });
     }
 }

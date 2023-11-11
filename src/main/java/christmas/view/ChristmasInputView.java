@@ -1,8 +1,10 @@
 package christmas.view;
 
+import static christmas.constant.Message.*;
 import static christmas.constant.Message.VISIT_DATE_INPUT_PROMPT;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.constant.Message;
 import christmas.constant.validation.Validation;
 
 public class ChristmasInputView extends AbstractView {
@@ -20,5 +22,11 @@ public class ChristmasInputView extends AbstractView {
         Validation.NUMBER_RULE.validate(input);
 
         return Integer.parseInt(input);
+    }
+
+    public String readMenuAndCount() {
+        printMessage(MENU_AND_COUNT_INPUT_PROMPT);
+
+        return "";
     }
 }

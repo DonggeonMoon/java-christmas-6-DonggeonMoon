@@ -4,9 +4,7 @@ import java.math.BigDecimal;
 import java.util.function.Function;
 
 public enum TotalAmountDiscount implements Discount {
-    SPECIAL("특별 할인", (BigDecimal totalAmount) -> {
-        return true;
-    });
+    SPECIAL("특별 할인", (BigDecimal totalAmount) -> true);
 
     private final String name;
     private final Function<BigDecimal, Boolean> condition;
@@ -16,12 +14,7 @@ public enum TotalAmountDiscount implements Discount {
         this.condition = condition;
     }
 
-    @Override
     public String getName() {
         return name;
-    }
-
-    public Function<BigDecimal, Boolean> getCondition() {
-        return condition;
     }
 }
