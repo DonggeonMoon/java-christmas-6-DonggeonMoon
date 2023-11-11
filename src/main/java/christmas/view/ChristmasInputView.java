@@ -16,6 +16,7 @@ public class ChristmasInputView extends AbstractView {
     public int readVisitDate() {
         printMessage(VISIT_DATE_INPUT_PROMPT);
         String input = Console.readLine();
+        Validation.NOT_EMPTY_RULE.validate(input);
         Validation.NUMBER_RULE.validate(input);
 
         return Integer.parseInt(input);
