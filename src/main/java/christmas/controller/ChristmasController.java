@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.dto.OrderedMenuDto;
 import christmas.dto.VisitDateDto;
 import christmas.service.ChristmasService;
 import christmas.view.ChristmasInputView;
@@ -35,10 +36,9 @@ public class ChristmasController extends AbstractRetry {
             return service.generateVisitDate(inputDay);
         });
 
-        run(() -> {
+        OrderedMenuDto orderedMenuDto = run(() -> {
             String inputMenuAndCount = inputView.readMenuAndCount();
-            service.generateOrderedMenu(inputMenuAndCount);
-            return null;
+            return service.generateOrderedMenu(inputMenuAndCount);
         });
     }
 }

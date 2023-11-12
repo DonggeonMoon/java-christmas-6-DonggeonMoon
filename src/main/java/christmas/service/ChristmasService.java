@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.dto.OrderedMenuDto;
 import christmas.dto.VisitDateDto;
 import christmas.model.OrderedMenu;
 import christmas.model.VisitDate;
@@ -17,7 +18,8 @@ public class ChristmasService {
         return VisitDateDto.from(visitDate);
     }
 
-    public void generateOrderedMenu(String inputMenuAndCount) {
+    public OrderedMenuDto generateOrderedMenu(String inputMenuAndCount) {
         OrderedMenu orderedMenu = OrderedMenu.from(inputMenuAndCount);
+        return OrderedMenuDto.from(orderedMenu);
     }
 }
