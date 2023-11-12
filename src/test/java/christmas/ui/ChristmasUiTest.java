@@ -10,7 +10,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import christmas.constant.exception.ArgumentException;
 import christmas.dto.OrderedMenuDto;
+import christmas.dto.PreDiscountAmountDto;
 import christmas.model.OrderedMenu;
+import christmas.model.PreDiscountAmount;
 import christmas.view.ChristmasInputView;
 import christmas.view.ChristmasOutputView;
 import java.util.NoSuchElementException;
@@ -27,10 +29,13 @@ public class ChristmasUiTest extends UiTest {
             "해산물파스타 2개",
             "초코케이크 1개"
     };
+    public static final String PRE_DISCOUNT_AMOUNT_TEXT = "145000원";
     private ChristmasOutputView outputView;
     private ChristmasInputView inputView;
     private OrderedMenu orderedMenu;
     private OrderedMenuDto orderedMenuDto;
+    private PreDiscountAmount preDiscountAmount;
+    private PreDiscountAmountDto preDiscountAmountDto;
 
     @BeforeEach
     void setUp() {
@@ -38,6 +43,8 @@ public class ChristmasUiTest extends UiTest {
         inputView = ChristmasInputView.create();
         orderedMenu = OrderedMenu.from(validInput);
         orderedMenuDto = OrderedMenuDto.from(orderedMenu);
+        preDiscountAmount = PreDiscountAmount.from(orderedMenu);
+        preDiscountAmountDto = PreDiscountAmountDto.from(preDiscountAmount);
     }
 
     @Test
@@ -111,5 +118,12 @@ public class ChristmasUiTest extends UiTest {
         assertThat(getOutput())
                 .contains(ORDERED_MENU_DTO_TEXT_COMPONENT
                 );
+    }
+
+    @Test
+    void printPreDiscountAmount() {
+        outputView.printPreDiscountAmount(preDiscountAmountDto);
+        assertThat(getOutput())
+                .contains(PRE_DISCOUNT_AMOUNT_TEXT);
     }
 }

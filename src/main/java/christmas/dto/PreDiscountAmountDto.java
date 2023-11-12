@@ -9,4 +9,13 @@ public record PreDiscountAmountDto(
     public static PreDiscountAmountDto from(PreDiscountAmount preDiscountAmount) {
         return new PreDiscountAmountDto(preDiscountAmount.amount());
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(amount);
+        stringBuilder.append("원");
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
+    }
 }
