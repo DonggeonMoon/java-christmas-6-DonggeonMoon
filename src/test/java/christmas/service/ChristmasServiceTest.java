@@ -4,9 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.constant.menu.MenuCategory.Menu;
 import christmas.dto.BenefitsDto;
+import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.VisitDateDto;
+import christmas.model.Benefits;
 import christmas.model.OrderedMenu;
 import christmas.model.PreDiscountAmount;
 import christmas.model.VisitDate;
@@ -26,6 +28,8 @@ class ChristmasServiceTest {
     private PreDiscountAmountDto preDiscountAmountDto;
     private VisitDate visitDate;
     private VisitDateDto visitDateDto;
+    private Benefits benefits;
+    private BenefitsDto benefitsDto;
 
     @BeforeEach
     void setUp() {
@@ -37,6 +41,8 @@ class ChristmasServiceTest {
         orderedMenuDto = OrderedMenuDto.from(orderedMenu);
         preDiscountAmount = PreDiscountAmount.from(orderedMenu);
         preDiscountAmountDto = PreDiscountAmountDto.from(preDiscountAmount);
+        benefits = Benefits.from(visitDate,orderedMenu);
+        benefitsDto = BenefitsDto.from(benefits);
     }
 
     @Test
@@ -62,5 +68,11 @@ class ChristmasServiceTest {
     void generateBenefits() {
         assertThat(service.generateBenefits(visitDateDto, orderedMenuDto))
                 .isInstanceOf(BenefitsDto.class);
+    }
+
+    @Test
+    void generateGiveAway() {
+        assertThat(service.generateGiveAway(benefitsDto))
+                .isInstanceOf(GiveawayMenuDto.class);
     }
 }

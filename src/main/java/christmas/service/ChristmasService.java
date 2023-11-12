@@ -1,6 +1,7 @@
 package christmas.service;
 
 import christmas.dto.BenefitsDto;
+import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.VisitDateDto;
@@ -42,8 +43,9 @@ public class ChristmasService {
         return BenefitsDto.from(benefits);
     }
 
-    public void generateGiveAway(BenefitsDto benefitsDto) {
+    public GiveawayMenuDto generateGiveAway(BenefitsDto benefitsDto) {
         Benefits benefits = benefitsDto.toEntity();
-        GiveawayMenu.from(benefits);
+        GiveawayMenu giveawayMenu = GiveawayMenu.from(benefits);
+        return GiveawayMenuDto.from(giveawayMenu);
     }
 }
