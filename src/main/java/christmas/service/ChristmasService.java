@@ -3,6 +3,7 @@ package christmas.service;
 import christmas.dto.OrderedMenuDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.VisitDateDto;
+import christmas.model.Benefits;
 import christmas.model.OrderedMenu;
 import christmas.model.PreDiscountAmount;
 import christmas.model.VisitDate;
@@ -30,5 +31,11 @@ public class ChristmasService {
         PreDiscountAmount preDiscountAmount = PreDiscountAmount.from(orderedMenu);
 
         return PreDiscountAmountDto.from(preDiscountAmount);
+    }
+
+    public void generateBenefits(VisitDateDto visitDateDto, OrderedMenuDto orderedMenuDto) {
+        VisitDate visitDate = visitDateDto.toEntity();
+        OrderedMenu orderedMenu = orderedMenuDto.toEntity();
+        Benefits.from(visitDate, orderedMenu);
     }
 }

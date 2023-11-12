@@ -42,6 +42,14 @@ public enum MenuCategory {
                     .orElseThrow(INVALID_MENU::exception);
         }
 
+        public boolean isDessert() {
+            return this.category != MenuCategory.DESSERT;
+        }
+
+        public boolean isMainMenu() {
+            return this.category != MenuCategory.MAIN_MENU;
+        }
+
         public boolean isNotDrink() {
             return this.category != MenuCategory.DRINK;
         }

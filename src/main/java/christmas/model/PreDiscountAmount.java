@@ -17,4 +17,8 @@ public record PreDiscountAmount(
         }
         return new PreDiscountAmount(totalAmount);
     }
+
+    public boolean isGreaterThan(BigDecimal amount) {
+        return this.amount.compareTo(amount) > 0;
+    }
 }
