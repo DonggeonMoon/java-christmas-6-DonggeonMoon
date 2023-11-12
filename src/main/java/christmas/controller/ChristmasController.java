@@ -1,6 +1,7 @@
 package christmas.controller;
 
 import christmas.dto.OrderedMenuDto;
+import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.VisitDateDto;
 import christmas.service.ChristmasService;
 import christmas.view.ChristmasInputView;
@@ -42,5 +43,6 @@ public class ChristmasController extends AbstractRetry {
         });
         outputView.printEventBenefitPreview();
         outputView.printOrderedMenu(orderedMenuDto);
+        PreDiscountAmountDto preDiscountAmountDto = service.generatePreDiscountAmount(orderedMenuDto);
     }
 }

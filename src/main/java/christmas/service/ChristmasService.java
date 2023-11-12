@@ -1,6 +1,7 @@
 package christmas.service;
 
 import christmas.dto.OrderedMenuDto;
+import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.VisitDateDto;
 import christmas.model.OrderedMenu;
 import christmas.model.PreDiscountAmount;
@@ -24,8 +25,10 @@ public class ChristmasService {
         return OrderedMenuDto.from(orderedMenu);
     }
 
-    public void generatePreDiscountAmount(OrderedMenuDto orderedMenuDto) {
+    public PreDiscountAmountDto generatePreDiscountAmount(OrderedMenuDto orderedMenuDto) {
         OrderedMenu orderedMenu = orderedMenuDto.toEntity();
-        PreDiscountAmount.from(orderedMenu);
+        PreDiscountAmount preDiscountAmount = PreDiscountAmount.from(orderedMenu);
+
+        return PreDiscountAmountDto.from(preDiscountAmount);
     }
 }
