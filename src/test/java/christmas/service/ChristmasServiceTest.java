@@ -3,11 +3,14 @@ package christmas.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.constant.menu.MenuCategory.Menu;
+import christmas.dto.BenefitsDto;
 import christmas.dto.OrderedMenuDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.VisitDateDto;
 import christmas.model.OrderedMenu;
 import christmas.model.PreDiscountAmount;
+import christmas.model.VisitDate;
+import java.time.LocalDate;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,9 +24,13 @@ class ChristmasServiceTest {
     private OrderedMenuDto orderedMenuDto;
     private PreDiscountAmount preDiscountAmount;
     private PreDiscountAmountDto preDiscountAmountDto;
+    private VisitDate visitDate;
+    private VisitDateDto visitDateDto;
 
     @BeforeEach
     void setUp() {
+        visitDate = VisitDate.from(LocalDate.of(2023, 12, 3));
+        visitDateDto = VisitDateDto.from(visitDate);
         service = ChristmasService.create();
         menuAndCount = Map.of(Menu.SEAFOOD_PASTA, 2, Menu.RED_WINE, 1, Menu.CHOCOLATE_CAKE, 1);
         orderedMenu = OrderedMenu.from(menuAndCount);
@@ -49,6 +56,11 @@ class ChristmasServiceTest {
     void generatePreDiscountAmount() {
         assertThat(service.generatePreDiscountAmount(orderedMenuDto))
                 .isInstanceOf(PreDiscountAmountDto.class);
+    }
 
+    @Test
+    void generateBenefits() {
+        assertThat(service.generateBenefits(visitDateDto, orderedMenuDto))
+                .isInstanceOf(BenefitsDto.class);
     }
 }
