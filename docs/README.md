@@ -9,6 +9,7 @@
 | 입출력   | 예상 방문 날짜 입력           | ChristmasInputView                      |    |
 | 객체 생성 | 방문 날짜 생성              | ChristmasService, VisitDate             |    |
 | 검증    | 예상 방문 날짜 검증           | VisitDate                               |    |
+| 객체 생성 | 예상 방문 날짜 DTO 생성       | ChristmasService, VisitDate             |    |
 | 입출력   | 주문할 메뉴, 개수 입력 프롬프트 출력 | ChristmasInputView                      |    |
 | 입출력   | 주문할 메뉴, 개수 입력         | ChristmasInputView                      |    |
 | 객체 생성 | 주문 메뉴 객체 생성           | ChristmasService, OrderedMenu           |    |
@@ -35,7 +36,7 @@
 
 ## ⛔예외 상황
 
-* 방문 날짝가 숫자가 아닌 경우
+* 방문 날짜가 숫자가 아닌 경우
 * 방문 날짜가 1~31 범위가 아닌 경우
 * 메뉴가 `메뉴명-숫자` 형식이 아닌 경우
 * 메뉴가 1이상의 숫자가 아닌 경우
