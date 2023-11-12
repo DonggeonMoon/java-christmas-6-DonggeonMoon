@@ -1,5 +1,6 @@
 package christmas.ui;
 
+import static christmas.constant.Message.EVENT_BENEFIT_PREVIEW;
 import static christmas.constant.Message.EVENT_PLANNER;
 import static christmas.constant.Message.MENU_AND_COUNT_INPUT_PROMPT;
 import static christmas.constant.Message.VISIT_DATE_INPUT_PROMPT;
@@ -81,5 +82,12 @@ public class ChristmasUiTest extends UiTest {
 
         assertThat(inputMenuAndCount)
                 .isEqualTo(input);
+    }
+
+    @Test
+    void printEventBenefitPreview() {
+        outputView.printEventBenefitPreview();
+        assertThat(getOutput())
+                .contains(EVENT_BENEFIT_PREVIEW.getText());
     }
 }

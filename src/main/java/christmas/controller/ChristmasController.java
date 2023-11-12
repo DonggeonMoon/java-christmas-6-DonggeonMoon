@@ -40,5 +40,6 @@ public class ChristmasController extends AbstractRetry {
             String inputMenuAndCount = inputView.readMenuAndCount();
             return service.generateOrderedMenu(inputMenuAndCount);
         });
+        outputView.printEventBenefitPreview();
     }
 }
