@@ -6,12 +6,14 @@ import christmas.constant.menu.MenuCategory.Menu;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
+import christmas.dto.PostDiscountAmountDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.TotalBenefitAmountDto;
 import christmas.dto.VisitDateDto;
 import christmas.model.Benefits;
 import christmas.model.OrderedMenu;
 import christmas.model.PreDiscountAmount;
+import christmas.model.TotalBenefitAmount;
 import christmas.model.VisitDate;
 import java.time.LocalDate;
 import java.util.Map;
@@ -31,6 +33,8 @@ class ChristmasServiceTest {
     private VisitDateDto visitDateDto;
     private Benefits benefits;
     private BenefitsDto benefitsDto;
+    private TotalBenefitAmount totalBenefitAmount;
+    private TotalBenefitAmountDto totalBenefitAmountDto;
 
     @BeforeEach
     void setUp() {
@@ -44,6 +48,8 @@ class ChristmasServiceTest {
         preDiscountAmountDto = PreDiscountAmountDto.from(preDiscountAmount);
         benefits = Benefits.from(visitDate, orderedMenu);
         benefitsDto = BenefitsDto.from(benefits);
+        totalBenefitAmount = TotalBenefitAmount.from(benefits);
+        totalBenefitAmountDto = TotalBenefitAmountDto.from(totalBenefitAmount);
     }
 
     @Test
@@ -81,5 +87,11 @@ class ChristmasServiceTest {
     void generateTotalBenefitAmount() {
         assertThat(service.generateTotalBenefitAmount(benefitsDto))
                 .isInstanceOf(TotalBenefitAmountDto.class);
+    }
+
+    @Test
+    void generatePostDiscountAmount() {
+        assertThat(service.generatePostDiscountAmount(preDiscountAmountDto, totalBenefitAmountDto))
+                .isInstanceOf(PostDiscountAmountDto.class);
     }
 }

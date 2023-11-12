@@ -3,6 +3,7 @@ package christmas.service;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
+import christmas.dto.PostDiscountAmountDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.TotalBenefitAmountDto;
 import christmas.dto.VisitDateDto;
@@ -58,12 +59,13 @@ public class ChristmasService {
         return TotalBenefitAmountDto.from(totalBenefitAmount);
     }
 
-    public void generatePostDiscountAmount(
+    public PostDiscountAmountDto generatePostDiscountAmount(
             PreDiscountAmountDto preDiscountAmountDto,
             TotalBenefitAmountDto totalBenefitAmountDto
     ) {
         PreDiscountAmount preDiscountAmount = preDiscountAmountDto.toEntity();
         TotalBenefitAmount totalBenefitAmount = totalBenefitAmountDto.toEntity();
         PostDiscountAmount postDiscountAmount = PostDiscountAmount.of(preDiscountAmount, totalBenefitAmount);
+        return PostDiscountAmountDto.from(postDiscountAmount);
     }
 }

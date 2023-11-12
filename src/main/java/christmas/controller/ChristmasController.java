@@ -3,6 +3,7 @@ package christmas.controller;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
+import christmas.dto.PostDiscountAmountDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.TotalBenefitAmountDto;
 import christmas.dto.VisitDateDto;
@@ -54,5 +55,10 @@ public class ChristmasController extends AbstractRetry {
         outputView.printBenefits(benefitsDto);
         TotalBenefitAmountDto totalBenefitAmountDto = service.generateTotalBenefitAmount(benefitsDto);
         outputView.printTotalBenefitAmount(totalBenefitAmountDto);
+        PostDiscountAmountDto postDiscountAmountDto = service.generatePostDiscountAmount(
+                preDiscountAmountDto,
+                totalBenefitAmountDto
+        );
+
     }
 }
