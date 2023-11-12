@@ -49,5 +49,9 @@ public enum MenuCategory {
         public String getName() {
             return name;
         }
+
+        public BigDecimal getPrice() {
+            return price;
+        }
     }
 }

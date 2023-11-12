@@ -9,6 +9,12 @@ public record OrderedMenuDto(Map<Menu, Integer> menuAndCount) {
         return new OrderedMenuDto(orderedMenu.getMenuAndCount());
     }
 
+    public OrderedMenu toEntity() {
+        return OrderedMenu.from(
+                this.menuAndCount
+        );
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

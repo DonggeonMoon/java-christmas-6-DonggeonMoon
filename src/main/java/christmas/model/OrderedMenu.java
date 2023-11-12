@@ -19,6 +19,10 @@ public class OrderedMenu {
         this.menuAndCount = menuAndCount;
     }
 
+    public static OrderedMenu from(Map<Menu, Integer> menuAndCount) {
+        return new OrderedMenu(menuAndCount);
+    }
+
     public static OrderedMenu from(final String inputMenuAndCount) {
         Objects.requireNonNull(inputMenuAndCount);
         List<List<String>> list = COMMA.split(inputMenuAndCount)
