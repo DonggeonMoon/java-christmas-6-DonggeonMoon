@@ -9,12 +9,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import christmas.constant.exception.ArgumentException;
+import christmas.dto.BenefitsDto;
+import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
 import christmas.dto.PreDiscountAmountDto;
+import christmas.model.Benefits;
+import christmas.model.GiveawayMenu;
 import christmas.model.OrderedMenu;
 import christmas.model.PreDiscountAmount;
+import christmas.model.VisitDate;
 import christmas.view.ChristmasInputView;
 import christmas.view.ChristmasOutputView;
+import java.time.LocalDate;
 import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,21 +36,32 @@ public class ChristmasUiTest extends UiTest {
             "초코케이크 1개"
     };
     public static final String PRE_DISCOUNT_AMOUNT_TEXT = "145000원";
+    public static final String GIVEAWAY_TEXT = "샴페인 1개";
     private ChristmasOutputView outputView;
     private ChristmasInputView inputView;
+    private VisitDate visitDate;
     private OrderedMenu orderedMenu;
     private OrderedMenuDto orderedMenuDto;
     private PreDiscountAmount preDiscountAmount;
     private PreDiscountAmountDto preDiscountAmountDto;
+    private Benefits benefits;
+    private BenefitsDto benefitsDto;
+    private GiveawayMenu giveawayMenu;
+    private GiveawayMenuDto giveawayMenuDto;
 
     @BeforeEach
     void setUp() {
         outputView = ChristmasOutputView.create();
         inputView = ChristmasInputView.create();
+        visitDate = VisitDate.from(LocalDate.of(2023, 12, 3));
         orderedMenu = OrderedMenu.from(validInput);
         orderedMenuDto = OrderedMenuDto.from(orderedMenu);
         preDiscountAmount = PreDiscountAmount.from(orderedMenu);
         preDiscountAmountDto = PreDiscountAmountDto.from(preDiscountAmount);
+        benefits = Benefits.from(visitDate, orderedMenu);
+        benefitsDto = BenefitsDto.from(benefits);
+        giveawayMenu = GiveawayMenu.from(benefits);
+        giveawayMenuDto = GiveawayMenuDto.from(giveawayMenu);
     }
 
     @Test
@@ -125,5 +142,12 @@ public class ChristmasUiTest extends UiTest {
         outputView.printPreDiscountAmount(preDiscountAmountDto);
         assertThat(getOutput())
                 .contains(PRE_DISCOUNT_AMOUNT_TEXT);
+    }
+
+    @Test
+    void printGiveaway() {
+        outputView.printGiveaway(giveawayMenuDto);
+        assertThat(getOutput())
+                .contains(GIVEAWAY_TEXT);
     }
 }

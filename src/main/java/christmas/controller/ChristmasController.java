@@ -49,5 +49,6 @@ public class ChristmasController extends AbstractRetry {
         outputView.printPreDiscountAmount(preDiscountAmountDto);
         BenefitsDto benefitsDto = service.generateBenefits(visitDateDto, orderedMenuDto);
         GiveawayMenuDto giveawayMenuDto = service.generateGiveAway(benefitsDto);
+        outputView.printGiveaway(giveawayMenuDto);
     }
 }
