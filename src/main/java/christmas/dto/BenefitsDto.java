@@ -16,4 +16,19 @@ public record BenefitsDto(
     public Benefits toEntity() {
         return Benefits.from(benefits);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        benefits.entrySet()
+                .forEach(benefitAndAmount -> {
+                            stringBuilder.append(benefitAndAmount.getKey().getName());
+                            stringBuilder.append(" ");
+                            stringBuilder.append(benefitAndAmount.getValue());
+                            stringBuilder.append("원");
+                            stringBuilder.append("\n");
+                        }
+                );
+        return stringBuilder.toString();
+    }
 }

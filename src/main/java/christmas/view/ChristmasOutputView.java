@@ -1,11 +1,13 @@
 package christmas.view;
 
+import static christmas.constant.Message.BENEFIT_PREFIX;
 import static christmas.constant.Message.EVENT_BENEFIT_PREVIEW;
 import static christmas.constant.Message.EVENT_PLANNER;
 import static christmas.constant.Message.GIVEAWAY_PREFIX;
 import static christmas.constant.Message.ORDERED_MENU_PREFIX;
 import static christmas.constant.Message.PRE_DISCOUNT_AMOUNT_PREFIX;
 
+import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
 import christmas.dto.PreDiscountAmountDto;
@@ -39,5 +41,10 @@ public class ChristmasOutputView extends AbstractView {
     public void printGiveaway(GiveawayMenuDto giveawayMenuDto) {
         printMessage(GIVEAWAY_PREFIX);
         println(giveawayMenuDto.toString());
+    }
+
+    public void printBenefits(BenefitsDto benefitsDto) {
+        printMessage(BENEFIT_PREFIX);
+        println(benefitsDto.toString());
     }
 }

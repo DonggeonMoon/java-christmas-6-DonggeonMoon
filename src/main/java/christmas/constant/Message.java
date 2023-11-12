@@ -7,7 +7,8 @@ public enum Message {
     EVENT_BENEFIT_PREVIEW("12월 26일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!"),
     ORDERED_MENU_PREFIX("<주문 메뉴>"),
     PRE_DISCOUNT_AMOUNT_PREFIX("<할인 전 총주문 금액>"),
-    GIVEAWAY_PREFIX("<증정 메뉴>");
+    GIVEAWAY_PREFIX("<증정 메뉴>"),
+    BENEFIT_PREFIX("<혜택 내역>");
     private final String text;
 
     Message(final String text) {

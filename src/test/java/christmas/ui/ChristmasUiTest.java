@@ -37,6 +37,10 @@ public class ChristmasUiTest extends UiTest {
     };
     public static final String PRE_DISCOUNT_AMOUNT_TEXT = "145000원";
     public static final String GIVEAWAY_TEXT = "샴페인 1개";
+    public static final String[] BENEFIT_TEXT = {"평일 할인 6069원",
+            "주말 할인 4046원",
+            "특별 할인 2000원",
+            "증정 이벤트 25000원"};
     private ChristmasOutputView outputView;
     private ChristmasInputView inputView;
     private VisitDate visitDate;
@@ -149,5 +153,11 @@ public class ChristmasUiTest extends UiTest {
         outputView.printGiveaway(giveawayMenuDto);
         assertThat(getOutput())
                 .contains(GIVEAWAY_TEXT);
+    }
+    @Test
+    void printBenefits() {
+        outputView.printBenefits(benefitsDto);
+        assertThat(getOutput())
+                .contains(BENEFIT_TEXT);
     }
 }
