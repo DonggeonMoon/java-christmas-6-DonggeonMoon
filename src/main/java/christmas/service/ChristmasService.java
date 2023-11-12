@@ -9,6 +9,7 @@ import christmas.dto.VisitDateDto;
 import christmas.model.Benefits;
 import christmas.model.GiveawayMenu;
 import christmas.model.OrderedMenu;
+import christmas.model.PostDiscountAmount;
 import christmas.model.PreDiscountAmount;
 import christmas.model.TotalBenefitAmount;
 import christmas.model.VisitDate;
@@ -55,5 +56,14 @@ public class ChristmasService {
         Benefits benefits = benefitsDto.toEntity();
         TotalBenefitAmount totalBenefitAmount = TotalBenefitAmount.from(benefits);
         return TotalBenefitAmountDto.from(totalBenefitAmount);
+    }
+
+    public void generatePostDiscountAmount(
+            PreDiscountAmountDto preDiscountAmountDto,
+            TotalBenefitAmountDto totalBenefitAmountDto
+    ) {
+        PreDiscountAmount preDiscountAmount = preDiscountAmountDto.toEntity();
+        TotalBenefitAmount totalBenefitAmount = totalBenefitAmountDto.toEntity();
+        PostDiscountAmount postDiscountAmount = PostDiscountAmount.of(preDiscountAmount, totalBenefitAmount);
     }
 }

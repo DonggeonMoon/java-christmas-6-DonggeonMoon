@@ -10,6 +10,10 @@ public record PreDiscountAmountDto(
         return new PreDiscountAmountDto(preDiscountAmount.amount());
     }
 
+    public PreDiscountAmount toEntity() {
+        return PreDiscountAmount.from(amount);
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

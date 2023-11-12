@@ -10,6 +10,10 @@ public record TotalBenefitAmountDto(
         return new TotalBenefitAmountDto(totalBenefitAmount.amount());
     }
 
+    public TotalBenefitAmount toEntity() {
+        return new TotalBenefitAmount(amount);
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
