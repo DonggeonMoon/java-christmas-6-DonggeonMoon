@@ -8,7 +8,8 @@ public enum Message {
     ORDERED_MENU_PREFIX("<주문 메뉴>"),
     PRE_DISCOUNT_AMOUNT_PREFIX("<할인 전 총주문 금액>"),
     GIVEAWAY_PREFIX("<증정 메뉴>"),
-    BENEFIT_PREFIX("<혜택 내역>");
+    BENEFIT_PREFIX("<혜택 내역>"),
+    TOTAL_BENEFIT_AMOUNT_PREFIX("<총혜택 금액>");
     private final String text;
 
     Message(final String text) {

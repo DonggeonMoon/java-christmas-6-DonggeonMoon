@@ -13,10 +13,12 @@ import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
 import christmas.dto.PreDiscountAmountDto;
+import christmas.dto.TotalBenefitAmountDto;
 import christmas.model.Benefits;
 import christmas.model.GiveawayMenu;
 import christmas.model.OrderedMenu;
 import christmas.model.PreDiscountAmount;
+import christmas.model.TotalBenefitAmount;
 import christmas.model.VisitDate;
 import christmas.view.ChristmasInputView;
 import christmas.view.ChristmasOutputView;
@@ -41,6 +43,7 @@ public class ChristmasUiTest extends UiTest {
             "주말 할인 4046원",
             "특별 할인 2000원",
             "증정 이벤트 25000원"};
+    public static final String TOTAL_BENEFIT_AMOUNT_TEXT = "37115원";
     private ChristmasOutputView outputView;
     private ChristmasInputView inputView;
     private VisitDate visitDate;
@@ -52,6 +55,8 @@ public class ChristmasUiTest extends UiTest {
     private BenefitsDto benefitsDto;
     private GiveawayMenu giveawayMenu;
     private GiveawayMenuDto giveawayMenuDto;
+    private TotalBenefitAmount totalBenefitAmount;
+    private TotalBenefitAmountDto totalBenefitAmountDto;
 
     @BeforeEach
     void setUp() {
@@ -66,6 +71,8 @@ public class ChristmasUiTest extends UiTest {
         benefitsDto = BenefitsDto.from(benefits);
         giveawayMenu = GiveawayMenu.from(benefits);
         giveawayMenuDto = GiveawayMenuDto.from(giveawayMenu);
+        totalBenefitAmount = TotalBenefitAmount.from(benefits);
+        totalBenefitAmountDto = TotalBenefitAmountDto.from(totalBenefitAmount);
     }
 
     @Test
@@ -154,10 +161,18 @@ public class ChristmasUiTest extends UiTest {
         assertThat(getOutput())
                 .contains(GIVEAWAY_TEXT);
     }
+
     @Test
     void printBenefits() {
         outputView.printBenefits(benefitsDto);
         assertThat(getOutput())
                 .contains(BENEFIT_TEXT);
+    }
+
+    @Test
+    void printTotalBenefitAmount() {
+        outputView.printTotalBenefitAmount(totalBenefitAmountDto);
+        assertThat(getOutput())
+                .contains(TOTAL_BENEFIT_AMOUNT_TEXT);
     }
 }

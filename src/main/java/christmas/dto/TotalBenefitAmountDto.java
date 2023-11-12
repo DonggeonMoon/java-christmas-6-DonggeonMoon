@@ -9,4 +9,13 @@ public record TotalBenefitAmountDto(
     public static TotalBenefitAmountDto from(TotalBenefitAmount totalBenefitAmount) {
         return new TotalBenefitAmountDto(totalBenefitAmount.amount());
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(amount);
+        stringBuilder.append("원");
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
+    }
 }
