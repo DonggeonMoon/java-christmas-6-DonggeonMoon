@@ -47,4 +47,8 @@ public record Benefits(
     public BigDecimal getGiveawayAmount() {
         return benefits.get(GIVEAWAY);
     }
+
+    public TotalBenefitAmount calculateTotalBenefitAmount() {
+        return TotalBenefitAmount.from(this);
+    }
 }

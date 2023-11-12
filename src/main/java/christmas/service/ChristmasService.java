@@ -9,6 +9,7 @@ import christmas.model.Benefits;
 import christmas.model.GiveawayMenu;
 import christmas.model.OrderedMenu;
 import christmas.model.PreDiscountAmount;
+import christmas.model.TotalBenefitAmount;
 import christmas.model.VisitDate;
 
 public class ChristmasService {
@@ -47,5 +48,10 @@ public class ChristmasService {
         Benefits benefits = benefitsDto.toEntity();
         GiveawayMenu giveawayMenu = GiveawayMenu.from(benefits);
         return GiveawayMenuDto.from(giveawayMenu);
+    }
+
+    public void generateTotalBenefitAmount(BenefitsDto benefitsDto) {
+        Benefits benefits = benefitsDto.toEntity();
+        TotalBenefitAmount totalBenefitAmount = TotalBenefitAmount.from(benefits);
     }
 }
