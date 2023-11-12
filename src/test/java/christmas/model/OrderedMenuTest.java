@@ -12,7 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class OrderedMenuTest {
-    private static String validInput = "해산물파스타-2,레드와인-1,초코케이크-1";
+    private static final String validInput = "해산물파스타-2,레드와인-1,초코케이크-1";
     private OrderedMenu orderedMenu;
     private Map<Menu, Integer> menuAndCount;
 

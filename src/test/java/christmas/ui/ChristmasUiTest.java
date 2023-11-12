@@ -3,11 +3,14 @@ package christmas.ui;
 import static christmas.constant.Message.EVENT_BENEFIT_PREVIEW;
 import static christmas.constant.Message.EVENT_PLANNER;
 import static christmas.constant.Message.MENU_AND_COUNT_INPUT_PROMPT;
+import static christmas.constant.Message.ORDERED_MENU_PREFIX;
 import static christmas.constant.Message.VISIT_DATE_INPUT_PROMPT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import christmas.constant.exception.ArgumentException;
+import christmas.dto.OrderedMenuDto;
+import christmas.model.OrderedMenu;
 import christmas.view.ChristmasInputView;
 import christmas.view.ChristmasOutputView;
 import java.util.NoSuchElementException;
@@ -17,13 +20,24 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class ChristmasUiTest extends UiTest {
+    private static final String validInput = "해산물파스타-2,레드와인-1,초코케이크-1";
+    public static final CharSequence[] ORDERED_MENU_DTO_TEXT_COMPONENT = {
+            ORDERED_MENU_PREFIX.getText(),
+            "레드와인 1개",
+            "해산물파스타 2개",
+            "초코케이크 1개"
+    };
     private ChristmasOutputView outputView;
     private ChristmasInputView inputView;
+    private OrderedMenu orderedMenu;
+    private OrderedMenuDto orderedMenuDto;
 
     @BeforeEach
     void setUp() {
         outputView = ChristmasOutputView.create();
         inputView = ChristmasInputView.create();
+        orderedMenu = OrderedMenu.from(validInput);
+        orderedMenuDto = OrderedMenuDto.from(orderedMenu);
     }
 
     @Test
@@ -89,5 +103,13 @@ public class ChristmasUiTest extends UiTest {
         outputView.printEventBenefitPreview();
         assertThat(getOutput())
                 .contains(EVENT_BENEFIT_PREVIEW.getText());
+    }
+
+    @Test
+    void printOrderedMenu() {
+        outputView.printOrderedMenu(orderedMenuDto);
+        assertThat(getOutput())
+                .contains(ORDERED_MENU_DTO_TEXT_COMPONENT
+                );
     }
 }

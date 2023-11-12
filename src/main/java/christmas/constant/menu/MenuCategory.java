@@ -45,5 +45,9 @@ public enum MenuCategory {
         public boolean isNotDrink() {
             return this.category != MenuCategory.DRINK;
         }
+
+        public String getName() {
+            return name;
+        }
     }
 }
