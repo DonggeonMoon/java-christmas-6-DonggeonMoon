@@ -12,17 +12,20 @@ import christmas.constant.exception.ArgumentException;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
+import christmas.dto.PostDiscountAmountDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.TotalBenefitAmountDto;
 import christmas.model.Benefits;
 import christmas.model.GiveawayMenu;
 import christmas.model.OrderedMenu;
+import christmas.model.PostDiscountAmount;
 import christmas.model.PreDiscountAmount;
 import christmas.model.TotalBenefitAmount;
 import christmas.model.VisitDate;
 import christmas.view.ChristmasInputView;
 import christmas.view.ChristmasOutputView;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -57,6 +60,8 @@ public class ChristmasUiTest extends UiTest {
     private GiveawayMenuDto giveawayMenuDto;
     private TotalBenefitAmount totalBenefitAmount;
     private TotalBenefitAmountDto totalBenefitAmountDto;
+    private PostDiscountAmount postDiscountAmount;
+    private PostDiscountAmountDto postDiscountAmountDto;
 
     @BeforeEach
     void setUp() {
@@ -73,6 +78,9 @@ public class ChristmasUiTest extends UiTest {
         giveawayMenuDto = GiveawayMenuDto.from(giveawayMenu);
         totalBenefitAmount = TotalBenefitAmount.from(benefits);
         totalBenefitAmountDto = TotalBenefitAmountDto.from(totalBenefitAmount);
+        postDiscountAmount = PostDiscountAmount.of(preDiscountAmount, totalBenefitAmount);
+        postDiscountAmountDto = PostDiscountAmountDto.from(postDiscountAmount);
+
     }
 
     @Test
@@ -174,5 +182,15 @@ public class ChristmasUiTest extends UiTest {
         outputView.printTotalBenefitAmount(totalBenefitAmountDto);
         assertThat(getOutput())
                 .contains(TOTAL_BENEFIT_AMOUNT_TEXT);
+    }
+
+    @Test
+    void printPostDiscountAmount() {
+        outputView.printPostDiscountAmount(postDiscountAmountDto);
+        assertThat(getOutput())
+                .contains(List.of(
+                        "<할인 후 예상 결제 금액>",
+                        "107885원"
+                ));
     }
 }

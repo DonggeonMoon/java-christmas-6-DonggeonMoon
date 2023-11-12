@@ -59,6 +59,6 @@ public class ChristmasController extends AbstractRetry {
                 preDiscountAmountDto,
                 totalBenefitAmountDto
         );
-
+        outputView.printPostDiscountAmount(postDiscountAmountDto);
     }
 }
