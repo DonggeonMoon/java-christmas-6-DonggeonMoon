@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.dto.BadgeDto;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
@@ -60,5 +61,6 @@ public class ChristmasController extends AbstractRetry {
                 totalBenefitAmountDto
         );
         outputView.printPostDiscountAmount(postDiscountAmountDto);
+        BadgeDto badgeDto = service.generateBadge(totalBenefitAmountDto);
     }
 }

@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.dto.BadgeDto;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
@@ -70,8 +71,9 @@ public class ChristmasService {
         return PostDiscountAmountDto.from(postDiscountAmount);
     }
 
-    public void generateBadge(TotalBenefitAmountDto totalBenefitAmountDto) {
+    public BadgeDto generateBadge(TotalBenefitAmountDto totalBenefitAmountDto) {
         TotalBenefitAmount totalBenefitAmount = totalBenefitAmountDto.toEntity();
         Badge badge = Badge.from(totalBenefitAmount);
+        return BadgeDto.from(badge.badge());
     }
 }

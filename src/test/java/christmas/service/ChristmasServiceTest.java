@@ -3,6 +3,7 @@ package christmas.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.constant.menu.MenuCategory.Menu;
+import christmas.dto.BadgeDto;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
@@ -93,5 +94,11 @@ class ChristmasServiceTest {
     void generatePostDiscountAmount() {
         assertThat(service.generatePostDiscountAmount(preDiscountAmountDto, totalBenefitAmountDto))
                 .isInstanceOf(PostDiscountAmountDto.class);
+    }
+
+    @Test
+    void generateBadge() {
+        assertThat(service.generateBadge(totalBenefitAmountDto))
+                .isInstanceOf(BadgeDto.class);
     }
 }
