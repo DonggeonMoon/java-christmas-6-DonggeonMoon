@@ -74,6 +74,6 @@ public class ChristmasService {
     public BadgeDto generateBadge(TotalBenefitAmountDto totalBenefitAmountDto) {
         TotalBenefitAmount totalBenefitAmount = totalBenefitAmountDto.toEntity();
         Badge badge = Badge.from(totalBenefitAmount);
-        return BadgeDto.from(badge.badge());
+        return BadgeDto.from(badge);
     }
 }

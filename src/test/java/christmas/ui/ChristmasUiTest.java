@@ -1,5 +1,6 @@
 package christmas.ui;
 
+import static christmas.constant.Message.BADGE_PREFIX;
 import static christmas.constant.Message.EVENT_BENEFIT_PREVIEW;
 import static christmas.constant.Message.EVENT_PLANNER;
 import static christmas.constant.Message.MENU_AND_COUNT_INPUT_PROMPT;
@@ -9,12 +10,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import christmas.constant.exception.ArgumentException;
+import christmas.dto.BadgeDto;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
 import christmas.dto.PostDiscountAmountDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.TotalBenefitAmountDto;
+import christmas.model.Badge;
 import christmas.model.Benefits;
 import christmas.model.GiveawayMenu;
 import christmas.model.OrderedMenu;
@@ -47,6 +50,14 @@ public class ChristmasUiTest extends UiTest {
             "특별 할인 2000원",
             "증정 이벤트 25000원"};
     public static final String TOTAL_BENEFIT_AMOUNT_TEXT = "37115원";
+    public static final List<String> POST_DISCOUNT_AMOUNT_COMPONENT = List.of(
+            "<할인 후 예상 결제 금액>",
+            "107885원"
+    );
+    public static final List<String> BADGE_COMPONENT = List.of(
+            BADGE_PREFIX.getText(),
+            "산타"
+    );
     private ChristmasOutputView outputView;
     private ChristmasInputView inputView;
     private VisitDate visitDate;
@@ -62,6 +73,9 @@ public class ChristmasUiTest extends UiTest {
     private TotalBenefitAmountDto totalBenefitAmountDto;
     private PostDiscountAmount postDiscountAmount;
     private PostDiscountAmountDto postDiscountAmountDto;
+    private Badge badge;
+    private BadgeDto badgeDto;
+
 
     @BeforeEach
     void setUp() {
@@ -80,7 +94,8 @@ public class ChristmasUiTest extends UiTest {
         totalBenefitAmountDto = TotalBenefitAmountDto.from(totalBenefitAmount);
         postDiscountAmount = PostDiscountAmount.of(preDiscountAmount, totalBenefitAmount);
         postDiscountAmountDto = PostDiscountAmountDto.from(postDiscountAmount);
-
+        badge = Badge.from(totalBenefitAmount);
+        badgeDto = BadgeDto.from(badge);
     }
 
     @Test
@@ -188,9 +203,13 @@ public class ChristmasUiTest extends UiTest {
     void printPostDiscountAmount() {
         outputView.printPostDiscountAmount(postDiscountAmountDto);
         assertThat(getOutput())
-                .contains(List.of(
-                        "<할인 후 예상 결제 금액>",
-                        "107885원"
-                ));
+                .contains(POST_DISCOUNT_AMOUNT_COMPONENT);
+    }
+
+    @Test
+    void printBadge() {
+        outputView.printBadge(badgeDto);
+        assertThat(getOutput())
+                .contains(BADGE_COMPONENT);
     }
 }

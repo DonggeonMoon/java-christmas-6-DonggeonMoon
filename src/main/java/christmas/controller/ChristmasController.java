@@ -62,5 +62,6 @@ public class ChristmasController extends AbstractRetry {
         );
         outputView.printPostDiscountAmount(postDiscountAmountDto);
         BadgeDto badgeDto = service.generateBadge(totalBenefitAmountDto);
+        outputView.printBadge(badgeDto);
     }
 }
