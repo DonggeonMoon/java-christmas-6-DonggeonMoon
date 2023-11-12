@@ -7,6 +7,7 @@ import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
 import christmas.dto.PreDiscountAmountDto;
+import christmas.dto.TotalBenefitAmountDto;
 import christmas.dto.VisitDateDto;
 import christmas.model.Benefits;
 import christmas.model.OrderedMenu;
@@ -41,7 +42,7 @@ class ChristmasServiceTest {
         orderedMenuDto = OrderedMenuDto.from(orderedMenu);
         preDiscountAmount = PreDiscountAmount.from(orderedMenu);
         preDiscountAmountDto = PreDiscountAmountDto.from(preDiscountAmount);
-        benefits = Benefits.from(visitDate,orderedMenu);
+        benefits = Benefits.from(visitDate, orderedMenu);
         benefitsDto = BenefitsDto.from(benefits);
     }
 
@@ -74,5 +75,11 @@ class ChristmasServiceTest {
     void generateGiveAway() {
         assertThat(service.generateGiveAway(benefitsDto))
                 .isInstanceOf(GiveawayMenuDto.class);
+    }
+
+    @Test
+    void generateTotalBenefitAmount() {
+        assertThat(service.generateTotalBenefitAmount(benefitsDto))
+                .isInstanceOf(TotalBenefitAmountDto.class);
     }
 }
