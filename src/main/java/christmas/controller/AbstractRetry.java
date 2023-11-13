@@ -1,6 +1,6 @@
 package christmas.controller;
 
-import christmas.constant.MaxRetry;
+import christmas.constant.number.MaxRetry;
 import christmas.constant.exception.StateException;
 import java.util.function.Supplier;
 

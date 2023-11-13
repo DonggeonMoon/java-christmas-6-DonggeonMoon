@@ -1,7 +1,7 @@
 package christmas.constant.benefit;
 
-import christmas.constant.Amount;
-import christmas.constant.Period;
+import christmas.constant.number.Amount;
+import christmas.constant.calendar.Period;
 import christmas.constant.menu.MenuCategory.Menu;
 import christmas.model.Order;
 import christmas.model.PreDiscountAmount;
@@ -28,8 +28,8 @@ public enum DecemberEventBenefit implements Benefit {
             return menuAndCount.keySet()
                     .stream()
                     .filter(Menu::isDessert)
-                    .map(menu -> Amount.WEEKDAYS_DISCOUNT_UNIT.getValue()
-                            .multiply(BigDecimal.valueOf(menuAndCount.get(menu))))
+                    .map(menu -> Amount.WEEKDAYS_DISCOUNT_UNIT.multiply(
+                            BigDecimal.valueOf(menuAndCount.get(menu))))
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         return BigDecimal.ZERO;
@@ -40,8 +40,8 @@ public enum DecemberEventBenefit implements Benefit {
             return menuAndCount.keySet()
                     .stream()
                     .filter(Menu::isMainMenu)
-                    .map(menu -> Amount.WEEKEND_DISCOUNT_UNIT.getValue()
-                            .multiply(BigDecimal.valueOf(menuAndCount.get(menu))))
+                    .map(menu -> Amount.WEEKEND_DISCOUNT_UNIT.multiply(
+                            BigDecimal.valueOf(menuAndCount.get(menu))))
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         return BigDecimal.ZERO;
@@ -53,8 +53,8 @@ public enum DecemberEventBenefit implements Benefit {
             return menuAndCount.keySet()
                     .stream()
                     .filter(Menu::isMainMenu)
-                    .map(menu -> Amount.SPECIAL_DISCOUNT_UNIT.getValue()
-                            .multiply(BigDecimal.valueOf(menuAndCount.get(menu))))
+                    .map(menu -> Amount.SPECIAL_DISCOUNT_UNIT.multiply(
+                            BigDecimal.valueOf(menuAndCount.get(menu))))
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
         return BigDecimal.ZERO;
@@ -75,10 +75,6 @@ public enum DecemberEventBenefit implements Benefit {
         this.condition = condition;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public static EnumMap<DecemberEventBenefit, BigDecimal> calculate(
             final VisitDate visitDate,
             final Order order
@@ -90,5 +86,9 @@ public enum DecemberEventBenefit implements Benefit {
             }
         }
         return benefits;
+    }
+
+    public String getName() {
+        return name;
     }
 }

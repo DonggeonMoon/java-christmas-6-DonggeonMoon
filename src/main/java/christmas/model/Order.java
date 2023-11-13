@@ -1,7 +1,7 @@
 package christmas.model;
 
-import static christmas.constant.Delimiter.COMMA;
-import static christmas.constant.Delimiter.DASH;
+import static christmas.constant.string.Delimiter.COMMA;
+import static christmas.constant.string.Delimiter.DASH;
 import static christmas.constant.exception.ArgumentException.INVALID_MENU;
 
 import christmas.constant.exception.ArgumentException;

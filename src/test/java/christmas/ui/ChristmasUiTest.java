@@ -1,11 +1,11 @@
 package christmas.ui;
 
-import static christmas.constant.Message.BADGE_PREFIX;
-import static christmas.constant.Message.EVENT_BENEFIT_PREVIEW;
-import static christmas.constant.Message.EVENT_PLANNER;
-import static christmas.constant.Message.MENU_AND_COUNT_INPUT_PROMPT;
-import static christmas.constant.Message.ORDERED_MENU_PREFIX;
-import static christmas.constant.Message.VISIT_DATE_INPUT_PROMPT;
+import static christmas.constant.string.Message.BADGE_PREFIX;
+import static christmas.constant.string.Message.EVENT_BENEFIT_PREVIEW;
+import static christmas.constant.string.Message.EVENT_PLANNER;
+import static christmas.constant.string.Message.MENU_AND_COUNT_INPUT_PROMPT;
+import static christmas.constant.string.Message.ORDERED_MENU_PREFIX;
+import static christmas.constant.string.Message.VISIT_DATE_INPUT_PROMPT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

@@ -1,4 +1,4 @@
-package christmas.constant;
+package christmas.constant.number;
 
 import java.math.BigDecimal;
 
@@ -14,7 +14,7 @@ public enum Amount {
         this.value = value;
     }
 
-    public BigDecimal getValue() {
-        return value;
+    public BigDecimal multiply(final BigDecimal bigDecimal) {
+        return this.value.multiply(bigDecimal);
     }
 }

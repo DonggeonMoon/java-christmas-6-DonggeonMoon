@@ -1,11 +1,11 @@
 package christmas.model;
 
-import static christmas.constant.DayCategory.WEEKDAYS;
-import static christmas.constant.DayCategory.WEEKEND;
+import static christmas.constant.calendar.DayCategory.WEEKDAYS;
+import static christmas.constant.calendar.DayCategory.WEEKEND;
 import static christmas.constant.exception.ArgumentException.INVALID_DATE;
 
-import christmas.constant.Period;
-import christmas.constant.StarredDate;
+import christmas.constant.calendar.Period;
+import christmas.constant.calendar.StarredDate;
 import java.time.LocalDate;
 
 public class VisitDate {

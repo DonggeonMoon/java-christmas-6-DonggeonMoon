@@ -1,4 +1,4 @@
-package christmas.constant;
+package christmas.constant.badge;
 
 import christmas.model.TotalBenefitAmount;
 import java.math.BigDecimal;

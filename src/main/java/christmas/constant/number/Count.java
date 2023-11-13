@@ -1,4 +1,4 @@
-package christmas.constant;
+package christmas.constant.number;
 
 public enum Count {
     ONE(1);

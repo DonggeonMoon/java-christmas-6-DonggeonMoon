@@ -1,14 +1,14 @@
 package christmas.view;
 
-import static christmas.constant.Message.BADGE_PREFIX;
-import static christmas.constant.Message.BENEFIT_PREFIX;
-import static christmas.constant.Message.EVENT_BENEFIT_PREVIEW;
-import static christmas.constant.Message.EVENT_PLANNER;
-import static christmas.constant.Message.GIVEAWAY_PREFIX;
-import static christmas.constant.Message.ORDERED_MENU_PREFIX;
-import static christmas.constant.Message.POST_DISCOUNT_AMOUNT_PREFIX;
-import static christmas.constant.Message.PRE_DISCOUNT_AMOUNT_PREFIX;
-import static christmas.constant.Message.TOTAL_BENEFIT_AMOUNT_PREFIX;
+import static christmas.constant.string.Message.BADGE_PREFIX;
+import static christmas.constant.string.Message.BENEFIT_PREFIX;
+import static christmas.constant.string.Message.EVENT_BENEFIT_PREVIEW;
+import static christmas.constant.string.Message.EVENT_PLANNER;
+import static christmas.constant.string.Message.GIVEAWAY_PREFIX;
+import static christmas.constant.string.Message.ORDERED_MENU_PREFIX;
+import static christmas.constant.string.Message.POST_DISCOUNT_AMOUNT_PREFIX;
+import static christmas.constant.string.Message.PRE_DISCOUNT_AMOUNT_PREFIX;
+import static christmas.constant.string.Message.TOTAL_BENEFIT_AMOUNT_PREFIX;
 
 import christmas.dto.EventBadgeDto;
 import christmas.dto.BenefitsDto;

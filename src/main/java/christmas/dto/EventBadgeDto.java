@@ -1,6 +1,6 @@
 package christmas.dto;
 
-import christmas.constant.Badge;
+import christmas.constant.badge.Badge;
 import christmas.model.EventBadge;
 
 public record EventBadgeDto(

@@ -1,4 +1,4 @@
-package christmas.constant;
+package christmas.constant.string;
 
 import java.util.Arrays;
 import java.util.List;

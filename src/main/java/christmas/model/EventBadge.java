@@ -1,6 +1,6 @@
 package christmas.model;
 
-import christmas.constant.Badge;
+import christmas.constant.badge.Badge;
 
 public record EventBadge(
         Badge badge

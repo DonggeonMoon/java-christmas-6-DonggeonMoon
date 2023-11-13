@@ -1,7 +1,7 @@
 package christmas.view;
 
-import static christmas.constant.Message.MENU_AND_COUNT_INPUT_PROMPT;
-import static christmas.constant.Message.VISIT_DATE_INPUT_PROMPT;
+import static christmas.constant.string.Message.MENU_AND_COUNT_INPUT_PROMPT;
+import static christmas.constant.string.Message.VISIT_DATE_INPUT_PROMPT;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.constant.validation.StringValidation;

@@ -1,6 +1,6 @@
 package christmas.view;
 
-import christmas.constant.Message;
+import christmas.constant.string.Message;
 
 public abstract class AbstractView {
     protected void println(final String string) {

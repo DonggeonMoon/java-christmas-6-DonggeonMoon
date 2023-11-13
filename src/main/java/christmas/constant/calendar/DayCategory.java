@@ -1,4 +1,4 @@
-package christmas.constant;
+package christmas.constant.calendar;
 
 import java.time.DayOfWeek;
 import java.util.List;
