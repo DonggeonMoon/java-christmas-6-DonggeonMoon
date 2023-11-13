@@ -5,7 +5,7 @@ import static christmas.constant.string.Delimiter.COMMA;
 import static christmas.constant.string.Delimiter.DASH;
 
 import christmas.constant.exception.ArgumentException;
-import christmas.constant.menu.MenuCategory.Menu;
+import christmas.constant.menu.Menu;
 import christmas.constant.validation.IntegerValidation;
 import java.math.BigDecimal;
 import java.util.EnumMap;

@@ -2,7 +2,7 @@ package christmas.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.constant.menu.MenuCategory.Menu;
+import christmas.constant.menu.Menu;
 import christmas.dto.BenefitsDto;
 import christmas.dto.OrderDto;
 import christmas.dto.PreDiscountAmountDto;

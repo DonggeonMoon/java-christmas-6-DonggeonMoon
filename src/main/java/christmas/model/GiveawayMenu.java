@@ -1,9 +1,9 @@
 package christmas.model;
 
-import static christmas.constant.menu.MenuCategory.Menu.CHAMPAGNE;
+import static christmas.constant.menu.Menu.CHAMPAGNE;
 import static christmas.constant.number.Count.ONE;
 
-import christmas.constant.menu.MenuCategory.Menu;
+import christmas.constant.menu.Menu;
 import java.util.EnumMap;
 import java.util.Objects;
 

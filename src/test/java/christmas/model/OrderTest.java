@@ -4,7 +4,7 @@ import static christmas.constant.exception.ArgumentException.INVALID_MENU;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import christmas.constant.menu.MenuCategory.Menu;
+import christmas.constant.menu.Menu;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

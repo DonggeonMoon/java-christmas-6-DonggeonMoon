@@ -1,6 +1,6 @@
 package christmas.model;
 
-import christmas.constant.menu.MenuCategory.Menu;
+import christmas.constant.menu.Menu;
 import java.time.LocalDate;
 import java.util.EnumMap;
 import java.util.Map;

@@ -6,7 +6,7 @@ import static christmas.constant.number.Amount.WEEKDAYS_DISCOUNT_UNIT;
 import static christmas.constant.number.Amount.WEEKEND_DISCOUNT_UNIT;
 
 import christmas.constant.calendar.Period;
-import christmas.constant.menu.MenuCategory.Menu;
+import christmas.constant.menu.Menu;
 import christmas.model.Order;
 import christmas.model.PreDiscountAmount;
 import christmas.model.VisitDate;

@@ -1,6 +1,6 @@
 package christmas.dto;
 
-import christmas.constant.menu.MenuCategory.Menu;
+import christmas.constant.menu.Menu;
 import christmas.model.Benefits;
 import christmas.model.Order;
 import christmas.util.Formatter;

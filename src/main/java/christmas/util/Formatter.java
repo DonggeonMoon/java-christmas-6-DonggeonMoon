@@ -1,7 +1,7 @@
 package christmas.util;
 
 import christmas.constant.benefit.DecemberEventBenefit;
-import christmas.constant.menu.MenuCategory.Menu;
+import christmas.constant.menu.Menu;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;

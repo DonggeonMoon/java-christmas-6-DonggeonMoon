@@ -2,7 +2,7 @@ package christmas.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.constant.menu.MenuCategory.Menu;
+import christmas.constant.menu.Menu;
 import java.util.EnumMap;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;

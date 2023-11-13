@@ -1,7 +1,7 @@
 package christmas.dto;
 
 import christmas.util.Formatter;
-import christmas.constant.menu.MenuCategory.Menu;
+import christmas.constant.menu.Menu;
 import christmas.model.GiveawayMenu;
 import java.util.EnumMap;
 import java.util.Objects;
