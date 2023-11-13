@@ -1,6 +1,6 @@
 package christmas.controller;
 
-import christmas.dto.BadgeDto;
+import christmas.dto.EventBadgeDto;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
@@ -11,7 +11,6 @@ import christmas.dto.VisitDateDto;
 import christmas.service.ChristmasService;
 import christmas.view.ChristmasInputView;
 import christmas.view.ChristmasOutputView;
-import java.util.Objects;
 
 public class ChristmasController extends AbstractRetry {
     private final ChristmasOutputView outputView;
@@ -63,7 +62,7 @@ public class ChristmasController extends AbstractRetry {
                 totalBenefitAmountDto
         );
         outputView.printPostDiscountAmount(postDiscountAmountDto);
-        BadgeDto badgeDto = service.generateBadge(totalBenefitAmountDto);
-        outputView.printBadge(badgeDto);
+        EventBadgeDto eventBadgeDto = service.generateBadge(totalBenefitAmountDto);
+        outputView.printBadge(eventBadgeDto);
     }
 }

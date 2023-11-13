@@ -10,7 +10,7 @@ import static christmas.constant.Message.POST_DISCOUNT_AMOUNT_PREFIX;
 import static christmas.constant.Message.PRE_DISCOUNT_AMOUNT_PREFIX;
 import static christmas.constant.Message.TOTAL_BENEFIT_AMOUNT_PREFIX;
 
-import christmas.dto.BadgeDto;
+import christmas.dto.EventBadgeDto;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
@@ -65,8 +65,8 @@ public class ChristmasOutputView extends AbstractView {
         println(postDiscountAmountDto.toString());
     }
 
-    public void printBadge(final BadgeDto badgeDto) {
+    public void printBadge(final EventBadgeDto eventBadgeDto) {
         printMessage(BADGE_PREFIX);
-        println(badgeDto.toString());
+        println(eventBadgeDto.toString());
     }
 }

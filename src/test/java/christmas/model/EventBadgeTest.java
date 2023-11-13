@@ -8,7 +8,7 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class BadgeTest {
+class EventBadgeTest {
     private VisitDate visitDate;
     private OrderedMenu orderedMenu;
     private Map<Menu, Integer> menuAndCount;
@@ -16,7 +16,7 @@ class BadgeTest {
     private PreDiscountAmount preDiscountAmount;
     private TotalBenefitAmount totalBenefitAmount;
     private PostDiscountAmount postDiscountAmount;
-    private Badge badge;
+    private EventBadge badge;
 
     @BeforeEach
     void setUp() {
@@ -27,12 +27,12 @@ class BadgeTest {
         preDiscountAmount = PreDiscountAmount.from(orderedMenu);
         totalBenefitAmount = TotalBenefitAmount.from(benefits);
         postDiscountAmount = PostDiscountAmount.of(preDiscountAmount, totalBenefitAmount);
-        badge = Badge.from(totalBenefitAmount);
+        badge = EventBadge.from(totalBenefitAmount);
     }
 
     @Test
     void from() {
         assertThat(badge)
-                .isInstanceOf(Badge.class);
+                .isInstanceOf(EventBadge.class);
     }
 }

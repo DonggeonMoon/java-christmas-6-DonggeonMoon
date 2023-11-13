@@ -10,14 +10,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import christmas.constant.exception.ArgumentException;
-import christmas.dto.BadgeDto;
+import christmas.dto.EventBadgeDto;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
 import christmas.dto.PostDiscountAmountDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.TotalBenefitAmountDto;
-import christmas.model.Badge;
+import christmas.model.EventBadge;
 import christmas.model.Benefits;
 import christmas.model.GiveawayMenu;
 import christmas.model.OrderedMenu;
@@ -73,8 +73,8 @@ public class ChristmasUiTest extends UiTest {
     private TotalBenefitAmountDto totalBenefitAmountDto;
     private PostDiscountAmount postDiscountAmount;
     private PostDiscountAmountDto postDiscountAmountDto;
-    private Badge badge;
-    private BadgeDto badgeDto;
+    private EventBadge badge;
+    private EventBadgeDto eventBadgeDto;
 
 
     @BeforeEach
@@ -94,8 +94,8 @@ public class ChristmasUiTest extends UiTest {
         totalBenefitAmountDto = TotalBenefitAmountDto.from(totalBenefitAmount);
         postDiscountAmount = PostDiscountAmount.of(preDiscountAmount, totalBenefitAmount);
         postDiscountAmountDto = PostDiscountAmountDto.from(postDiscountAmount);
-        badge = Badge.from(totalBenefitAmount);
-        badgeDto = BadgeDto.from(badge);
+        badge = EventBadge.from(totalBenefitAmount);
+        eventBadgeDto = EventBadgeDto.from(badge);
     }
 
     @Test
@@ -208,7 +208,7 @@ public class ChristmasUiTest extends UiTest {
 
     @Test
     void printBadge() {
-        outputView.printBadge(badgeDto);
+        outputView.printBadge(eventBadgeDto);
         assertThat(getOutput())
                 .contains(BADGE_COMPONENT);
     }

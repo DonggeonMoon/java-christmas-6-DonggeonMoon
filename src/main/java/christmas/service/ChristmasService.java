@@ -1,6 +1,6 @@
 package christmas.service;
 
-import christmas.dto.BadgeDto;
+import christmas.dto.EventBadgeDto;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderedMenuDto;
@@ -8,7 +8,7 @@ import christmas.dto.PostDiscountAmountDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.TotalBenefitAmountDto;
 import christmas.dto.VisitDateDto;
-import christmas.model.Badge;
+import christmas.model.EventBadge;
 import christmas.model.Benefits;
 import christmas.model.GiveawayMenu;
 import christmas.model.OrderedMenu;
@@ -73,9 +73,9 @@ public class ChristmasService {
         return PostDiscountAmountDto.from(postDiscountAmount);
     }
 
-    public BadgeDto generateBadge(final TotalBenefitAmountDto totalBenefitAmountDto) {
+    public EventBadgeDto generateBadge(final TotalBenefitAmountDto totalBenefitAmountDto) {
         TotalBenefitAmount totalBenefitAmount = totalBenefitAmountDto.toEntity();
-        Badge badge = Badge.from(totalBenefitAmount);
-        return BadgeDto.from(badge);
+        EventBadge eventBadge = EventBadge.from(totalBenefitAmount);
+        return EventBadgeDto.from(eventBadge);
     }
 }
