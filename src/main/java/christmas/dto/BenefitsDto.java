@@ -4,6 +4,8 @@ package christmas.dto;
 import christmas.constant.benefit.Benefit;
 import christmas.model.Benefits;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.EnumMap;
 
 public record BenefitsDto(
@@ -22,16 +24,16 @@ public record BenefitsDto(
         if (benefits.isEmpty()) {
             return Benefit.NOTHING.getName() + "\n";
         }
+
+        NumberFormat numberFormat = new DecimalFormat("#,##0");
         StringBuilder stringBuilder = new StringBuilder();
-        benefits.entrySet()
-                .forEach(benefitAndAmount -> {
-                            stringBuilder.append(benefitAndAmount.getKey().getName());
-                            stringBuilder.append(" ");
-                            stringBuilder.append(benefitAndAmount.getValue());
-                            stringBuilder.append("원");
-                            stringBuilder.append("\n");
-                        }
-                );
+        benefits.forEach((key, value) -> {
+            stringBuilder.append(key.getName());
+            stringBuilder.append(" ");
+            stringBuilder.append(numberFormat.format(value));
+            stringBuilder.append("원");
+            stringBuilder.append("\n");
+        });
         return stringBuilder.toString();
     }
 }
