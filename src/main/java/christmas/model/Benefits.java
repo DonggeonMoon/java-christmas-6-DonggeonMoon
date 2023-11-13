@@ -1,15 +1,15 @@
 package christmas.model;
 
-import static christmas.constant.benefit.Benefit.GIVEAWAY;
+import static christmas.constant.benefit.DecemberEventBenefit.GIVEAWAY;
 
-import christmas.constant.benefit.Benefit;
+import christmas.constant.benefit.DecemberEventBenefit;
 import java.math.BigDecimal;
 import java.util.EnumMap;
 
 public record Benefits(
-        EnumMap<Benefit, BigDecimal> benefits
+        EnumMap<DecemberEventBenefit, BigDecimal> benefits
 ) {
-    public static Benefits from(final EnumMap<Benefit, BigDecimal> benefits) {
+    public static Benefits from(final EnumMap<DecemberEventBenefit, BigDecimal> benefits) {
         return new Benefits(benefits);
     }
 
@@ -17,7 +17,7 @@ public record Benefits(
             final VisitDate visitDate,
             final Order order
     ) {
-        EnumMap<Benefit, BigDecimal> benefits = Benefit.calculate(visitDate, order);
+        EnumMap<DecemberEventBenefit, BigDecimal> benefits = DecemberEventBenefit.calculate(visitDate, order);
         return new Benefits(benefits);
     }
 

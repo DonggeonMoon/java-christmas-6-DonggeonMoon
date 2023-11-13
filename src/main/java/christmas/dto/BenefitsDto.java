@@ -1,7 +1,7 @@
 package christmas.dto;
 
 
-import christmas.constant.benefit.Benefit;
+import christmas.constant.benefit.DecemberEventBenefit;
 import christmas.model.Benefits;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -9,7 +9,7 @@ import java.text.NumberFormat;
 import java.util.EnumMap;
 
 public record BenefitsDto(
-        EnumMap<Benefit, BigDecimal> benefits
+        EnumMap<DecemberEventBenefit, BigDecimal> benefits
 ) {
     public static BenefitsDto from(final Benefits benefits) {
         return new BenefitsDto(benefits.benefits());
@@ -22,7 +22,7 @@ public record BenefitsDto(
     @Override
     public String toString() {
         if (benefits.isEmpty()) {
-            return Benefit.NOTHING.getName() + "\n";
+            return DecemberEventBenefit.NOTHING.getName() + "\n";
         }
 
         NumberFormat numberFormat = new DecimalFormat("#,##0");
