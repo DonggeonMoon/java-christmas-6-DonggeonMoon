@@ -7,11 +7,15 @@ import christmas.view.ChristmasOutputView;
 
 public class Application {
     public static void main(String[] args) {
-        ChristmasController controller = ChristmasController.from(
-                ChristmasOutputView.create(),
-                ChristmasInputView.create(),
-                ChristmasService.create()
-        );
-        controller.start();
+        try {
+            ChristmasController controller = ChristmasController.from(
+                    ChristmasOutputView.create(),
+                    ChristmasInputView.create(),
+                    ChristmasService.create()
+            );
+            controller.start();
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
