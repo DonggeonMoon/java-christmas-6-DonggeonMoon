@@ -32,6 +32,7 @@ public class ChristmasOutputView extends AbstractView {
 
     public void printEventBenefitPreview() {
         printMessage(EVENT_BENEFIT_PREVIEW);
+        println();
     }
 
     public void printOrderedMenu(final OrderDto orderDto) {
