@@ -49,10 +49,10 @@ public class ChristmasUiTest extends UiTest {
             "평일 할인 2,023원",
             "특별 할인 2,000원",
             "증정 이벤트 25,000원"};
-    public static final String TOTAL_BENEFIT_AMOUNT_TEXT = "29,323원";
+    public static final String TOTAL_BENEFIT_AMOUNT_TEXT = "30,323원";
     public static final List<String> POST_DISCOUNT_AMOUNT_COMPONENT = List.of(
             "<할인 후 예상 결제 금액>",
-            "115,677원"
+            "114,677원"
     );
     public static final List<String> BADGE_COMPONENT = List.of(
             BADGE_PREFIX.getText(),

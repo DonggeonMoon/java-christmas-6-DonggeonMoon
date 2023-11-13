@@ -1,8 +1,12 @@
 package christmas.constant.benefit;
 
+import static christmas.constant.number.Amount.D_DAY_EVENT_DISCOUNT_BASE;
+import static christmas.constant.number.Amount.SPECIAL_DISCOUNT_UNIT;
+import static christmas.constant.number.Amount.WEEKDAYS_DISCOUNT_UNIT;
+import static christmas.constant.number.Amount.WEEKEND_DISCOUNT_UNIT;
+
 import christmas.constant.calendar.Period;
 import christmas.constant.menu.MenuCategory.Menu;
-import christmas.constant.number.Amount;
 import christmas.model.Order;
 import christmas.model.PreDiscountAmount;
 import christmas.model.VisitDate;
@@ -14,10 +18,10 @@ import java.util.function.BiFunction;
 
 public enum DecemberEventBenefit implements Benefit {
     D_DAY_DISCOUNT("크리스마스 디데이 할인", (visitDate, orderedMenu) -> {
-        if (Period.CHRISTMAS_D_Day_Event.includes(visitDate.getDayOfMonth())) {
-            return dDayDiscountUnitAmount.multiply(
-                    BigDecimal.valueOf(
-                            visitDate.getDayOfMonth()
+        if (Period.CHRISTMAS_D_DAY_EVENT.includes(visitDate.getDayOfMonth())) {
+            return D_DAY_EVENT_DISCOUNT_BASE.add(
+                    dDayDiscountUnitAmount.multiply(
+                            visitDate.getDayOfMonthInBigDecimal()
                     )
             );
         }
@@ -29,7 +33,7 @@ public enum DecemberEventBenefit implements Benefit {
             return menuAndCount.keySet()
                     .stream()
                     .filter(Menu::isDessert)
-                    .map(menu -> Amount.WEEKDAYS_DISCOUNT_UNIT.multiply(
+                    .map(menu -> WEEKDAYS_DISCOUNT_UNIT.multiply(
                             BigDecimal.valueOf(menuAndCount.get(menu))))
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
@@ -41,7 +45,7 @@ public enum DecemberEventBenefit implements Benefit {
             return menuAndCount.keySet()
                     .stream()
                     .filter(Menu::isMainMenu)
-                    .map(menu -> Amount.WEEKEND_DISCOUNT_UNIT.multiply(
+                    .map(menu -> WEEKEND_DISCOUNT_UNIT.multiply(
                             BigDecimal.valueOf(menuAndCount.get(menu))))
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
@@ -54,7 +58,7 @@ public enum DecemberEventBenefit implements Benefit {
             return menuAndCount.keySet()
                     .stream()
                     .filter(Menu::isMainMenu)
-                    .map(menu -> Amount.SPECIAL_DISCOUNT_UNIT.multiply(
+                    .map(menu -> SPECIAL_DISCOUNT_UNIT.multiply(
                             BigDecimal.valueOf(menuAndCount.get(menu))))
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
         }

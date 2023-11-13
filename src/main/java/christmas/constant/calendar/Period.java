@@ -7,7 +7,7 @@ public enum Period {
             LocalDate.of(2023, 12, 1),
             LocalDate.of(2023, 12, 31)
     ),
-    CHRISTMAS_D_Day_Event(
+    CHRISTMAS_D_DAY_EVENT(
             LocalDate.of(2023, 12, 1),
             LocalDate.of(2023, 12, 25)
     );
