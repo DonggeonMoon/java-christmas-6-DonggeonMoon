@@ -14,6 +14,10 @@ public record GiveawayMenuDto(
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
+        if (menuAndCount.isEmpty()) {
+            return Menu.NOTHING.getName() + "\n";
+        }
+
         menuAndCount.forEach(((menu, count) -> {
             stringBuilder.append(menu.getName());
             stringBuilder.append(" ");

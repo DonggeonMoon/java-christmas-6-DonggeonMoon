@@ -2,6 +2,8 @@ package christmas.dto;
 
 import christmas.model.PostDiscountAmount;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 public record PostDiscountAmountDto(
         BigDecimal amount
@@ -16,10 +18,9 @@ public record PostDiscountAmountDto(
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(amount);
-        stringBuilder.append("원");
-        stringBuilder.append("\n");
-        return stringBuilder.toString();
+        NumberFormat numberFormat = new DecimalFormat("#,##0");
+        return numberFormat.format(amount)
+                + "원"
+                + "\n";
     }
 }
