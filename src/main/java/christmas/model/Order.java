@@ -16,6 +16,8 @@ public record Order(
         Map<Menu, Integer> menuAndCount
 ) {
     public static Order from(final Map<Menu, Integer> menuAndCount) {
+        Objects.requireNonNull(menuAndCount);
+
         return new Order(menuAndCount);
     }
 

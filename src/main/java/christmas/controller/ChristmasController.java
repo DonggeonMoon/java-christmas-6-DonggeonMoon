@@ -6,6 +6,7 @@ import christmas.dto.VisitDateDto;
 import christmas.service.ChristmasService;
 import christmas.view.ChristmasInputView;
 import christmas.view.ChristmasOutputView;
+import java.util.Objects;
 
 public class ChristmasController extends AbstractRetry {
     private final ChristmasOutputView outputView;
@@ -27,6 +28,10 @@ public class ChristmasController extends AbstractRetry {
             final ChristmasInputView inputView,
             final ChristmasService service
     ) {
+        Objects.requireNonNull(outputView);
+        Objects.requireNonNull(inputView);
+        Objects.requireNonNull(service);
+
         return new ChristmasController(outputView, inputView, service);
     }
 

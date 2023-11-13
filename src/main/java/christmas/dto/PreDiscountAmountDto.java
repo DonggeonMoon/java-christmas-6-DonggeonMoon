@@ -4,11 +4,14 @@ import christmas.model.PreDiscountAmount;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Objects;
 
 public record PreDiscountAmountDto(
         BigDecimal amount
 ) {
     public static PreDiscountAmountDto from(final PreDiscountAmount preDiscountAmount) {
+        Objects.requireNonNull(preDiscountAmount);
+
         return new PreDiscountAmountDto(preDiscountAmount.amount());
     }
 

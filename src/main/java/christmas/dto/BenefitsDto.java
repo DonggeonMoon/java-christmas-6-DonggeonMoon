@@ -7,11 +7,14 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.EnumMap;
+import java.util.Objects;
 
 public record BenefitsDto(
         EnumMap<DecemberEventBenefit, BigDecimal> benefits
 ) {
     public static BenefitsDto from(final Benefits benefits) {
+        Objects.requireNonNull(benefits);
+
         return new BenefitsDto(benefits.benefits());
     }
 

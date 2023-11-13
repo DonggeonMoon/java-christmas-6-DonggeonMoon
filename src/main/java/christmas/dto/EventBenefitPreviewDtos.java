@@ -1,5 +1,7 @@
 package christmas.dto;
 
+import java.util.Objects;
+
 public record EventBenefitPreviewDtos(
         OrderDto orderDto,
         PreDiscountAmountDto preDiscountAmountDto,
@@ -18,6 +20,14 @@ public record EventBenefitPreviewDtos(
             PostDiscountAmountDto postDiscountAmountDto,
             EventBadgeDto eventBadgeDto
     ) {
+        Objects.requireNonNull(orderDto);
+        Objects.requireNonNull(preDiscountAmountDto);
+        Objects.requireNonNull(benefitsDto);
+        Objects.requireNonNull(giveawayMenuDto);
+        Objects.requireNonNull(totalBenefitAmountDto);
+        Objects.requireNonNull(postDiscountAmountDto);
+        Objects.requireNonNull(eventBadgeDto);
+
         return new EventBenefitPreviewDtos(
                 orderDto,
                 preDiscountAmountDto,

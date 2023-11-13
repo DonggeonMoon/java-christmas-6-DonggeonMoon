@@ -6,10 +6,7 @@ import java.util.Objects;
 import java.util.function.Function;
 
 public enum IntegerValidation {
-    NOT_LESS_THAN_ONE(input -> {
-        Objects.requireNonNull(input);
-        return input >= 1;
-    });
+    NOT_LESS_THAN_ONE(input -> input >= 1);
 
     private final Function<Integer, Boolean> condition;
 
@@ -18,6 +15,8 @@ public enum IntegerValidation {
     }
 
     public void validate(final Integer input) {
+        Objects.requireNonNull(input);
+
         if (this.isViolatedBy(input)) {
             throw INVALID_MENU.exception();
         }

@@ -1,14 +1,15 @@
 package christmas.constant.benefit;
 
-import christmas.constant.number.Amount;
 import christmas.constant.calendar.Period;
 import christmas.constant.menu.MenuCategory.Menu;
+import christmas.constant.number.Amount;
 import christmas.model.Order;
 import christmas.model.PreDiscountAmount;
 import christmas.model.VisitDate;
 import java.math.BigDecimal;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.BiFunction;
 
 public enum DecemberEventBenefit implements Benefit {
@@ -79,6 +80,9 @@ public enum DecemberEventBenefit implements Benefit {
             final VisitDate visitDate,
             final Order order
     ) {
+        Objects.requireNonNull(visitDate);
+        Objects.requireNonNull(order);
+
         EnumMap<DecemberEventBenefit, BigDecimal> benefits = new EnumMap<>(DecemberEventBenefit.class);
         for (DecemberEventBenefit decemberEventBenefit : values()) {
             if (!decemberEventBenefit.condition.apply(visitDate, order).equals(BigDecimal.ZERO)) {

@@ -7,11 +7,14 @@ import static christmas.constant.exception.ArgumentException.INVALID_DATE;
 import christmas.constant.calendar.Period;
 import christmas.constant.calendar.StarredDate;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public record VisitDate(
         LocalDate date
 ) {
     public static VisitDate from(final LocalDate date) {
+        Objects.requireNonNull(date);
+
         return new VisitDate(date);
     }
 

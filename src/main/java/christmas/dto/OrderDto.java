@@ -3,9 +3,12 @@ package christmas.dto;
 import christmas.constant.menu.MenuCategory.Menu;
 import christmas.model.Order;
 import java.util.Map;
+import java.util.Objects;
 
 public record OrderDto(Map<Menu, Integer> menuAndCount) {
     public static OrderDto from(final Order order) {
+        Objects.requireNonNull(order);
+
         return new OrderDto(order.menuAndCount());
     }
 

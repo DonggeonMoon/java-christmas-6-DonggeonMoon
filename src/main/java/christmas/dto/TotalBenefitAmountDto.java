@@ -4,11 +4,14 @@ import christmas.model.TotalBenefitAmount;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Objects;
 
 public record TotalBenefitAmountDto(
         BigDecimal amount
 ) {
     public static TotalBenefitAmountDto from(final TotalBenefitAmount totalBenefitAmount) {
+        Objects.requireNonNull(totalBenefitAmount);
+
         return new TotalBenefitAmountDto(totalBenefitAmount.amount());
     }
 

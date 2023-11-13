@@ -7,14 +7,8 @@ import java.util.function.Function;
 import java.util.regex.Pattern;
 
 public enum StringValidation {
-    NUMBER_RULE((String input) -> {
-        Objects.requireNonNull(input);
-        return Pattern.compile("^[1-9]*$").matcher(input).matches();
-    }),
-    NOT_EMPTY_RULE(input -> {
-        Objects.requireNonNull(input);
-        return !input.isEmpty();
-    });
+    NUMBER_RULE((String input) -> Pattern.compile("^[1-9]*$").matcher(input).matches()),
+    NOT_EMPTY_RULE(input -> !input.isEmpty());
 
     private final Function<String, Boolean> condition;
 
@@ -23,6 +17,8 @@ public enum StringValidation {
     }
 
     public void validate(final String input) {
+        Objects.requireNonNull(input);
+
         if (this.isViolatedBy(input)) {
             throw INVALID_DATE.exception();
         }

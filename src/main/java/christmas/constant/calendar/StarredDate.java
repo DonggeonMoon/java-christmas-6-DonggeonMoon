@@ -2,6 +2,7 @@ package christmas.constant.calendar;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public enum StarredDate {
     STARRED_DATE(
@@ -22,6 +23,8 @@ public enum StarredDate {
     }
 
     public boolean includes(final LocalDate date) {
+        Objects.requireNonNull(date);
+
         return STARRED_DATE.dates
                 .stream()
                 .anyMatch(starredDay -> starredDay.equals(date));

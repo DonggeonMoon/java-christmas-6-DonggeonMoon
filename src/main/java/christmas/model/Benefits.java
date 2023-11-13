@@ -5,11 +5,13 @@ import static christmas.constant.benefit.DecemberEventBenefit.GIVEAWAY;
 import christmas.constant.benefit.DecemberEventBenefit;
 import java.math.BigDecimal;
 import java.util.EnumMap;
+import java.util.Objects;
 
 public record Benefits(
         EnumMap<DecemberEventBenefit, BigDecimal> benefits
 ) {
     public static Benefits from(final EnumMap<DecemberEventBenefit, BigDecimal> benefits) {
+        Objects.requireNonNull(benefits);
         return new Benefits(benefits);
     }
 
@@ -17,6 +19,9 @@ public record Benefits(
             final VisitDate visitDate,
             final Order order
     ) {
+        Objects.requireNonNull(visitDate);
+        Objects.requireNonNull(order);
+
         EnumMap<DecemberEventBenefit, BigDecimal> benefits = DecemberEventBenefit.calculate(visitDate, order);
         return new Benefits(benefits);
     }

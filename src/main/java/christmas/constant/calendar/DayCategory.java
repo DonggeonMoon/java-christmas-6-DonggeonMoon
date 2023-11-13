@@ -2,6 +2,7 @@ package christmas.constant.calendar;
 
 import java.time.DayOfWeek;
 import java.util.List;
+import java.util.Objects;
 
 public enum DayCategory {
     WEEKDAYS(
@@ -26,6 +27,8 @@ public enum DayCategory {
     }
 
     public boolean includes(final DayOfWeek dayOfWeek) {
+        Objects.requireNonNull(dayOfWeek);
+
         return this.dayOfWeeks.stream()
                 .anyMatch(i -> i.equals(dayOfWeek));
     }

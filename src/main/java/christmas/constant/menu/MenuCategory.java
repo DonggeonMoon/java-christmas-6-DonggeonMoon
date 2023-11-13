@@ -4,6 +4,7 @@ import static christmas.constant.exception.ArgumentException.INVALID_MENU;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Objects;
 
 public enum MenuCategory {
     APPETIZER,
@@ -42,6 +43,8 @@ public enum MenuCategory {
         }
 
         public static Menu from(final String input) {
+            Objects.requireNonNull(input);
+
             return Arrays.stream(values())
                     .filter(menu -> menu.name.equals(input))
                     .findFirst()

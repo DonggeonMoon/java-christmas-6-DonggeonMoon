@@ -1,6 +1,7 @@
 package christmas.constant.number;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public enum Amount {
     WEEKDAYS_DISCOUNT_UNIT(BigDecimal.valueOf(2023)),
@@ -15,6 +16,8 @@ public enum Amount {
     }
 
     public BigDecimal multiply(final BigDecimal bigDecimal) {
+        Objects.requireNonNull(bigDecimal);
+
         return this.value.multiply(bigDecimal);
     }
 }

@@ -17,6 +17,7 @@ import christmas.model.PostDiscountAmount;
 import christmas.model.PreDiscountAmount;
 import christmas.model.TotalBenefitAmount;
 import christmas.model.VisitDate;
+import java.util.Objects;
 
 public class ChristmasService {
     private ChristmasService() {
@@ -32,6 +33,8 @@ public class ChristmasService {
     }
 
     public OrderDto generateOrderedMenuFrom(final String inputMenuAndCount) {
+        Objects.requireNonNull(inputMenuAndCount);
+
         Order order = Order.from(inputMenuAndCount);
         return OrderDto.from(order);
     }
@@ -40,6 +43,9 @@ public class ChristmasService {
             final VisitDateDto visitDateDto,
             final OrderDto orderDto
     ) {
+        Objects.requireNonNull(visitDateDto);
+        Objects.requireNonNull(orderDto);
+
         PreDiscountAmountDto preDiscountAmountDto = generatePreDiscountAmountFrom(orderDto);
         BenefitsDto benefitsDto = generateBenefitsFrom(visitDateDto, orderDto);
         GiveawayMenuDto giveawayMenuDto = generateGiveawayFrom(benefitsDto);
