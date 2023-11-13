@@ -22,10 +22,10 @@ public record Benefits(
     }
 
     public boolean hasGiveaway() {
-        return !this.getGiveawayAmount().equals(BigDecimal.ZERO);
+        return !this.calculateGiveawayAmount().equals(BigDecimal.ZERO);
     }
 
-    public BigDecimal getGiveawayAmount() {
+    public BigDecimal calculateGiveawayAmount() {
         if (benefits.get(GIVEAWAY) == null) {
             return BigDecimal.ZERO;
         }

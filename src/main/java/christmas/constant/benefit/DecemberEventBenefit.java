@@ -16,7 +16,7 @@ public enum DecemberEventBenefit implements Benefit {
         if (Period.CHRISTMAS_D_Day_Event.includes(visitDate.getDayOfMonth())) {
             return dDayDiscountUnitAmount.multiply(
                     BigDecimal.valueOf(
-                            visitDate.getDate().getDayOfMonth()
+                            visitDate.getDayOfMonth()
                     )
             );
         }
