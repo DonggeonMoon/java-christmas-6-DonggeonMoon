@@ -18,10 +18,10 @@ import java.util.function.BiFunction;
 
 public enum DecemberEventBenefit implements Benefit {
     D_DAY_DISCOUNT("크리스마스 디데이 할인", (visitDate, orderedMenu) -> {
-        if (Period.CHRISTMAS_D_DAY_EVENT.includes(visitDate.getDayOfMonth())) {
+        if (Period.CHRISTMAS_D_DAY_EVENT.includes(visitDate.calculateDayOfMonth())) {
             return D_DAY_EVENT_DISCOUNT_BASE.add(
                     dDayDiscountUnitAmount.multiply(
-                            visitDate.getDayOfMonthInBigDecimal()
+                            visitDate.calculateDayOfMonthInBigDecimal()
                     )
             );
         }

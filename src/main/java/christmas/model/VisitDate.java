@@ -30,11 +30,11 @@ public record VisitDate(
         }
     }
 
-    public int getDayOfMonth() {
+    public int calculateDayOfMonth() {
         return date.getDayOfMonth();
     }
 
-    public BigDecimal getDayOfMonthInBigDecimal() {
+    public BigDecimal calculateDayOfMonthInBigDecimal() {
         return BigDecimal.valueOf(date.getDayOfMonth());
     }
 
