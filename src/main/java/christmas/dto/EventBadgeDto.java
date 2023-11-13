@@ -14,10 +14,6 @@ public record EventBadgeDto(
         return new EventBadgeDto(badge);
     }
 
-    public EventBadge toEntity() {
-        return new EventBadge(badge);
-    }
-
     @Override
     public String toString() {
         return badge.getName() + "\n";

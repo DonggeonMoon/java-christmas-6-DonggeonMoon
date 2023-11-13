@@ -12,10 +12,6 @@ public record PostDiscountAmountDto(
         return new PostDiscountAmountDto(postDiscountAmount.amount());
     }
 
-    public PostDiscountAmount toEntity() {
-        return PostDiscountAmount.from(amount);
-    }
-
     @Override
     public String toString() {
         NumberFormat numberFormat = new DecimalFormat("#,##0");
