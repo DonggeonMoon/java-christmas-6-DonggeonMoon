@@ -46,9 +46,10 @@ public class ChristmasService {
         Objects.requireNonNull(visitDateDto);
         Objects.requireNonNull(orderDto);
 
-        PreDiscountAmountDto preDiscountAmountDto = generatePreDiscountAmountFrom(orderDto);
         BenefitsDto benefitsDto = generateBenefitsFrom(visitDateDto, orderDto);
         GiveawayMenuDto giveawayMenuDto = generateGiveawayFrom(benefitsDto);
+
+        PreDiscountAmountDto preDiscountAmountDto = generatePreDiscountAmountFrom(orderDto);
         TotalBenefitAmountDto totalBenefitAmountDto = generateTotalBenefitAmountFrom(benefitsDto);
         PostDiscountAmountDto postDiscountAmountDto = generatePostDiscountAmountFrom(
                 preDiscountAmountDto,
@@ -56,13 +57,8 @@ public class ChristmasService {
         );
         EventBadgeDto eventBadgeDto = generateEventBadgeFrom(totalBenefitAmountDto);
         return EventBenefitPreviewDtos.of(
-                orderDto,
-                preDiscountAmountDto,
-                benefitsDto,
-                giveawayMenuDto,
-                totalBenefitAmountDto,
-                postDiscountAmountDto,
-                eventBadgeDto
+                orderDto, preDiscountAmountDto, benefitsDto, giveawayMenuDto,
+                totalBenefitAmountDto, postDiscountAmountDto, eventBadgeDto
         );
     }
 

@@ -12,6 +12,7 @@ public record Benefits(
 ) {
     public static Benefits from(final EnumMap<DecemberEventBenefit, BigDecimal> benefits) {
         Objects.requireNonNull(benefits);
+
         return new Benefits(benefits);
     }
 

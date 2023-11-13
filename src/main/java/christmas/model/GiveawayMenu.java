@@ -1,5 +1,6 @@
 package christmas.model;
 
+import static christmas.constant.menu.MenuCategory.Menu.CHAMPAGNE;
 import static christmas.constant.number.Count.ONE;
 
 import christmas.constant.menu.MenuCategory.Menu;
@@ -14,7 +15,7 @@ public record GiveawayMenu(
 
         EnumMap<Menu, Integer> menuAndCounts = new EnumMap<>(Menu.class);
         if (benefits.hasGiveaway()) {
-            menuAndCounts.put(Menu.CHAMPAGNE, ONE.getValue());
+            menuAndCounts.put(CHAMPAGNE, ONE.getValue());
             return new GiveawayMenu(menuAndCounts);
         }
         return new GiveawayMenu(menuAndCounts);

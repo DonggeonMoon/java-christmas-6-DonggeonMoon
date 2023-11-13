@@ -23,37 +23,54 @@ public record Order(
 
     public static Order from(final String inputMenuAndCount) {
         Objects.requireNonNull(inputMenuAndCount);
-        List<List<String>> list = COMMA.split(inputMenuAndCount)
-                .stream()
-                .map(DASH::split)
-                .toList();
+
+        List<List<String>> list = splitInput(inputMenuAndCount);
 
         validate(list);
 
-        Map<Menu, Integer> menuAndCount = list.stream()
-                .collect(Collectors.toUnmodifiableMap(
-                        menu -> Menu.from(menu.get(0)),
-                        count -> Integer.parseInt(count.get(1))
-                ));
+        Map<Menu, Integer> menuAndCount = calculateMenuAndCount(list);
 
         return new Order(menuAndCount);
     }
 
+    private static List<List<String>> splitInput(final String inputMenuAndCount) {
+        return COMMA.split(inputMenuAndCount)
+                .stream()
+                .map(DASH::split)
+                .toList();
+    }
+
+    private static Map<Menu, Integer> calculateMenuAndCount(final List<List<String>> list) {
+        return list.stream()
+                .collect(Collectors.toUnmodifiableMap(
+                        menu -> Menu.from(menu.get(0)),
+                        count -> Integer.parseInt(count.get(1))
+                ));
+    }
+
     private static void validate(final List<List<String>> list) {
         try {
-            List<String> menus = list.stream()
-                    .map(menuAndCount -> menuAndCount.get(0))
-                    .toList();
+            List<String> menus = calculateMenus(list);
 
-            List<Integer> counts = list.stream()
-                    .map(menuAndCount -> menuAndCount.get(1))
-                    .map(Integer::parseInt)
-                    .toList();
+            List<Integer> counts = calculateCounts(list);
             validateMenus(menus);
             validateCounts(counts);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw INVALID_MENU.exception();
         }
+    }
+
+    private static List<String> calculateMenus(final List<List<String>> list) {
+        return list.stream()
+                .map(menuAndCount -> menuAndCount.get(0))
+                .toList();
+    }
+
+    private static List<Integer> calculateCounts(final List<List<String>> list) {
+        return list.stream()
+                .map(menuAndCount -> menuAndCount.get(1))
+                .map(Integer::parseInt)
+                .toList();
     }
 
     private static void validateMenus(final List<String> menus) {
