@@ -16,6 +16,6 @@ public record EventBadgeDto(
 
     @Override
     public String toString() {
-        return badge.getName() + "\n";
+        return badge.getName();
     }
 }
