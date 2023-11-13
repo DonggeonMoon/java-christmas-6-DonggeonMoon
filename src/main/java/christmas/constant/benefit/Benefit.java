@@ -3,7 +3,7 @@ package christmas.constant.benefit;
 import christmas.constant.Amounts;
 import christmas.constant.Period;
 import christmas.constant.menu.MenuCategory.Menu;
-import christmas.model.OrderedMenu;
+import christmas.model.Order;
 import christmas.model.PreDiscountAmount;
 import christmas.model.VisitDate;
 import java.math.BigDecimal;
@@ -68,9 +68,9 @@ public enum Benefit implements BenefitConstant {
     NOTHING("없음", (visitDate, orderedMenu) -> BigDecimal.ZERO);
 
     private final String name;
-    private final BiFunction<VisitDate, OrderedMenu, BigDecimal> condition;
+    private final BiFunction<VisitDate, Order, BigDecimal> condition;
 
-    Benefit(final String name, final BiFunction<VisitDate, OrderedMenu, BigDecimal> condition) {
+    Benefit(final String name, final BiFunction<VisitDate, Order, BigDecimal> condition) {
         this.name = name;
         this.condition = condition;
     }
@@ -81,12 +81,12 @@ public enum Benefit implements BenefitConstant {
 
     public static EnumMap<Benefit, BigDecimal> calculate(
             final VisitDate visitDate,
-            final OrderedMenu orderedMenu
+            final Order order
     ) {
         EnumMap<Benefit, BigDecimal> benefits = new EnumMap<>(Benefit.class);
         for (Benefit benefit : values()) {
-            if (!benefit.condition.apply(visitDate, orderedMenu).equals(BigDecimal.ZERO)) {
-                benefits.put(benefit, benefit.condition.apply(visitDate, orderedMenu));
+            if (!benefit.condition.apply(visitDate, order).equals(BigDecimal.ZERO)) {
+                benefits.put(benefit, benefit.condition.apply(visitDate, order));
             }
         }
         return benefits;

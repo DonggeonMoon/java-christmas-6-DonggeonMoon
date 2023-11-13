@@ -3,7 +3,7 @@ package christmas.controller;
 import christmas.dto.EventBadgeDto;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
-import christmas.dto.OrderedMenuDto;
+import christmas.dto.OrderDto;
 import christmas.dto.PostDiscountAmountDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.TotalBenefitAmountDto;
@@ -43,15 +43,15 @@ public class ChristmasController extends AbstractRetry {
             return service.generateVisitDate(inputDay);
         });
 
-        OrderedMenuDto orderedMenuDto = run(() -> {
+        OrderDto orderDto = run(() -> {
             String inputMenuAndCount = inputView.readMenuAndCount();
             return service.generateOrderedMenu(inputMenuAndCount);
         });
         outputView.printEventBenefitPreview();
-        outputView.printOrderedMenu(orderedMenuDto);
-        PreDiscountAmountDto preDiscountAmountDto = service.generatePreDiscountAmount(orderedMenuDto);
+        outputView.printOrderedMenu(orderDto);
+        PreDiscountAmountDto preDiscountAmountDto = service.generatePreDiscountAmount(orderDto);
         outputView.printPreDiscountAmount(preDiscountAmountDto);
-        BenefitsDto benefitsDto = service.generateBenefits(visitDateDto, orderedMenuDto);
+        BenefitsDto benefitsDto = service.generateBenefits(visitDateDto, orderDto);
         GiveawayMenuDto giveawayMenuDto = service.generateGiveAway(benefitsDto);
         outputView.printGiveaway(giveawayMenuDto);
         outputView.printBenefits(benefitsDto);

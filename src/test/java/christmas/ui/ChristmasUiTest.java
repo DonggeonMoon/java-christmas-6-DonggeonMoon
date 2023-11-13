@@ -13,14 +13,14 @@ import christmas.constant.exception.ArgumentException;
 import christmas.dto.EventBadgeDto;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
-import christmas.dto.OrderedMenuDto;
+import christmas.dto.OrderDto;
 import christmas.dto.PostDiscountAmountDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.TotalBenefitAmountDto;
 import christmas.model.EventBadge;
 import christmas.model.Benefits;
 import christmas.model.GiveawayMenu;
-import christmas.model.OrderedMenu;
+import christmas.model.Order;
 import christmas.model.PostDiscountAmount;
 import christmas.model.PreDiscountAmount;
 import christmas.model.TotalBenefitAmount;
@@ -61,8 +61,8 @@ public class ChristmasUiTest extends UiTest {
     private ChristmasOutputView outputView;
     private ChristmasInputView inputView;
     private VisitDate visitDate;
-    private OrderedMenu orderedMenu;
-    private OrderedMenuDto orderedMenuDto;
+    private Order order;
+    private OrderDto orderDto;
     private PreDiscountAmount preDiscountAmount;
     private PreDiscountAmountDto preDiscountAmountDto;
     private Benefits benefits;
@@ -82,11 +82,11 @@ public class ChristmasUiTest extends UiTest {
         outputView = ChristmasOutputView.create();
         inputView = ChristmasInputView.create();
         visitDate = VisitDate.from(LocalDate.of(2023, 12, 3));
-        orderedMenu = OrderedMenu.from(validInput);
-        orderedMenuDto = OrderedMenuDto.from(orderedMenu);
-        preDiscountAmount = PreDiscountAmount.from(orderedMenu);
+        order = Order.from(validInput);
+        orderDto = OrderDto.from(order);
+        preDiscountAmount = PreDiscountAmount.from(order);
         preDiscountAmountDto = PreDiscountAmountDto.from(preDiscountAmount);
-        benefits = Benefits.from(visitDate, orderedMenu);
+        benefits = Benefits.from(visitDate, order);
         benefitsDto = BenefitsDto.from(benefits);
         giveawayMenu = GiveawayMenu.from(benefits);
         giveawayMenuDto = GiveawayMenuDto.from(giveawayMenu);
@@ -165,7 +165,7 @@ public class ChristmasUiTest extends UiTest {
 
     @Test
     void printOrderedMenu() {
-        outputView.printOrderedMenu(orderedMenuDto);
+        outputView.printOrderedMenu(orderDto);
         assertThat(getOutput())
                 .contains(ORDERED_MENU_DTO_TEXT_COMPONENT
                 );

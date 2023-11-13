@@ -13,7 +13,7 @@ import static christmas.constant.Message.TOTAL_BENEFIT_AMOUNT_PREFIX;
 import christmas.dto.EventBadgeDto;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
-import christmas.dto.OrderedMenuDto;
+import christmas.dto.OrderDto;
 import christmas.dto.PostDiscountAmountDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.TotalBenefitAmountDto;
@@ -35,9 +35,9 @@ public class ChristmasOutputView extends AbstractView {
         println("");
     }
 
-    public void printOrderedMenu(final OrderedMenuDto orderedMenuDto) {
+    public void printOrderedMenu(final OrderDto orderDto) {
         printMessage(ORDERED_MENU_PREFIX);
-        println(orderedMenuDto.toString());
+        println(orderDto.toString());
     }
 
     public void printPreDiscountAmount(final PreDiscountAmountDto preDiscountAmountDto) {

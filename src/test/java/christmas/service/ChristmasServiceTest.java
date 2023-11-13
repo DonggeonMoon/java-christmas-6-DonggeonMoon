@@ -6,13 +6,13 @@ import christmas.constant.menu.MenuCategory.Menu;
 import christmas.dto.EventBadgeDto;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
-import christmas.dto.OrderedMenuDto;
+import christmas.dto.OrderDto;
 import christmas.dto.PostDiscountAmountDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.TotalBenefitAmountDto;
 import christmas.dto.VisitDateDto;
 import christmas.model.Benefits;
-import christmas.model.OrderedMenu;
+import christmas.model.Order;
 import christmas.model.PreDiscountAmount;
 import christmas.model.TotalBenefitAmount;
 import christmas.model.VisitDate;
@@ -26,8 +26,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 class ChristmasServiceTest {
     private ChristmasService service;
     private Map<Menu, Integer> menuAndCount;
-    private OrderedMenu orderedMenu;
-    private OrderedMenuDto orderedMenuDto;
+    private Order order;
+    private OrderDto orderDto;
     private PreDiscountAmount preDiscountAmount;
     private PreDiscountAmountDto preDiscountAmountDto;
     private VisitDate visitDate;
@@ -43,11 +43,11 @@ class ChristmasServiceTest {
         visitDateDto = VisitDateDto.from(visitDate);
         service = ChristmasService.create();
         menuAndCount = Map.of(Menu.SEAFOOD_PASTA, 2, Menu.RED_WINE, 1, Menu.CHOCOLATE_CAKE, 1);
-        orderedMenu = OrderedMenu.from(menuAndCount);
-        orderedMenuDto = OrderedMenuDto.from(orderedMenu);
-        preDiscountAmount = PreDiscountAmount.from(orderedMenu);
+        order = Order.from(menuAndCount);
+        orderDto = OrderDto.from(order);
+        preDiscountAmount = PreDiscountAmount.from(order);
         preDiscountAmountDto = PreDiscountAmountDto.from(preDiscountAmount);
-        benefits = Benefits.from(visitDate, orderedMenu);
+        benefits = Benefits.from(visitDate, order);
         benefitsDto = BenefitsDto.from(benefits);
         totalBenefitAmount = TotalBenefitAmount.from(benefits);
         totalBenefitAmountDto = TotalBenefitAmountDto.from(totalBenefitAmount);
@@ -68,13 +68,13 @@ class ChristmasServiceTest {
 
     @Test
     void generatePreDiscountAmount() {
-        assertThat(service.generatePreDiscountAmount(orderedMenuDto))
+        assertThat(service.generatePreDiscountAmount(orderDto))
                 .isInstanceOf(PreDiscountAmountDto.class);
     }
 
     @Test
     void generateBenefits() {
-        assertThat(service.generateBenefits(visitDateDto, orderedMenuDto))
+        assertThat(service.generateBenefits(visitDateDto, orderDto))
                 .isInstanceOf(BenefitsDto.class);
     }
 

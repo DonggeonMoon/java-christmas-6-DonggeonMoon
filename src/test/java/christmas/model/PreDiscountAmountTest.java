@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test;
 
 class PreDiscountAmountTest {
     private PreDiscountAmount preDiscountAmount;
-    private OrderedMenu orderedMenu;
+    private Order order;
     private Map<Menu, Integer> menuAndCount;
 
     @BeforeEach
     void setUp() {
         menuAndCount = Map.of(Menu.SEAFOOD_PASTA, 2, Menu.RED_WINE, 1, Menu.CHOCOLATE_CAKE, 1);
-        orderedMenu = OrderedMenu.from(menuAndCount);
-        preDiscountAmount = PreDiscountAmount.from(orderedMenu);
+        order = Order.from(menuAndCount);
+        preDiscountAmount = PreDiscountAmount.from(order);
 
     }
 

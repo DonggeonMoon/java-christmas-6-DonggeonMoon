@@ -3,7 +3,7 @@ package christmas.service;
 import christmas.dto.EventBadgeDto;
 import christmas.dto.BenefitsDto;
 import christmas.dto.GiveawayMenuDto;
-import christmas.dto.OrderedMenuDto;
+import christmas.dto.OrderDto;
 import christmas.dto.PostDiscountAmountDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.TotalBenefitAmountDto;
@@ -11,7 +11,7 @@ import christmas.dto.VisitDateDto;
 import christmas.model.EventBadge;
 import christmas.model.Benefits;
 import christmas.model.GiveawayMenu;
-import christmas.model.OrderedMenu;
+import christmas.model.Order;
 import christmas.model.PostDiscountAmount;
 import christmas.model.PreDiscountAmount;
 import christmas.model.TotalBenefitAmount;
@@ -30,24 +30,24 @@ public class ChristmasService {
         return VisitDateDto.from(visitDate);
     }
 
-    public OrderedMenuDto generateOrderedMenu(final String inputMenuAndCount) {
-        OrderedMenu orderedMenu = OrderedMenu.from(inputMenuAndCount);
-        return OrderedMenuDto.from(orderedMenu);
+    public OrderDto generateOrderedMenu(final String inputMenuAndCount) {
+        Order order = Order.from(inputMenuAndCount);
+        return OrderDto.from(order);
     }
 
-    public PreDiscountAmountDto generatePreDiscountAmount(final OrderedMenuDto orderedMenuDto) {
-        OrderedMenu orderedMenu = orderedMenuDto.toEntity();
-        PreDiscountAmount preDiscountAmount = PreDiscountAmount.from(orderedMenu);
+    public PreDiscountAmountDto generatePreDiscountAmount(final OrderDto orderDto) {
+        Order order = orderDto.toEntity();
+        PreDiscountAmount preDiscountAmount = PreDiscountAmount.from(order);
         return PreDiscountAmountDto.from(preDiscountAmount);
     }
 
     public BenefitsDto generateBenefits(
             final VisitDateDto visitDateDto,
-            final OrderedMenuDto orderedMenuDto
+            final OrderDto orderDto
     ) {
         VisitDate visitDate = visitDateDto.toEntity();
-        OrderedMenu orderedMenu = orderedMenuDto.toEntity();
-        Benefits benefits = Benefits.from(visitDate, orderedMenu);
+        Order order = orderDto.toEntity();
+        Benefits benefits = Benefits.from(visitDate, order);
         return BenefitsDto.from(benefits);
     }
 

@@ -15,9 +15,9 @@ public record Benefits(
 
     public static Benefits from(
             final VisitDate visitDate,
-            final OrderedMenu orderedMenu
+            final Order order
     ) {
-        EnumMap<Benefit, BigDecimal> benefits = Benefit.calculate(visitDate, orderedMenu);
+        EnumMap<Benefit, BigDecimal> benefits = Benefit.calculate(visitDate, order);
         return new Benefits(benefits);
     }
 

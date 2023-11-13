@@ -12,18 +12,18 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class OrderedMenu {
+public class Order {
     private final Map<Menu, Integer> menuAndCount;
 
-    private OrderedMenu(final Map<Menu, Integer> menuAndCount) {
+    private Order(final Map<Menu, Integer> menuAndCount) {
         this.menuAndCount = menuAndCount;
     }
 
-    public static OrderedMenu from(final Map<Menu, Integer> menuAndCount) {
-        return new OrderedMenu(menuAndCount);
+    public static Order from(final Map<Menu, Integer> menuAndCount) {
+        return new Order(menuAndCount);
     }
 
-    public static OrderedMenu from(final String inputMenuAndCount) {
+    public static Order from(final String inputMenuAndCount) {
         Objects.requireNonNull(inputMenuAndCount);
         List<List<String>> list = COMMA.split(inputMenuAndCount)
                 .stream()
@@ -38,7 +38,7 @@ public class OrderedMenu {
                         count -> Integer.parseInt(count.get(1))
                 ));
 
-        return new OrderedMenu(menuAndCount);
+        return new Order(menuAndCount);
     }
 
     private static void validate(final List<List<String>> list) {

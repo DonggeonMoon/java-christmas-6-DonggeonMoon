@@ -1,16 +1,16 @@
 package christmas.dto;
 
 import christmas.constant.menu.MenuCategory.Menu;
-import christmas.model.OrderedMenu;
+import christmas.model.Order;
 import java.util.Map;
 
-public record OrderedMenuDto(Map<Menu, Integer> menuAndCount) {
-    public static OrderedMenuDto from(final OrderedMenu orderedMenu) {
-        return new OrderedMenuDto(orderedMenu.getMenuAndCount());
+public record OrderDto(Map<Menu, Integer> menuAndCount) {
+    public static OrderDto from(final Order order) {
+        return new OrderDto(order.getMenuAndCount());
     }
 
-    public OrderedMenu toEntity() {
-        return OrderedMenu.from(
+    public Order toEntity() {
+        return Order.from(
                 this.menuAndCount
         );
     }

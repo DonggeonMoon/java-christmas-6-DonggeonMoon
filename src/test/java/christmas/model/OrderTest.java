@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class OrderedMenuTest {
+class OrderTest {
     private static final String validInput = "해산물파스타-2,레드와인-1,초코케이크-1";
-    private OrderedMenu orderedMenu;
+    private Order order;
     private Map<Menu, Integer> menuAndCount;
 
     @BeforeEach
@@ -23,18 +23,18 @@ class OrderedMenuTest {
 
     @Test
     void from() {
-        orderedMenu = OrderedMenu.from(validInput);
+        order = Order.from(validInput);
 
-        assertThat(orderedMenu)
-                .isInstanceOf(OrderedMenu.class);
+        assertThat(order)
+                .isInstanceOf(Order.class);
 
     }
 
     @Test
     void from2() {
-        orderedMenu = OrderedMenu.from(validInput);
+        order = Order.from(validInput);
 
-        assertThat(orderedMenu.getMenuAndCount())
+        assertThat(order.getMenuAndCount())
                 .isEqualTo(menuAndCount);
     }
 
@@ -55,7 +55,7 @@ class OrderedMenuTest {
             "해산물파스타-13,해산물파스타-6,초코케이크-2"
     })
     void from3(String invalidInput) {
-        assertThatThrownBy(() -> OrderedMenu.from(invalidInput))
+        assertThatThrownBy(() -> Order.from(invalidInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INVALID_MENU.exception().getMessage());
     }
