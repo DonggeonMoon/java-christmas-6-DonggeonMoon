@@ -19,9 +19,8 @@ public record TotalBenefitAmountDto(
     @Override
     public String toString() {
         NumberFormat numberFormat = new DecimalFormat("#,##0");
-        final String stringBuilder = numberFormat.format(amount)
+        return numberFormat.format(amount)
                 + "원"
                 + "\n";
-        return stringBuilder;
     }
 }
