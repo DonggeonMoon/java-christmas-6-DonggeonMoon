@@ -2,6 +2,7 @@ package christmas.service;
 
 import christmas.dto.BenefitsDto;
 import christmas.dto.EventBadgeDto;
+import christmas.dto.EventBenefitPreviewDtos;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderDto;
 import christmas.dto.PostDiscountAmountDto;
@@ -25,23 +26,47 @@ public class ChristmasService {
         return new ChristmasService();
     }
 
-    public VisitDateDto generateVisitDate(final int inputDay) {
+    public VisitDateDto generateVisitDateFrom(final int inputDay) {
         VisitDate visitDate = VisitDate.from(inputDay);
         return VisitDateDto.from(visitDate);
     }
 
-    public OrderDto generateOrderedMenu(final String inputMenuAndCount) {
+    public OrderDto generateOrderedMenuFrom(final String inputMenuAndCount) {
         Order order = Order.from(inputMenuAndCount);
         return OrderDto.from(order);
     }
 
-    public PreDiscountAmountDto generatePreDiscountAmount(final OrderDto orderDto) {
+    public EventBenefitPreviewDtos generateEventBenefitPreviewDtos(
+            final VisitDateDto visitDateDto,
+            final OrderDto orderDto
+    ) {
+        PreDiscountAmountDto preDiscountAmountDto = generatePreDiscountAmountFrom(orderDto);
+        BenefitsDto benefitsDto = generateBenefitsFrom(visitDateDto, orderDto);
+        GiveawayMenuDto giveawayMenuDto = generateGiveawayFrom(benefitsDto);
+        TotalBenefitAmountDto totalBenefitAmountDto = generateTotalBenefitAmountFrom(benefitsDto);
+        PostDiscountAmountDto postDiscountAmountDto = generatePostDiscountAmountFrom(
+                preDiscountAmountDto,
+                totalBenefitAmountDto
+        );
+        EventBadgeDto eventBadgeDto = generateEventBadgeFrom(totalBenefitAmountDto);
+        return EventBenefitPreviewDtos.of(
+                orderDto,
+                preDiscountAmountDto,
+                benefitsDto,
+                giveawayMenuDto,
+                totalBenefitAmountDto,
+                postDiscountAmountDto,
+                eventBadgeDto
+        );
+    }
+
+    private PreDiscountAmountDto generatePreDiscountAmountFrom(final OrderDto orderDto) {
         Order order = orderDto.toModel();
         PreDiscountAmount preDiscountAmount = PreDiscountAmount.from(order);
         return PreDiscountAmountDto.from(preDiscountAmount);
     }
 
-    public BenefitsDto generateBenefits(
+    private BenefitsDto generateBenefitsFrom(
             final VisitDateDto visitDateDto,
             final OrderDto orderDto
     ) {
@@ -51,19 +76,19 @@ public class ChristmasService {
         return BenefitsDto.from(benefits);
     }
 
-    public GiveawayMenuDto generateGiveAway(final BenefitsDto benefitsDto) {
+    private GiveawayMenuDto generateGiveawayFrom(final BenefitsDto benefitsDto) {
         Benefits benefits = benefitsDto.toModel();
         GiveawayMenu giveawayMenu = GiveawayMenu.from(benefits);
         return GiveawayMenuDto.from(giveawayMenu);
     }
 
-    public TotalBenefitAmountDto generateTotalBenefitAmount(final BenefitsDto benefitsDto) {
+    private TotalBenefitAmountDto generateTotalBenefitAmountFrom(final BenefitsDto benefitsDto) {
         Benefits benefits = benefitsDto.toModel();
         TotalBenefitAmount totalBenefitAmount = TotalBenefitAmount.from(benefits);
         return TotalBenefitAmountDto.from(totalBenefitAmount);
     }
 
-    public PostDiscountAmountDto generatePostDiscountAmount(
+    private PostDiscountAmountDto generatePostDiscountAmountFrom(
             final PreDiscountAmountDto preDiscountAmountDto,
             final TotalBenefitAmountDto totalBenefitAmountDto
     ) {
@@ -73,7 +98,7 @@ public class ChristmasService {
         return PostDiscountAmountDto.from(postDiscountAmount);
     }
 
-    public EventBadgeDto generateBadge(final TotalBenefitAmountDto totalBenefitAmountDto) {
+    private EventBadgeDto generateEventBadgeFrom(final TotalBenefitAmountDto totalBenefitAmountDto) {
         TotalBenefitAmount totalBenefitAmount = totalBenefitAmountDto.toModel();
         EventBadge eventBadge = EventBadge.from(totalBenefitAmount);
         return EventBadgeDto.from(eventBadge);
