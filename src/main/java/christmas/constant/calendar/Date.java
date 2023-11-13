@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-public enum StarredDate {
+public enum Date {
     STARRED_DATE(
             List.of(
                     LocalDate.of(2023, 12, 3),
@@ -18,7 +18,7 @@ public enum StarredDate {
 
     private final List<LocalDate> dates;
 
-    StarredDate(final List<LocalDate> dates) {
+    Date(final List<LocalDate> dates) {
         this.dates = dates;
     }
 
