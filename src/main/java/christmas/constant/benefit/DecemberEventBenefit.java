@@ -1,6 +1,6 @@
 package christmas.constant.benefit;
 
-import christmas.constant.Amounts;
+import christmas.constant.Amount;
 import christmas.constant.Period;
 import christmas.constant.menu.MenuCategory.Menu;
 import christmas.model.Order;
@@ -28,7 +28,7 @@ public enum DecemberEventBenefit implements Benefit {
             return menuAndCount.keySet()
                     .stream()
                     .filter(Menu::isDessert)
-                    .map(menu -> Amounts.WEEKDAYS_DISCOUNT_UNIT_AMOUNT.getAmount()
+                    .map(menu -> Amount.WEEKDAYS_DISCOUNT_UNIT.getValue()
                             .multiply(BigDecimal.valueOf(menuAndCount.get(menu))))
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
@@ -40,7 +40,7 @@ public enum DecemberEventBenefit implements Benefit {
             return menuAndCount.keySet()
                     .stream()
                     .filter(Menu::isMainMenu)
-                    .map(menu -> Amounts.WEEKEND_DISCOUNT_UNIT_AMOUNT.getAmount()
+                    .map(menu -> Amount.WEEKEND_DISCOUNT_UNIT.getValue()
                             .multiply(BigDecimal.valueOf(menuAndCount.get(menu))))
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
@@ -53,7 +53,7 @@ public enum DecemberEventBenefit implements Benefit {
             return menuAndCount.keySet()
                     .stream()
                     .filter(Menu::isMainMenu)
-                    .map(menu -> Amounts.SPECIAL_DISCOUNT_UNIT_AMOUNT.getAmount()
+                    .map(menu -> Amount.SPECIAL_DISCOUNT_UNIT.getValue()
                             .multiply(BigDecimal.valueOf(menuAndCount.get(menu))))
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
