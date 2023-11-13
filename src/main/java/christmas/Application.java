@@ -14,7 +14,7 @@ public class Application {
                     ChristmasService.create()
             );
             controller.start();
-        } catch (RuntimeException e) {
+        } catch (IllegalStateException e) {
             System.out.println(e.getMessage());
         }
     }
