@@ -5,7 +5,7 @@ import christmas.constant.number.MaxRetry;
 import java.util.function.Supplier;
 
 public abstract class AbstractRetry {
-    protected <T> T run(final Supplier<T> supplier) {
+    protected final <T> T run(final Supplier<T> supplier) {
         int retryCount = 0;
         while (MaxRetry.COUNT.isUnder(retryCount)) {
             try {
