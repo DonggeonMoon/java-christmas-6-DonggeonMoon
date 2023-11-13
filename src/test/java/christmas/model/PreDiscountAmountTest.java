@@ -9,14 +9,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class PreDiscountAmountTest {
+    public static final EnumMap<Menu, Integer> MENU_AND_COUNT = new EnumMap<>(
+            Map.of(Menu.SEAFOOD_PASTA, 2, Menu.RED_WINE, 1, Menu.CHOCOLATE_CAKE, 1));
     private PreDiscountAmount preDiscountAmount;
-    private Order order;
-    private EnumMap<Menu, Integer> menuAndCount;
 
     @BeforeEach
     void setUp() {
-        menuAndCount = new EnumMap<>(Map.of(Menu.SEAFOOD_PASTA, 2, Menu.RED_WINE, 1, Menu.CHOCOLATE_CAKE, 1));
-        order = Order.from(menuAndCount);
+        Order order = Order.from(MENU_AND_COUNT);
         preDiscountAmount = PreDiscountAmount.from(order);
 
     }

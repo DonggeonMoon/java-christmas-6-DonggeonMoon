@@ -9,16 +9,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BenefitsTest {
-    private VisitDate visitDate;
-    private Order order;
-    private EnumMap<Menu, Integer> menuAndCount;
+    private static final VisitDate visitDate = VisitDate.from(LocalDate.of(2023, 12, 3));
+    private static final EnumMap<Menu, Integer> menuAndCount = new EnumMap<>(
+            Map.of(Menu.SEAFOOD_PASTA, 2, Menu.RED_WINE, 1, Menu.CHOCOLATE_CAKE, 1));
+
     private Benefits benefits;
 
     @BeforeEach
     void setUp() {
-        visitDate = VisitDate.from(LocalDate.of(2023, 12, 3));
-        menuAndCount = new EnumMap<>(Map.of(Menu.SEAFOOD_PASTA, 2, Menu.RED_WINE, 1, Menu.CHOCOLATE_CAKE, 1));
-        order = Order.from(menuAndCount);
+        Order order = Order.from(menuAndCount);
         benefits = Benefits.from(visitDate, order);
     }
 

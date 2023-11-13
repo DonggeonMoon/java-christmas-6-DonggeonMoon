@@ -10,22 +10,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class PostDiscountAmountTest {
-    private VisitDate visitDate;
-    private Order order;
-    private EnumMap<Menu, Integer> menuAndCount;
-    private Benefits benefits;
-    private PreDiscountAmount preDiscountAmount;
-    private TotalBenefitAmount totalBenefitAmount;
+    public static final VisitDate VISIT_DATE = VisitDate.from(LocalDate.of(2023, 12, 3));
+    public static final EnumMap<Menu, Integer> MENU_AND_COUNT = new EnumMap<>(
+            Map.of(Menu.SEAFOOD_PASTA, 2, Menu.RED_WINE, 1, Menu.CHOCOLATE_CAKE, 1));
     private PostDiscountAmount postDiscountAmount;
 
     @BeforeEach
     void setUp() {
-        visitDate = VisitDate.from(LocalDate.of(2023, 12, 3));
-        menuAndCount = new EnumMap<>(Map.of(Menu.SEAFOOD_PASTA, 2, Menu.RED_WINE, 1, Menu.CHOCOLATE_CAKE, 1));
-        order = Order.from(menuAndCount);
-        benefits = Benefits.from(visitDate, order);
-        preDiscountAmount = PreDiscountAmount.from(order);
-        totalBenefitAmount = TotalBenefitAmount.from(benefits);
+        Order order = Order.from(MENU_AND_COUNT);
+        Benefits benefits = Benefits.from(VISIT_DATE, order);
+        PreDiscountAmount preDiscountAmount = PreDiscountAmount.from(order);
+        TotalBenefitAmount totalBenefitAmount = TotalBenefitAmount.from(benefits);
         postDiscountAmount = PostDiscountAmount.of(preDiscountAmount, totalBenefitAmount);
     }
 

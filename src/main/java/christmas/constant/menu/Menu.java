@@ -69,6 +69,6 @@ public enum Menu {
         MAIN_MENU,
         DESSERT,
         DRINK,
-        NONE;
+        NONE
     }
 }
