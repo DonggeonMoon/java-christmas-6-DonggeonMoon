@@ -9,13 +9,9 @@ public record TotalBenefitAmount(
     public static TotalBenefitAmount from(final Benefits benefits) {
         Objects.requireNonNull(benefits);
 
-        BigDecimal totalAmount = benefits.benefits()
-                .values()
-                .stream()
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-
-        return new TotalBenefitAmount(totalAmount);
+        return benefits.calculateTotalAmount();
     }
+
     public EventBadge calculateEventBadge() {
         return EventBadge.from(this);
     }

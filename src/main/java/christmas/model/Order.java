@@ -7,15 +7,18 @@ import static christmas.constant.string.Delimiter.DASH;
 import christmas.constant.exception.ArgumentException;
 import christmas.constant.menu.MenuCategory.Menu;
 import christmas.constant.validation.IntegerValidation;
+import java.math.BigDecimal;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public record Order(
-        Map<Menu, Integer> menuAndCount
+        EnumMap<Menu, Integer> menuAndCount
 ) {
-    public static Order from(final Map<Menu, Integer> menuAndCount) {
+    public static Order from(final EnumMap<Menu, Integer> menuAndCount) {
         Objects.requireNonNull(menuAndCount);
 
         return new Order(menuAndCount);
@@ -28,9 +31,7 @@ public record Order(
 
         validate(list);
 
-        Map<Menu, Integer> menuAndCount = calculateMenuAndCount(list);
-
-        return new Order(menuAndCount);
+        return new Order(convertToEnumMap(list));
     }
 
     private static List<List<String>> splitInput(final String inputMenuAndCount) {
@@ -38,6 +39,10 @@ public record Order(
                 .stream()
                 .map(DASH::split)
                 .toList();
+    }
+
+    private static EnumMap<Menu, Integer> convertToEnumMap(final List<List<String>> list) {
+        return new EnumMap<>(calculateMenuAndCount(list));
     }
 
     private static Map<Menu, Integer> calculateMenuAndCount(final List<List<String>> list) {
@@ -121,12 +126,24 @@ public record Order(
     }
 
     private static void validateLessThanOne(final List<Integer> counts) {
-        counts.forEach(
-                IntegerValidation.NOT_LESS_THAN_ONE::validate
-        );
+        counts.forEach(IntegerValidation.NOT_LESS_THAN_ONE::validate);
     }
 
     public PreDiscountAmount calculatePreDiscountAmount() {
-        return PreDiscountAmount.from(this);
+        return new PreDiscountAmount(
+                this.menuAndCount()
+                        .entrySet()
+                        .stream()
+                        .map(Order::calculateMenuAmount)
+                        .reduce(BigDecimal.ZERO, BigDecimal::add)
+        );
+    }
+
+    private static BigDecimal calculateMenuAmount(final Entry<Menu, Integer> menus) {
+        return menus.getKey()
+                .getPrice()
+                .multiply(
+                        BigDecimal.valueOf(menus.getValue())
+                );
     }
 }

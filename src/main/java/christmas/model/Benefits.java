@@ -23,15 +23,16 @@ public record Benefits(
         Objects.requireNonNull(visitDate);
         Objects.requireNonNull(order);
 
-        EnumMap<DecemberEventBenefit, BigDecimal> benefits = DecemberEventBenefit.calculate(visitDate, order);
-        return new Benefits(benefits);
+        return new Benefits(
+                DecemberEventBenefit.calculate(visitDate, order)
+        );
     }
 
     public boolean hasGiveaway() {
         return !this.calculateGiveawayAmount().equals(BigDecimal.ZERO);
     }
 
-    public BigDecimal calculateGiveawayAmount() {
+    private BigDecimal calculateGiveawayAmount() {
         if (benefits.get(GIVEAWAY) == null) {
             return BigDecimal.ZERO;
         }
@@ -44,5 +45,16 @@ public record Benefits(
 
     public TotalBenefitAmount calculateTotalBenefitAmount() {
         return TotalBenefitAmount.from(this);
+    }
+
+    public TotalBenefitAmount calculateTotalAmount() {
+        return new TotalBenefitAmount(calculateTotalAmountInBigDecimal());
+    }
+
+    private BigDecimal calculateTotalAmountInBigDecimal() {
+        return this.benefits()
+                .values()
+                .stream()
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

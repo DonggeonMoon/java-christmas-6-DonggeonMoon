@@ -14,6 +14,7 @@ import christmas.model.PreDiscountAmount;
 import christmas.model.TotalBenefitAmount;
 import christmas.model.VisitDate;
 import java.time.LocalDate;
+import java.util.EnumMap;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class ChristmasServiceTest {
     private ChristmasService service;
-    private Map<Menu, Integer> menuAndCount;
+    private EnumMap<Menu, Integer> menuAndCount;
     private Order order;
     private OrderDto orderDto;
     private PreDiscountAmount preDiscountAmount;
@@ -39,7 +40,7 @@ class ChristmasServiceTest {
         visitDate = VisitDate.from(LocalDate.of(2023, 12, 3));
         visitDateDto = VisitDateDto.from(visitDate);
         service = ChristmasService.create();
-        menuAndCount = Map.of(Menu.SEAFOOD_PASTA, 2, Menu.RED_WINE, 1, Menu.CHOCOLATE_CAKE, 1);
+        menuAndCount = new EnumMap<>(Map.of(Menu.SEAFOOD_PASTA, 2, Menu.RED_WINE, 1, Menu.CHOCOLATE_CAKE, 1));
         order = Order.from(menuAndCount);
         orderDto = OrderDto.from(order);
         preDiscountAmount = PreDiscountAmount.from(order);

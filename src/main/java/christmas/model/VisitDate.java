@@ -7,6 +7,7 @@ import static christmas.constant.calendar.Period.CHRISTMAS_EVENT;
 import static christmas.constant.exception.ArgumentException.INVALID_DATE;
 
 import java.math.BigDecimal;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -35,15 +36,19 @@ public record VisitDate(
     }
 
     public BigDecimal calculateDayOfMonthInBigDecimal() {
-        return BigDecimal.valueOf(date.getDayOfMonth());
+        return BigDecimal.valueOf(calculateDayOfMonth());
     }
 
     public boolean isWeekDay() {
-        return WEEKDAYS.includes(date.getDayOfWeek());
+        return WEEKDAYS.includes(calculateDayOfWeek());
     }
 
     public boolean isWeekend() {
-        return WEEKEND.includes(date.getDayOfWeek());
+        return WEEKEND.includes(calculateDayOfWeek());
+    }
+
+    private DayOfWeek calculateDayOfWeek() {
+        return date.getDayOfWeek();
     }
 
     public boolean isStarredDate() {

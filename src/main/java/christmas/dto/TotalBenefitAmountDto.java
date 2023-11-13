@@ -1,9 +1,8 @@
 package christmas.dto;
 
+import christmas.util.Formatter;
 import christmas.model.TotalBenefitAmount;
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.Objects;
 
 public record TotalBenefitAmountDto(
@@ -21,9 +20,13 @@ public record TotalBenefitAmountDto(
 
     @Override
     public String toString() {
-        NumberFormat numberFormat = new DecimalFormat("#,##0");
-        return numberFormat.format(amount)
-                + "원"
-                + "\n";
+        return Formatter.formatAmount(amount);
+    }
+
+    public EventBadgeDto calculateEventBadgeDto() {
+        return EventBadgeDto.from(
+                this.toModel()
+                        .calculateEventBadge()
+        );
     }
 }

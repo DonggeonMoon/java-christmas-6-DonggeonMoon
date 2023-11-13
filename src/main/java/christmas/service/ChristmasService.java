@@ -8,8 +8,6 @@ import christmas.dto.PostDiscountAmountDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.TotalBenefitAmountDto;
 import christmas.dto.VisitDateDto;
-import christmas.model.Benefits;
-import christmas.model.Order;
 import christmas.model.VisitDate;
 import java.util.Objects;
 
@@ -29,29 +27,19 @@ public class ChristmasService {
     public OrderDto generateOrderedMenuFrom(final String inputMenuAndCount) {
         Objects.requireNonNull(inputMenuAndCount);
 
-        return OrderDto.from(
-                Order.from(inputMenuAndCount)
-        );
+        return OrderDto.from(inputMenuAndCount);
     }
 
     public PreDiscountAmountDto generatePreDiscountAmountFrom(final OrderDto orderDto) {
         Objects.requireNonNull(orderDto);
 
-        return PreDiscountAmountDto.from(
-                orderDto
-                        .toModel()
-                        .calculatePreDiscountAmount()
-        );
+        return orderDto.calculatePreDiscountAmountDto();
     }
 
     public GiveawayMenuDto generateGiveAwayMenuFrom(final BenefitsDto benefitsDto) {
         Objects.requireNonNull(benefitsDto);
 
-        return GiveawayMenuDto.from(
-                benefitsDto
-                        .toModel()
-                        .calculateGiveawayMenu()
-        );
+        return benefitsDto.calculateGiveawayMenuDto();
     }
 
     public PostDiscountAmountDto generatePostDiscountAmount(
@@ -62,13 +50,7 @@ public class ChristmasService {
         Objects.requireNonNull(totalBenefitAmountDto);
 
         totalBenefitAmountDto.toModel();
-        return PostDiscountAmountDto.from(
-                preDiscountAmountDto.
-                        toModel()
-                        .subtract(
-                                totalBenefitAmountDto.toModel()
-                        )
-        );
+        return preDiscountAmountDto.calculatePostDiscountAmountDto(totalBenefitAmountDto);
     }
 
     public BenefitsDto generateBenefitsFrom(
@@ -78,31 +60,18 @@ public class ChristmasService {
         Objects.requireNonNull(visitDateDto);
         Objects.requireNonNull(orderDto);
 
-        return BenefitsDto.from(
-                Benefits.from(
-                        visitDateDto.toModel(),
-                        orderDto.toModel()
-                )
-        );
+        return orderDto.calculateBenefitsDtoFrom(visitDateDto);
     }
 
     public TotalBenefitAmountDto generateTotalBenefitFrom(final BenefitsDto benefitsDto) {
         Objects.requireNonNull(benefitsDto);
 
-        return TotalBenefitAmountDto.from(
-                benefitsDto
-                        .toModel()
-                        .calculateTotalBenefitAmount()
-        );
+        return benefitsDto.calculateTotalBenefitAmountDto();
     }
 
     public EventBadgeDto generateEventBadgeFrom(final TotalBenefitAmountDto totalBenefitAmountDto) {
         Objects.requireNonNull(totalBenefitAmountDto);
 
-        return EventBadgeDto.from(
-                totalBenefitAmountDto
-                        .toModel()
-                        .calculateEventBadge()
-        );
+        return totalBenefitAmountDto.calculateEventBadgeDto();
     }
 }

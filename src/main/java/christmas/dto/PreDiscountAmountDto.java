@@ -1,9 +1,8 @@
 package christmas.dto;
 
+import christmas.util.Formatter;
 import christmas.model.PreDiscountAmount;
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.Objects;
 
 public record PreDiscountAmountDto(
@@ -21,9 +20,15 @@ public record PreDiscountAmountDto(
 
     @Override
     public String toString() {
-        NumberFormat numberFormat = new DecimalFormat("#,##0");
-        return numberFormat.format(amount)
-                + "원"
-                + "\n";
+        return Formatter.formatAmount(amount);
+    }
+
+    public PostDiscountAmountDto calculatePostDiscountAmountDto(TotalBenefitAmountDto totalBenefitAmountDto) {
+        return PostDiscountAmountDto.from(
+                this.toModel()
+                        .subtract(
+                                totalBenefitAmountDto.toModel()
+                        )
+        );
     }
 }
