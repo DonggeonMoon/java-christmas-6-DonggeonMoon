@@ -9,7 +9,7 @@ public record OrderDto(Map<Menu, Integer> menuAndCount) {
         return new OrderDto(order.menuAndCount());
     }
 
-    public Order toEntity() {
+    public Order toModel() {
         return Order.from(
                 this.menuAndCount
         );

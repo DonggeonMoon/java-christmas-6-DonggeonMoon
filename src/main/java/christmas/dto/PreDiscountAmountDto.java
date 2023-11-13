@@ -12,7 +12,7 @@ public record PreDiscountAmountDto(
         return new PreDiscountAmountDto(preDiscountAmount.amount());
     }
 
-    public PreDiscountAmount toEntity() {
+    public PreDiscountAmount toModel() {
         return PreDiscountAmount.from(amount);
     }
 

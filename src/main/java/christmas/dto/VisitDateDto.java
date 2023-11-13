@@ -8,7 +8,7 @@ public record VisitDateDto(LocalDate date) {
         return new VisitDateDto(visitDate.date());
     }
 
-    public VisitDate toEntity() {
+    public VisitDate toModel() {
         return VisitDate.from(date);
     }
 }

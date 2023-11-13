@@ -15,7 +15,7 @@ public record BenefitsDto(
         return new BenefitsDto(benefits.benefits());
     }
 
-    public Benefits toEntity() {
+    public Benefits toModel() {
         return Benefits.from(benefits);
     }
 

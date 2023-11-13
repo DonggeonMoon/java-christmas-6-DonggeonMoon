@@ -12,7 +12,7 @@ public record TotalBenefitAmountDto(
         return new TotalBenefitAmountDto(totalBenefitAmount.amount());
     }
 
-    public TotalBenefitAmount toEntity() {
+    public TotalBenefitAmount toModel() {
         return new TotalBenefitAmount(amount);
     }
 
