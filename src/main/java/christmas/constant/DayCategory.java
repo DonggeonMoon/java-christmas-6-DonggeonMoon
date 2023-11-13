@@ -14,7 +14,7 @@ public enum DayCategory {
             )),
     WEEKEND(
             List.of(
-                    DayOfWeek.SUNDAY,
+                    DayOfWeek.FRIDAY,
                     DayOfWeek.SATURDAY
             )
     );
@@ -26,7 +26,7 @@ public enum DayCategory {
     }
 
     public boolean includes(DayOfWeek dayOfWeek) {
-        return WEEKDAYS.dayOfWeeks.stream()
+        return this.dayOfWeeks.stream()
                 .anyMatch(i -> i.equals(dayOfWeek));
     }
 }

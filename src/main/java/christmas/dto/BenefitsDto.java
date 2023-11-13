@@ -19,6 +19,9 @@ public record BenefitsDto(
 
     @Override
     public String toString() {
+        if (benefits.isEmpty()) {
+            return Benefit.NOTHING.getName() + "\n";
+        }
         StringBuilder stringBuilder = new StringBuilder();
         benefits.entrySet()
                 .forEach(benefitAndAmount -> {

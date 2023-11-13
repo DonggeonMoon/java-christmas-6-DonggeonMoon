@@ -9,7 +9,8 @@ public enum MenuCategory {
     APPETIZER,
     MAIN_MENU,
     DESSERT,
-    DRINK;
+    DRINK,
+    NONE;
 
     public enum Menu {
         MUSHROOM_SOUP("양송이수프", APPETIZER, BigDecimal.valueOf(6000)),
@@ -23,7 +24,8 @@ public enum MenuCategory {
         ICE_CREAM("아이스크림", DESSERT, BigDecimal.valueOf(5000)),
         ZERO_COKE("제로콜라", DRINK, BigDecimal.valueOf(3000)),
         RED_WINE("레드와인", DRINK, BigDecimal.valueOf(60000)),
-        CHAMPAGNE("샴페인", DRINK, BigDecimal.valueOf(25000));
+        CHAMPAGNE("샴페인", DRINK, BigDecimal.valueOf(25000)),
+        NOTHING("없음", NONE, BigDecimal.ZERO);
 
         private final String name;
         private final MenuCategory category;
@@ -43,15 +45,15 @@ public enum MenuCategory {
         }
 
         public boolean isDessert() {
-            return this.category != MenuCategory.DESSERT;
+            return this.category == DESSERT;
         }
 
         public boolean isMainMenu() {
-            return this.category != MenuCategory.MAIN_MENU;
+            return this.category == MAIN_MENU;
         }
 
         public boolean isNotDrink() {
-            return this.category != MenuCategory.DRINK;
+            return this.category != DRINK;
         }
 
         public String getName() {

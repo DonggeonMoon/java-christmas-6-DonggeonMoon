@@ -7,6 +7,7 @@ import christmas.model.OrderedMenu;
 import christmas.model.PreDiscountAmount;
 import christmas.model.VisitDate;
 import java.math.BigDecimal;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.function.BiFunction;
 
@@ -63,7 +64,8 @@ public enum Benefit implements BenefitConstant {
             return Menu.CHAMPAGNE.getPrice();
         }
         return BigDecimal.ZERO;
-    });
+    }),
+    NOTHING("없음", (visitDate, orderedMenu) -> BigDecimal.ZERO);
 
     private final String name;
     private final BiFunction<VisitDate, OrderedMenu, BigDecimal> condition;
@@ -77,7 +79,17 @@ public enum Benefit implements BenefitConstant {
         return name;
     }
 
-    public BigDecimal calculateFrom(VisitDate visitDate, OrderedMenu orderedMenu) {
+    public static EnumMap<Benefit, BigDecimal> calculate(VisitDate visitDate, OrderedMenu orderedMenu) {
+        EnumMap<Benefit, BigDecimal> benefits = new EnumMap<>(Benefit.class);
+        for (Benefit benefit : values()) {
+            if (!benefit.condition.apply(visitDate, orderedMenu).equals(BigDecimal.ZERO)) {
+                benefits.put(benefit, benefit.condition.apply(visitDate, orderedMenu));
+            }
+        }
+        return benefits;
+    }
+
+    private BigDecimal calculateFrom(VisitDate visitDate, OrderedMenu orderedMenu) {
         return this.condition.apply(visitDate, orderedMenu);
     }
 }
