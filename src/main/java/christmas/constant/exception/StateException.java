@@ -7,7 +7,7 @@ public enum StateException {
     private static final String PREFIX = "[ERROR] ";
     private final String text;
 
-    StateException(String text) {
+    StateException(final String text) {
         this.text = text;
     }
 

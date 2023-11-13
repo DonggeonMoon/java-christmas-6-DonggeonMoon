@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public record TotalBenefitAmount(
         BigDecimal amount
 ) {
-    public static TotalBenefitAmount from(Benefits benefits) {
+    public static TotalBenefitAmount from(final Benefits benefits) {
         BigDecimal totalAmount = benefits.benefits()
                 .values()
                 .stream()

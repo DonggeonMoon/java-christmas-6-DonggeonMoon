@@ -35,36 +35,37 @@ public class ChristmasOutputView extends AbstractView {
         println("");
     }
 
-    public void printOrderedMenu(OrderedMenuDto orderedMenuDto) {
+    public void printOrderedMenu(final OrderedMenuDto orderedMenuDto) {
         printMessage(ORDERED_MENU_PREFIX);
         println(orderedMenuDto.toString());
     }
 
-    public void printPreDiscountAmount(PreDiscountAmountDto preDiscountAmountDto) {
+    public void printPreDiscountAmount(final PreDiscountAmountDto preDiscountAmountDto) {
         printMessage(PRE_DISCOUNT_AMOUNT_PREFIX);
         println(preDiscountAmountDto.toString());
     }
 
-    public void printGiveaway(GiveawayMenuDto giveawayMenuDto) {
+    public void printGiveaway(final GiveawayMenuDto giveawayMenuDto) {
         printMessage(GIVEAWAY_PREFIX);
         println(giveawayMenuDto.toString());
     }
 
-    public void printBenefits(BenefitsDto benefitsDto) {
+    public void printBenefits(final BenefitsDto benefitsDto) {
         printMessage(BENEFIT_PREFIX);
         println(benefitsDto.toString());
     }
-    public void printTotalBenefitAmount(TotalBenefitAmountDto totalBenefitAmountDto) {
+
+    public void printTotalBenefitAmount(final TotalBenefitAmountDto totalBenefitAmountDto) {
         printMessage(TOTAL_BENEFIT_AMOUNT_PREFIX);
         println(totalBenefitAmountDto.toString());
     }
 
-    public void printPostDiscountAmount(PostDiscountAmountDto postDiscountAmountDto) {
+    public void printPostDiscountAmount(final PostDiscountAmountDto postDiscountAmountDto) {
         printMessage(POST_DISCOUNT_AMOUNT_PREFIX);
         println(postDiscountAmountDto.toString());
     }
 
-    public void printBadge(BadgeDto badgeDto) {
+    public void printBadge(final BadgeDto badgeDto) {
         printMessage(BADGE_PREFIX);
         println(badgeDto.toString());
     }

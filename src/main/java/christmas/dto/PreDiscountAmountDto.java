@@ -8,7 +8,7 @@ import java.text.NumberFormat;
 public record PreDiscountAmountDto(
         BigDecimal amount
 ) {
-    public static PreDiscountAmountDto from(PreDiscountAmount preDiscountAmount) {
+    public static PreDiscountAmountDto from(final PreDiscountAmount preDiscountAmount) {
         return new PreDiscountAmountDto(preDiscountAmount.amount());
     }
 

@@ -7,7 +7,7 @@ import java.util.EnumMap;
 public record GiveawayMenuDto(
         EnumMap<Menu, Integer> menuAndCount
 ) {
-    public static GiveawayMenuDto from(GiveawayMenu giveawayMenu) {
+    public static GiveawayMenuDto from(final GiveawayMenu giveawayMenu) {
         return new GiveawayMenuDto(giveawayMenu.menuAndCount());
     }
 

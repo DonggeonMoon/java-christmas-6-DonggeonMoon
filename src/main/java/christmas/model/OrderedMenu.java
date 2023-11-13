@@ -19,7 +19,7 @@ public class OrderedMenu {
         this.menuAndCount = menuAndCount;
     }
 
-    public static OrderedMenu from(Map<Menu, Integer> menuAndCount) {
+    public static OrderedMenu from(final Map<Menu, Integer> menuAndCount) {
         return new OrderedMenu(menuAndCount);
     }
 

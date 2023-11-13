@@ -5,11 +5,11 @@ import christmas.constant.Badge;
 public record BadgeDto(
         Badge badge
 ) {
-    public static BadgeDto from(christmas.model.Badge badge) {
+    public static BadgeDto from(final christmas.model.Badge badge) {
         return new BadgeDto(badge.badge());
     }
 
-    public static BadgeDto from(Badge badge) {
+    public static BadgeDto from(final Badge badge) {
         return new BadgeDto(badge);
     }
 

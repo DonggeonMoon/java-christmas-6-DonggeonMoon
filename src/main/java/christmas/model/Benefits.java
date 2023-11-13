@@ -9,13 +9,13 @@ import java.util.EnumMap;
 public record Benefits(
         EnumMap<Benefit, BigDecimal> benefits
 ) {
-    public static Benefits from(EnumMap<Benefit, BigDecimal> benefits) {
+    public static Benefits from(final EnumMap<Benefit, BigDecimal> benefits) {
         return new Benefits(benefits);
     }
 
     public static Benefits from(
-            VisitDate visitDate,
-            OrderedMenu orderedMenu
+            final VisitDate visitDate,
+            final OrderedMenu orderedMenu
     ) {
         EnumMap<Benefit, BigDecimal> benefits = Benefit.calculate(visitDate, orderedMenu);
         return new Benefits(benefits);

@@ -21,7 +21,7 @@ public enum StarredDate {
         this.dates = dates;
     }
 
-    public boolean includes(LocalDate date) {
+    public boolean includes(final LocalDate date) {
         return STARRED_DATE.dates
                 .stream()
                 .anyMatch(starredDay -> starredDay.equals(date));

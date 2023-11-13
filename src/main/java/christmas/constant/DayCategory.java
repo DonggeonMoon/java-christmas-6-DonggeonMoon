@@ -25,7 +25,7 @@ public enum DayCategory {
         this.dayOfWeeks = dayOfWeeks;
     }
 
-    public boolean includes(DayOfWeek dayOfWeek) {
+    public boolean includes(final DayOfWeek dayOfWeek) {
         return this.dayOfWeeks.stream()
                 .anyMatch(i -> i.equals(dayOfWeek));
     }

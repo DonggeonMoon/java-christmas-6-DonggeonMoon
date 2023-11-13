@@ -79,7 +79,10 @@ public enum Benefit implements BenefitConstant {
         return name;
     }
 
-    public static EnumMap<Benefit, BigDecimal> calculate(VisitDate visitDate, OrderedMenu orderedMenu) {
+    public static EnumMap<Benefit, BigDecimal> calculate(
+            final VisitDate visitDate,
+            final OrderedMenu orderedMenu
+    ) {
         EnumMap<Benefit, BigDecimal> benefits = new EnumMap<>(Benefit.class);
         for (Benefit benefit : values()) {
             if (!benefit.condition.apply(visitDate, orderedMenu).equals(BigDecimal.ZERO)) {
@@ -87,9 +90,5 @@ public enum Benefit implements BenefitConstant {
             }
         }
         return benefits;
-    }
-
-    private BigDecimal calculateFrom(VisitDate visitDate, OrderedMenu orderedMenu) {
-        return this.condition.apply(visitDate, orderedMenu);
     }
 }

@@ -5,7 +5,7 @@ import christmas.model.OrderedMenu;
 import java.util.Map;
 
 public record OrderedMenuDto(Map<Menu, Integer> menuAndCount) {
-    public static OrderedMenuDto from(OrderedMenu orderedMenu) {
+    public static OrderedMenuDto from(final OrderedMenu orderedMenu) {
         return new OrderedMenuDto(orderedMenu.getMenuAndCount());
     }
 

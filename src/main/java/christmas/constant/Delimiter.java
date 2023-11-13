@@ -13,7 +13,7 @@ public enum Delimiter {
         this.character = character;
     }
 
-    public List<String> split(String input) {
+    public List<String> split(final String input) {
         return Arrays.stream(input.split(this.character))
                 .map(String::trim)
                 .toList();

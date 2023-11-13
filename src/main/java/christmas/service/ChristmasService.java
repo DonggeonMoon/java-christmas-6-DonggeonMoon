@@ -25,45 +25,47 @@ public class ChristmasService {
         return new ChristmasService();
     }
 
-    public VisitDateDto generateVisitDate(int inputDay) {
+    public VisitDateDto generateVisitDate(final int inputDay) {
         VisitDate visitDate = VisitDate.from(inputDay);
         return VisitDateDto.from(visitDate);
     }
 
-    public OrderedMenuDto generateOrderedMenu(String inputMenuAndCount) {
+    public OrderedMenuDto generateOrderedMenu(final String inputMenuAndCount) {
         OrderedMenu orderedMenu = OrderedMenu.from(inputMenuAndCount);
         return OrderedMenuDto.from(orderedMenu);
     }
 
-    public PreDiscountAmountDto generatePreDiscountAmount(OrderedMenuDto orderedMenuDto) {
+    public PreDiscountAmountDto generatePreDiscountAmount(final OrderedMenuDto orderedMenuDto) {
         OrderedMenu orderedMenu = orderedMenuDto.toEntity();
         PreDiscountAmount preDiscountAmount = PreDiscountAmount.from(orderedMenu);
-
         return PreDiscountAmountDto.from(preDiscountAmount);
     }
 
-    public BenefitsDto generateBenefits(VisitDateDto visitDateDto, OrderedMenuDto orderedMenuDto) {
+    public BenefitsDto generateBenefits(
+            final VisitDateDto visitDateDto,
+            final OrderedMenuDto orderedMenuDto
+    ) {
         VisitDate visitDate = visitDateDto.toEntity();
         OrderedMenu orderedMenu = orderedMenuDto.toEntity();
         Benefits benefits = Benefits.from(visitDate, orderedMenu);
         return BenefitsDto.from(benefits);
     }
 
-    public GiveawayMenuDto generateGiveAway(BenefitsDto benefitsDto) {
+    public GiveawayMenuDto generateGiveAway(final BenefitsDto benefitsDto) {
         Benefits benefits = benefitsDto.toEntity();
         GiveawayMenu giveawayMenu = GiveawayMenu.from(benefits);
         return GiveawayMenuDto.from(giveawayMenu);
     }
 
-    public TotalBenefitAmountDto generateTotalBenefitAmount(BenefitsDto benefitsDto) {
+    public TotalBenefitAmountDto generateTotalBenefitAmount(final BenefitsDto benefitsDto) {
         Benefits benefits = benefitsDto.toEntity();
         TotalBenefitAmount totalBenefitAmount = TotalBenefitAmount.from(benefits);
         return TotalBenefitAmountDto.from(totalBenefitAmount);
     }
 
     public PostDiscountAmountDto generatePostDiscountAmount(
-            PreDiscountAmountDto preDiscountAmountDto,
-            TotalBenefitAmountDto totalBenefitAmountDto
+            final PreDiscountAmountDto preDiscountAmountDto,
+            final TotalBenefitAmountDto totalBenefitAmountDto
     ) {
         PreDiscountAmount preDiscountAmount = preDiscountAmountDto.toEntity();
         TotalBenefitAmount totalBenefitAmount = totalBenefitAmountDto.toEntity();
@@ -71,7 +73,7 @@ public class ChristmasService {
         return PostDiscountAmountDto.from(postDiscountAmount);
     }
 
-    public BadgeDto generateBadge(TotalBenefitAmountDto totalBenefitAmountDto) {
+    public BadgeDto generateBadge(final TotalBenefitAmountDto totalBenefitAmountDto) {
         TotalBenefitAmount totalBenefitAmount = totalBenefitAmountDto.toEntity();
         Badge badge = Badge.from(totalBenefitAmount);
         return BadgeDto.from(badge);

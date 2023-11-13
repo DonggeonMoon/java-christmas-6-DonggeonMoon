@@ -31,13 +31,17 @@ public enum MenuCategory {
         private final MenuCategory category;
         private final BigDecimal price;
 
-        Menu(final String name, final MenuCategory category, final BigDecimal price) {
+        Menu(
+                final String name,
+                final MenuCategory category,
+                final BigDecimal price
+        ) {
             this.name = name;
             this.category = category;
             this.price = price;
         }
 
-        public static Menu from(String input) {
+        public static Menu from(final String input) {
             return Arrays.stream(values())
                     .filter(menu -> menu.name.equals(input))
                     .findFirst()

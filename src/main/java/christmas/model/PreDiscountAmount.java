@@ -7,11 +7,11 @@ import java.util.Map.Entry;
 public record PreDiscountAmount(
         BigDecimal amount
 ) {
-    public static PreDiscountAmount from(BigDecimal amount) {
+    public static PreDiscountAmount from(final BigDecimal amount) {
         return new PreDiscountAmount(amount);
     }
 
-    public static PreDiscountAmount from(OrderedMenu orderedMenu) {
+    public static PreDiscountAmount from(final OrderedMenu orderedMenu) {
         BigDecimal totalAmount = BigDecimal.ZERO;
         for (Entry<Menu, Integer> menuAndCount : orderedMenu.getMenuAndCount().entrySet()) {
             BigDecimal menuPrice = menuAndCount.getKey().getPrice()
@@ -22,11 +22,11 @@ public record PreDiscountAmount(
         return new PreDiscountAmount(totalAmount);
     }
 
-    public boolean isGreaterThan(BigDecimal amount) {
+    public boolean isGreaterThan(final BigDecimal amount) {
         return this.amount.compareTo(amount) > 0;
     }
 
-    public BigDecimal subtract(TotalBenefitAmount totalBenefitAmount) {
+    public BigDecimal subtract(final TotalBenefitAmount totalBenefitAmount) {
         return amount.subtract(totalBenefitAmount.amount());
     }
 }

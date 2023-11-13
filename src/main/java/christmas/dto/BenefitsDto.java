@@ -11,7 +11,7 @@ import java.util.EnumMap;
 public record BenefitsDto(
         EnumMap<Benefit, BigDecimal> benefits
 ) {
-    public static BenefitsDto from(Benefits benefits) {
+    public static BenefitsDto from(final Benefits benefits) {
         return new BenefitsDto(benefits.benefits());
     }
 

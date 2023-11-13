@@ -8,7 +8,7 @@ import java.text.NumberFormat;
 public record TotalBenefitAmountDto(
         BigDecimal amount
 ) {
-    public static TotalBenefitAmountDto from(TotalBenefitAmount totalBenefitAmount) {
+    public static TotalBenefitAmountDto from(final TotalBenefitAmount totalBenefitAmount) {
         return new TotalBenefitAmountDto(totalBenefitAmount.amount());
     }
 

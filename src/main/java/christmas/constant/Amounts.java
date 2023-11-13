@@ -11,11 +11,11 @@ public enum Amounts {
 
     private final BigDecimal amount;
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
     Amounts(final BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
     }
 }

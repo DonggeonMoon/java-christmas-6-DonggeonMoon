@@ -8,7 +8,7 @@ public enum ArgumentException {
     private static final String PREFIX = "[ERROR] ";
     private final String text;
 
-    ArgumentException(String text) {
+    ArgumentException(final String text) {
         this.text = text;
     }
 
