@@ -19,7 +19,6 @@ public record PostDiscountAmount(
         Objects.requireNonNull(preDiscountAmount);
         Objects.requireNonNull(totalBenefitAmount);
 
-        BigDecimal subtracted = preDiscountAmount.subtract(totalBenefitAmount);
-        return new PostDiscountAmount(subtracted);
+        return preDiscountAmount.subtract(totalBenefitAmount);
     }
 }

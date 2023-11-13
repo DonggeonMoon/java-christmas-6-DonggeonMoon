@@ -125,4 +125,8 @@ public record Order(
                 IntegerValidation.NOT_LESS_THAN_ONE::validate
         );
     }
+
+    public PreDiscountAmount calculatePreDiscountAmount() {
+        return PreDiscountAmount.from(this);
+    }
 }

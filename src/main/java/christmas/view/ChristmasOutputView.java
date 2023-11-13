@@ -50,7 +50,7 @@ public class ChristmasOutputView extends AbstractView {
         println(preDiscountAmountDto.toString());
     }
 
-    public void printGiveaway(final GiveawayMenuDto giveawayMenuDto) {
+    public void printGiveawayMenu(final GiveawayMenuDto giveawayMenuDto) {
         Objects.requireNonNull(giveawayMenuDto);
 
         printMessage(GIVEAWAY_PREFIX);
@@ -78,7 +78,7 @@ public class ChristmasOutputView extends AbstractView {
         println(postDiscountAmountDto.toString());
     }
 
-    public void printBadge(final EventBadgeDto eventBadgeDto) {
+    public void printEventBadge(final EventBadgeDto eventBadgeDto) {
         Objects.requireNonNull(eventBadgeDto);
 
         printMessage(BADGE_PREFIX);

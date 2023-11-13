@@ -37,4 +37,12 @@ public record Benefits(
         }
         return benefits.get(GIVEAWAY);
     }
+
+    public GiveawayMenu calculateGiveawayMenu() {
+        return GiveawayMenu.from(this);
+    }
+
+    public TotalBenefitAmount calculateTotalBenefitAmount() {
+        return TotalBenefitAmount.from(this);
+    }
 }

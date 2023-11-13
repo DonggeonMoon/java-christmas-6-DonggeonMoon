@@ -180,7 +180,7 @@ public class ChristmasUiTest extends UiTest {
 
     @Test
     void printGiveaway() {
-        outputView.printGiveaway(giveawayMenuDto);
+        outputView.printGiveawayMenu(giveawayMenuDto);
         assertThat(getOutput())
                 .contains(GIVEAWAY_TEXT);
     }
@@ -208,7 +208,7 @@ public class ChristmasUiTest extends UiTest {
 
     @Test
     void printBadge() {
-        outputView.printBadge(eventBadgeDto);
+        outputView.printEventBadge(eventBadgeDto);
         assertThat(getOutput())
                 .contains(BADGE_COMPONENT);
     }

@@ -16,4 +16,7 @@ public record TotalBenefitAmount(
 
         return new TotalBenefitAmount(totalAmount);
     }
+    public EventBadge calculateEventBadge() {
+        return EventBadge.from(this);
+    }
 }

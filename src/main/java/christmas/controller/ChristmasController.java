@@ -1,7 +1,13 @@
 package christmas.controller;
 
+import christmas.dto.BenefitsDto;
+import christmas.dto.EventBadgeDto;
 import christmas.dto.EventBenefitPreviewDtos;
+import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderDto;
+import christmas.dto.PostDiscountAmountDto;
+import christmas.dto.PreDiscountAmountDto;
+import christmas.dto.TotalBenefitAmountDto;
 import christmas.dto.VisitDateDto;
 import christmas.service.ChristmasService;
 import christmas.view.ChristmasInputView;
@@ -69,17 +75,35 @@ public class ChristmasController extends AbstractRetry {
             final VisitDateDto visitDateDto,
             final OrderDto orderDto
     ) {
-        return service.generateEventBenefitPreviewDtos(visitDateDto, orderDto);
+        PreDiscountAmountDto preDiscountAmountDto = service.generatePreDiscountAmountFrom(orderDto);
+        BenefitsDto benefitsDto = service.generateBenefitsFrom(visitDateDto, orderDto);
+        GiveawayMenuDto giveawayMenuDto = service.generateGiveAwayMenuFrom(benefitsDto);
+        TotalBenefitAmountDto totalBenefitAmountDto = service.generateTotalBenefitFrom(benefitsDto);
+        PostDiscountAmountDto postDiscountAmountDto = service.generatePostDiscountAmount(
+                preDiscountAmountDto,
+                totalBenefitAmountDto
+        );
+        EventBadgeDto eventBadgeDto = service.generateEventBadgeFrom(totalBenefitAmountDto);
+
+        return EventBenefitPreviewDtos.of(
+                orderDto,
+                preDiscountAmountDto,
+                benefitsDto,
+                giveawayMenuDto,
+                totalBenefitAmountDto,
+                postDiscountAmountDto,
+                eventBadgeDto
+        );
     }
 
     private void showEventBenefitPreview(final EventBenefitPreviewDtos eventBenefitPreviewDtos) {
         outputView.printEventBenefitPreview();
         outputView.printOrderedMenu(eventBenefitPreviewDtos.orderDto());
         outputView.printPreDiscountAmount(eventBenefitPreviewDtos.preDiscountAmountDto());
-        outputView.printGiveaway(eventBenefitPreviewDtos.giveawayMenuDto());
+        outputView.printGiveawayMenu(eventBenefitPreviewDtos.giveawayMenuDto());
         outputView.printBenefits(eventBenefitPreviewDtos.benefitsDto());
         outputView.printTotalBenefitAmount(eventBenefitPreviewDtos.totalBenefitAmountDto());
         outputView.printPostDiscountAmount(eventBenefitPreviewDtos.postDiscountAmountDto());
-        outputView.printBadge(eventBenefitPreviewDtos.eventBadgeDto());
+        outputView.printEventBadge(eventBenefitPreviewDtos.eventBadgeDto());
     }
 }

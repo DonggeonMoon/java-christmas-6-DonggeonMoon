@@ -33,9 +33,8 @@ public record PreDiscountAmount(
         return this.amount.compareTo(amount) > 0;
     }
 
-    public BigDecimal subtract(final TotalBenefitAmount totalBenefitAmount) {
-        Objects.requireNonNull(totalBenefitAmount);
-
-        return amount.subtract(totalBenefitAmount.amount());
+    public PostDiscountAmount subtract(final TotalBenefitAmount t) {
+        Objects.requireNonNull(t);
+        return PostDiscountAmount.from(this.amount.subtract(t.amount()));
     }
 }
