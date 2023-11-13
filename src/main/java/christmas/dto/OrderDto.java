@@ -6,7 +6,7 @@ import java.util.Map;
 
 public record OrderDto(Map<Menu, Integer> menuAndCount) {
     public static OrderDto from(final Order order) {
-        return new OrderDto(order.getMenuAndCount());
+        return new OrderDto(order.menuAndCount());
     }
 
     public Order toEntity() {

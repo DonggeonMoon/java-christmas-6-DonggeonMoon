@@ -34,7 +34,7 @@ class OrderTest {
     void from2() {
         order = Order.from(validInput);
 
-        assertThat(order.getMenuAndCount())
+        assertThat(order.menuAndCount())
                 .isEqualTo(menuAndCount);
     }
 

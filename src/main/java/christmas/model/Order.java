@@ -1,8 +1,8 @@
 package christmas.model;
 
+import static christmas.constant.exception.ArgumentException.INVALID_MENU;
 import static christmas.constant.string.Delimiter.COMMA;
 import static christmas.constant.string.Delimiter.DASH;
-import static christmas.constant.exception.ArgumentException.INVALID_MENU;
 
 import christmas.constant.exception.ArgumentException;
 import christmas.constant.menu.MenuCategory.Menu;
@@ -12,13 +12,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Order {
-    private final Map<Menu, Integer> menuAndCount;
-
-    private Order(final Map<Menu, Integer> menuAndCount) {
-        this.menuAndCount = menuAndCount;
-    }
-
+public record Order(
+        Map<Menu, Integer> menuAndCount
+) {
     public static Order from(final Map<Menu, Integer> menuAndCount) {
         return new Order(menuAndCount);
     }
@@ -109,9 +105,5 @@ public class Order {
         counts.forEach(
                 IntegerValidation.NOT_LESS_THAN_ONE::validate
         );
-    }
-
-    public Map<Menu, Integer> getMenuAndCount() {
-        return menuAndCount;
     }
 }

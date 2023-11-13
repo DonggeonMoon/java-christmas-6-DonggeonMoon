@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public record VisitDateDto(LocalDate date) {
     public static VisitDateDto from(final VisitDate visitDate) {
-        return new VisitDateDto(visitDate.getDate());
+        return new VisitDateDto(visitDate.date());
     }
 
     public VisitDate toEntity() {

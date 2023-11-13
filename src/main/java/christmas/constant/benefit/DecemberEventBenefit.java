@@ -24,7 +24,7 @@ public enum DecemberEventBenefit implements Benefit {
     }),
     WEEKDAY_DISCOUNT("평일 할인", (visitDate, orderedMenu) -> {
         if (visitDate.isWeekDay()) {
-            Map<Menu, Integer> menuAndCount = orderedMenu.getMenuAndCount();
+            Map<Menu, Integer> menuAndCount = orderedMenu.menuAndCount();
             return menuAndCount.keySet()
                     .stream()
                     .filter(Menu::isDessert)
@@ -36,7 +36,7 @@ public enum DecemberEventBenefit implements Benefit {
     }),
     WEEKEND_DISCOUNT("주말 할인", (visitDate, orderedMenu) -> {
         if (visitDate.isWeekend()) {
-            Map<Menu, Integer> menuAndCount = orderedMenu.getMenuAndCount();
+            Map<Menu, Integer> menuAndCount = orderedMenu.menuAndCount();
             return menuAndCount.keySet()
                     .stream()
                     .filter(Menu::isMainMenu)
@@ -49,7 +49,7 @@ public enum DecemberEventBenefit implements Benefit {
     }),
     SPECIAL_DISCOUNT("특별 할인", (visitDate, orderedMenu) -> {
         if (visitDate.isStarredDate()) {
-            Map<Menu, Integer> menuAndCount = orderedMenu.getMenuAndCount();
+            Map<Menu, Integer> menuAndCount = orderedMenu.menuAndCount();
             return menuAndCount.keySet()
                     .stream()
                     .filter(Menu::isMainMenu)

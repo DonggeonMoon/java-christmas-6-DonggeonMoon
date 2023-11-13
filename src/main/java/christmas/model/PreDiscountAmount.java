@@ -13,7 +13,7 @@ public record PreDiscountAmount(
 
     public static PreDiscountAmount from(final Order order) {
         BigDecimal totalAmount = BigDecimal.ZERO;
-        for (Entry<Menu, Integer> menuAndCount : order.getMenuAndCount().entrySet()) {
+        for (Entry<Menu, Integer> menuAndCount : order.menuAndCount().entrySet()) {
             BigDecimal menuPrice = menuAndCount.getKey().getPrice()
                     .multiply(BigDecimal.valueOf(menuAndCount.getValue()));
             totalAmount = totalAmount.add(menuPrice);

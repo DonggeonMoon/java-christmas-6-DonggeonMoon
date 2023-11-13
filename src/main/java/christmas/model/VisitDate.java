@@ -8,13 +8,9 @@ import christmas.constant.calendar.Period;
 import christmas.constant.calendar.StarredDate;
 import java.time.LocalDate;
 
-public class VisitDate {
-    private final LocalDate date;
-
-    private VisitDate(final LocalDate date) {
-        this.date = date;
-    }
-
+public record VisitDate(
+        LocalDate date
+) {
     public static VisitDate from(final LocalDate date) {
         return new VisitDate(date);
     }
@@ -47,9 +43,5 @@ public class VisitDate {
 
     public boolean isStarredDate() {
         return StarredDate.STARRED_DATE.includes(date);
-    }
-
-    public LocalDate getDate() {
-        return date;
     }
 }
