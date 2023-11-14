@@ -24,19 +24,19 @@ public enum Period {
         return this.startDate.withDayOfMonth(inputDay);
     }
 
-    public boolean includes(final int day) {
-        return (isOver(day) && isUnder(day));
-    }
-
     public boolean notIncludes(final int day) {
         return !includes(day);
     }
 
-    private boolean isOver(final int day) {
+    private boolean includes(final int day) {
+        return equalsOrMore(day) && equalsOrLess(day);
+    }
+
+    private boolean equalsOrMore(final int day) {
         return day >= this.startDate.getDayOfMonth();
     }
 
-    private boolean isUnder(final int day) {
+    private boolean equalsOrLess(final int day) {
         return day <= this.endDate.getDayOfMonth();
     }
 }

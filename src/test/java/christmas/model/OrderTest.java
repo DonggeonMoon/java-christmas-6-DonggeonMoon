@@ -1,6 +1,6 @@
 package christmas.model;
 
-import static christmas.constant.exception.ArgumentException.INVALID_MENU;
+import static christmas.constant.exception.ArgumentException.INVALID_ORDER;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -57,6 +57,6 @@ class OrderTest {
     void from3(String invalidInput) {
         assertThatThrownBy(() -> Order.from(invalidInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(INVALID_MENU.exception().getMessage());
+                .hasMessageContaining(INVALID_ORDER.exception().getMessage());
     }
 }

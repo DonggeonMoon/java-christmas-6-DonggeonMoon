@@ -24,7 +24,7 @@ public class ChristmasService {
         return VisitDateDto.from(visitDate);
     }
 
-    public OrderDto generateOrderedMenuFrom(final String inputMenuAndCount) {
+    public OrderDto generateOrderFrom(final String inputMenuAndCount) {
         Objects.requireNonNull(inputMenuAndCount);
 
         return OrderDto.from(inputMenuAndCount);
@@ -55,12 +55,14 @@ public class ChristmasService {
 
     public BenefitsDto generateBenefitsFrom(
             final VisitDateDto visitDateDto,
-            final OrderDto orderDto
+            final OrderDto orderDto,
+            final PreDiscountAmountDto preDiscountAmountDto
     ) {
         Objects.requireNonNull(visitDateDto);
         Objects.requireNonNull(orderDto);
+        Objects.requireNonNull(preDiscountAmountDto);
 
-        return orderDto.calculateBenefitsDtoFrom(visitDateDto);
+        return orderDto.calculateBenefitsDtoFrom(visitDateDto, preDiscountAmountDto);
     }
 
     public TotalBenefitAmountDto generateTotalBenefitFrom(final BenefitsDto benefitsDto) {

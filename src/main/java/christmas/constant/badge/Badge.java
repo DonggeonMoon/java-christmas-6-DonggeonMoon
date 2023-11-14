@@ -2,6 +2,8 @@ package christmas.constant.badge;
 
 import christmas.model.TotalBenefitAmount;
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -26,12 +28,10 @@ public enum Badge {
     public static Badge from(final TotalBenefitAmount totalBenefitAmount) {
         Objects.requireNonNull(totalBenefitAmount);
 
-        for (Badge badge : values()) {
-            if (badge.condition.apply(totalBenefitAmount.amount())) {
-                return badge;
-            }
-        }
-        return Badge.NONE;
+        return Arrays.stream(values())
+                .filter(it -> it.condition.apply(totalBenefitAmount.amount()))
+                .findFirst()
+                .orElseThrow(NoSuchElementException::new);
     }
 
     public String getName() {

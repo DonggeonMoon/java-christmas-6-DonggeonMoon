@@ -10,15 +10,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import christmas.constant.exception.ArgumentException;
-import christmas.dto.EventBadgeDto;
 import christmas.dto.BenefitsDto;
+import christmas.dto.EventBadgeDto;
 import christmas.dto.GiveawayMenuDto;
 import christmas.dto.OrderDto;
 import christmas.dto.PostDiscountAmountDto;
 import christmas.dto.PreDiscountAmountDto;
 import christmas.dto.TotalBenefitAmountDto;
-import christmas.model.EventBadge;
 import christmas.model.Benefits;
+import christmas.model.EventBadge;
 import christmas.model.GiveawayMenu;
 import christmas.model.Order;
 import christmas.model.PostDiscountAmount;
@@ -36,23 +36,25 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class ChristmasUiTest extends UiTest {
+    public static final VisitDate VISIT_DATE = VisitDate.from(LocalDate.of(2023, 12, 3));
     private static final String validInput = "해산물파스타-2,레드와인-1,초코케이크-1";
-    public static final CharSequence[] ORDERED_MENU_DTO_TEXT_COMPONENT = {
-            ORDERED_MENU_PREFIX.getText(),
-            "레드와인 1개",
-            "해산물파스타 2개",
-            "초코케이크 1개"
-    };
+    public static final List<String> ORDERED_MENU_DTO_TEXT_COMPONENT =
+            List.of(
+                    ORDERED_MENU_PREFIX.getText(),
+                    "레드와인 1개",
+                    "해산물파스타 2개",
+                    "초코케이크 1개"
+            );
     public static final String PRE_DISCOUNT_AMOUNT_TEXT = "145,000원";
     public static final String GIVEAWAY_TEXT = "샴페인 1개";
     public static final String[] BENEFIT_TEXT = {
             "평일 할인 2,023원",
             "특별 할인 2,000원",
             "증정 이벤트 25,000원"};
-    public static final String TOTAL_BENEFIT_AMOUNT_TEXT = "30,323원";
+    public static final String TOTAL_BENEFIT_AMOUNT_TEXT = "-55,223원";
     public static final List<String> POST_DISCOUNT_AMOUNT_COMPONENT = List.of(
             "<할인 후 예상 결제 금액>",
-            "114,677원"
+            "89,777원"
     );
     public static final List<String> BADGE_COMPONENT = List.of(
             BADGE_PREFIX.getText(),
@@ -60,20 +62,12 @@ public class ChristmasUiTest extends UiTest {
     );
     private ChristmasOutputView outputView;
     private ChristmasInputView inputView;
-    private VisitDate visitDate;
-    private Order order;
     private OrderDto orderDto;
-    private PreDiscountAmount preDiscountAmount;
     private PreDiscountAmountDto preDiscountAmountDto;
-    private Benefits benefits;
     private BenefitsDto benefitsDto;
-    private GiveawayMenu giveawayMenu;
     private GiveawayMenuDto giveawayMenuDto;
-    private TotalBenefitAmount totalBenefitAmount;
     private TotalBenefitAmountDto totalBenefitAmountDto;
-    private PostDiscountAmount postDiscountAmount;
     private PostDiscountAmountDto postDiscountAmountDto;
-    private EventBadge badge;
     private EventBadgeDto eventBadgeDto;
 
 
@@ -81,20 +75,19 @@ public class ChristmasUiTest extends UiTest {
     void setUp() {
         outputView = ChristmasOutputView.create();
         inputView = ChristmasInputView.create();
-        visitDate = VisitDate.from(LocalDate.of(2023, 12, 3));
-        order = Order.from(validInput);
+        Order order = Order.from(validInput);
         orderDto = OrderDto.from(order);
-        preDiscountAmount = PreDiscountAmount.from(order);
+        PreDiscountAmount preDiscountAmount = PreDiscountAmount.from(order);
         preDiscountAmountDto = PreDiscountAmountDto.from(preDiscountAmount);
-        benefits = Benefits.from(visitDate, order);
+        Benefits benefits = Benefits.from(VISIT_DATE, order);
         benefitsDto = BenefitsDto.from(benefits);
-        giveawayMenu = GiveawayMenu.from(benefits);
+        GiveawayMenu giveawayMenu = GiveawayMenu.from(benefits);
         giveawayMenuDto = GiveawayMenuDto.from(giveawayMenu);
-        totalBenefitAmount = TotalBenefitAmount.from(benefits);
+        TotalBenefitAmount totalBenefitAmount = TotalBenefitAmount.from(benefits);
         totalBenefitAmountDto = TotalBenefitAmountDto.from(totalBenefitAmount);
-        postDiscountAmount = PostDiscountAmount.of(preDiscountAmount, totalBenefitAmount);
+        PostDiscountAmount postDiscountAmount = PostDiscountAmount.of(preDiscountAmount, totalBenefitAmount);
         postDiscountAmountDto = PostDiscountAmountDto.from(postDiscountAmount);
-        badge = EventBadge.from(totalBenefitAmount);
+        EventBadge badge = EventBadge.from(totalBenefitAmount);
         eventBadgeDto = EventBadgeDto.from(badge);
     }
 
@@ -179,7 +172,7 @@ public class ChristmasUiTest extends UiTest {
     }
 
     @Test
-    void printGiveaway() {
+    void printGiveawayMenu() {
         outputView.printGiveawayMenu(giveawayMenuDto);
         assertThat(getOutput())
                 .contains(GIVEAWAY_TEXT);
@@ -207,7 +200,7 @@ public class ChristmasUiTest extends UiTest {
     }
 
     @Test
-    void printBadge() {
+    void printEventBadge() {
         outputView.printEventBadge(eventBadgeDto);
         assertThat(getOutput())
                 .contains(BADGE_COMPONENT);

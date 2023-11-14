@@ -2,8 +2,8 @@ package christmas.dto;
 
 
 import christmas.constant.benefit.DecemberEventBenefit;
-import christmas.util.Formatter;
 import christmas.model.Benefits;
+import christmas.util.Formatter;
 import java.math.BigDecimal;
 import java.util.EnumMap;
 import java.util.Objects;
@@ -15,6 +15,10 @@ public record BenefitsDto(
         Objects.requireNonNull(benefits);
 
         return new BenefitsDto(benefits.benefits());
+    }
+
+    public static BenefitsDto withoutAnyBenefit() {
+        return new BenefitsDto(new EnumMap<>(DecemberEventBenefit.class));
     }
 
     public Benefits toModel() {

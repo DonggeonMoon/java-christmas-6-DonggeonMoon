@@ -1,11 +1,12 @@
 package christmas.model;
 
-import static christmas.constant.exception.ArgumentException.INVALID_MENU;
+import static christmas.constant.exception.ArgumentException.INVALID_ORDER;
 import static christmas.constant.string.Delimiter.COMMA;
 import static christmas.constant.string.Delimiter.DASH;
 
 import christmas.constant.exception.ArgumentException;
 import christmas.constant.menu.Menu;
+import christmas.constant.number.Count;
 import christmas.constant.validation.IntegerValidation;
 import java.math.BigDecimal;
 import java.util.EnumMap;
@@ -61,7 +62,7 @@ public record Order(
             validateMenus(menus);
             validateCounts(counts);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw INVALID_MENU.exception();
+            throw INVALID_ORDER.exception();
         }
     }
 
@@ -85,7 +86,7 @@ public record Order(
 
     private static void validateOnlyDrink(final List<String> menus) {
         if (onlyDrink(menus)) {
-            throw INVALID_MENU.exception();
+            throw INVALID_ORDER.exception();
         }
     }
 
@@ -97,7 +98,7 @@ public record Order(
 
     private static void validateDuplicated(final List<String> menus) {
         if (duplicated(menus)) {
-            throw INVALID_MENU.exception();
+            throw INVALID_ORDER.exception();
         }
     }
 
@@ -115,14 +116,14 @@ public record Order(
 
     private static void validateMoreThanTwentyMenus(final List<Integer> counts) {
         if (moreThanTwenty(counts)) {
-            throw ArgumentException.INVALID_MENU.exception();
+            throw ArgumentException.INVALID_ORDER.exception();
         }
     }
 
     private static boolean moreThanTwenty(final List<Integer> counts) {
         return counts.stream()
                 .mapToInt(Integer::intValue)
-                .sum() > 20;
+                .sum() > Count.MINIMUM_ORDER.getValue();
     }
 
     private static void validateLessThanOne(final List<Integer> counts) {
@@ -130,7 +131,7 @@ public record Order(
     }
 
     public PreDiscountAmount calculatePreDiscountAmount() {
-        return new PreDiscountAmount(
+        return PreDiscountAmount.from(
                 this.menuAndCount()
                         .entrySet()
                         .stream()

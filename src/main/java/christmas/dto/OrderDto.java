@@ -1,6 +1,7 @@
 package christmas.dto;
 
 import christmas.constant.menu.Menu;
+import christmas.constant.number.Amount;
 import christmas.model.Benefits;
 import christmas.model.Order;
 import christmas.util.Formatter;
@@ -15,6 +16,8 @@ public record OrderDto(EnumMap<Menu, Integer> menuAndCount) {
     }
 
     public static OrderDto from(String inputMenuAndCount) {
+        Objects.requireNonNull(inputMenuAndCount);
+
         return OrderDto.from(
                 Order.from(inputMenuAndCount)
         );
@@ -32,7 +35,6 @@ public record OrderDto(EnumMap<Menu, Integer> menuAndCount) {
     }
 
 
-
     public PreDiscountAmountDto calculatePreDiscountAmountDto() {
         return PreDiscountAmountDto.from(
                 this.toModel()
@@ -40,7 +42,12 @@ public record OrderDto(EnumMap<Menu, Integer> menuAndCount) {
         );
     }
 
-    public BenefitsDto calculateBenefitsDtoFrom(VisitDateDto visitDateDto) {
+    public BenefitsDto calculateBenefitsDtoFrom(
+            final VisitDateDto visitDateDto,
+            final PreDiscountAmountDto preDiscountAmountDto) {
+        if (preDiscountAmountDto.isUnder(Amount.EVENT_CRITERIA)) {
+            return BenefitsDto.withoutAnyBenefit();
+        }
         return BenefitsDto.from(
                 Benefits.from(
                         visitDateDto.toModel(),

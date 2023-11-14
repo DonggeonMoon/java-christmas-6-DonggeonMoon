@@ -67,7 +67,7 @@ public class ChristmasController extends AbstractRetry {
     private OrderDto askMenuAndCount() {
         return run(() -> {
             String inputMenuAndCount = inputView.readMenuAndCount();
-            return service.generateOrderedMenuFrom(inputMenuAndCount);
+            return service.generateOrderFrom(inputMenuAndCount);
         });
     }
 
@@ -76,7 +76,7 @@ public class ChristmasController extends AbstractRetry {
             final OrderDto orderDto
     ) {
         PreDiscountAmountDto preDiscountAmountDto = service.generatePreDiscountAmountFrom(orderDto);
-        BenefitsDto benefitsDto = service.generateBenefitsFrom(visitDateDto, orderDto);
+        BenefitsDto benefitsDto = service.generateBenefitsFrom(visitDateDto, orderDto, preDiscountAmountDto);
         GiveawayMenuDto giveawayMenuDto = service.generateGiveAwayMenuFrom(benefitsDto);
         TotalBenefitAmountDto totalBenefitAmountDto = service.generateTotalBenefitFrom(benefitsDto);
         PostDiscountAmountDto postDiscountAmountDto = service.generatePostDiscountAmount(
@@ -86,13 +86,8 @@ public class ChristmasController extends AbstractRetry {
         EventBadgeDto eventBadgeDto = service.generateEventBadgeFrom(totalBenefitAmountDto);
 
         return EventBenefitPreviewDtos.of(
-                orderDto,
-                preDiscountAmountDto,
-                benefitsDto,
-                giveawayMenuDto,
-                totalBenefitAmountDto,
-                postDiscountAmountDto,
-                eventBadgeDto
+                orderDto, preDiscountAmountDto, benefitsDto, giveawayMenuDto,
+                totalBenefitAmountDto, postDiscountAmountDto, eventBadgeDto
         );
     }
 

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public enum Amount {
+    EVENT_CRITERIA(BigDecimal.valueOf(10000)),
     WEEKDAYS_DISCOUNT_UNIT(BigDecimal.valueOf(2023)),
     WEEKEND_DISCOUNT_UNIT(BigDecimal.valueOf(2023)),
     SPECIAL_DISCOUNT_UNIT(BigDecimal.valueOf(1000)),
@@ -26,5 +27,9 @@ public enum Amount {
         Objects.requireNonNull(bigDecimal);
 
         return this.value.multiply(bigDecimal);
+    }
+
+    public BigDecimal getValue() {
+        return value;
     }
 }

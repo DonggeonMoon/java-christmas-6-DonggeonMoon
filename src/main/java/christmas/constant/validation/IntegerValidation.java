@@ -1,6 +1,6 @@
 package christmas.constant.validation;
 
-import static christmas.constant.exception.ArgumentException.INVALID_MENU;
+import static christmas.constant.exception.ArgumentException.INVALID_ORDER;
 
 import java.util.Objects;
 import java.util.function.Function;
@@ -18,7 +18,7 @@ public enum IntegerValidation {
         Objects.requireNonNull(input);
 
         if (this.isViolatedBy(input)) {
-            throw INVALID_MENU.exception();
+            throw INVALID_ORDER.exception();
         }
     }
 

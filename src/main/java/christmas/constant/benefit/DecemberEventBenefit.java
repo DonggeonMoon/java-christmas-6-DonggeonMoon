@@ -1,6 +1,7 @@
 package christmas.constant.benefit;
 
 import static christmas.constant.number.Amount.D_DAY_EVENT_DISCOUNT_BASE;
+import static christmas.constant.number.Amount.GIVEAWAY_CRITERIA;
 import static christmas.constant.number.Amount.SPECIAL_DISCOUNT_UNIT;
 import static christmas.constant.number.Amount.WEEKDAYS_DISCOUNT_UNIT;
 import static christmas.constant.number.Amount.WEEKEND_DISCOUNT_UNIT;
@@ -17,60 +18,55 @@ import java.util.Objects;
 import java.util.function.BiFunction;
 
 public enum DecemberEventBenefit implements Benefit {
-    D_DAY_DISCOUNT("크리스마스 디데이 할인", (visitDate, orderedMenu) -> {
-        if (Period.CHRISTMAS_D_DAY_EVENT.includes(visitDate.calculateDayOfMonth())) {
-            return D_DAY_EVENT_DISCOUNT_BASE.add(
-                    dDayDiscountUnitAmount.multiply(
-                            visitDate.calculateDayOfMonthInBigDecimal()
-                    )
-            );
+    D_DAY_DISCOUNT("크리스마스 디데이 할인", (visitDate, order) -> {
+        if (Period.CHRISTMAS_D_DAY_EVENT.notIncludes(visitDate.calculateDayOfMonth())) {
+            return BigDecimal.ZERO;
         }
-        return BigDecimal.ZERO;
+        return D_DAY_EVENT_DISCOUNT_BASE.add(
+                dDayDiscountUnitAmount.multiply(
+                        visitDate.calculateDayOfMonthInBigDecimal().subtract(BigDecimal.ONE)
+                )
+        );
     }),
-    WEEKDAY_DISCOUNT("평일 할인", (visitDate, orderedMenu) -> {
-        if (visitDate.isWeekDay()) {
-            Map<Menu, Integer> menuAndCount = orderedMenu.menuAndCount();
-            return menuAndCount.keySet()
-                    .stream()
-                    .filter(Menu::isDessert)
-                    .map(menu -> WEEKDAYS_DISCOUNT_UNIT.multiply(
-                            BigDecimal.valueOf(menuAndCount.get(menu))))
-                    .reduce(BigDecimal.ZERO, BigDecimal::add);
-        }
-        return BigDecimal.ZERO;
-    }),
-    WEEKEND_DISCOUNT("주말 할인", (visitDate, orderedMenu) -> {
+    WEEKDAY_DISCOUNT("평일 할인", (visitDate, order) -> {
         if (visitDate.isWeekend()) {
-            Map<Menu, Integer> menuAndCount = orderedMenu.menuAndCount();
-            return menuAndCount.keySet()
-                    .stream()
-                    .filter(Menu::isMainMenu)
-                    .map(menu -> WEEKEND_DISCOUNT_UNIT.multiply(
-                            BigDecimal.valueOf(menuAndCount.get(menu))))
-                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+            return BigDecimal.ZERO;
         }
-        return BigDecimal.ZERO;
+        Map<Menu, Integer> menuAndCount = order.menuAndCount();
+        return menuAndCount.keySet()
+                .stream()
+                .filter(Menu::isDessert)
+                .map(menu -> WEEKDAYS_DISCOUNT_UNIT.multiply(
+                        BigDecimal.valueOf(menuAndCount.get(menu))))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }),
+    WEEKEND_DISCOUNT("주말 할인", (visitDate, order) -> {
+        if (visitDate.isWeekDay()) {
+            return BigDecimal.ZERO;
+        }
+        Map<Menu, Integer> menuAndCount = order.menuAndCount();
+        return menuAndCount.keySet()
+                .stream()
+                .filter(Menu::isMainMenu)
+                .map(menu -> WEEKEND_DISCOUNT_UNIT.multiply(
+                        BigDecimal.valueOf(menuAndCount.get(menu))))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }),
+    SPECIAL_DISCOUNT("특별 할인", (visitDate, order) -> {
+        if (visitDate.isNotStarredDate()) {
+            return BigDecimal.ZERO;
 
-    }),
-    SPECIAL_DISCOUNT("특별 할인", (visitDate, orderedMenu) -> {
-        if (visitDate.isStarredDate()) {
-            Map<Menu, Integer> menuAndCount = orderedMenu.menuAndCount();
-            return menuAndCount.keySet()
-                    .stream()
-                    .filter(Menu::isMainMenu)
-                    .map(menu -> SPECIAL_DISCOUNT_UNIT.multiply(
-                            BigDecimal.valueOf(menuAndCount.get(menu))))
-                    .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
-        return BigDecimal.ZERO;
+        return SPECIAL_DISCOUNT_UNIT.getValue();
     }),
-    GIVEAWAY("증정 이벤트", (visitDate, orderedMenu) -> {
-        if (PreDiscountAmount.from(orderedMenu).isGreaterThan(BigDecimal.valueOf(120000))) {
+    GIVEAWAY("증정 이벤트", (visitDate, order) -> {
+        PreDiscountAmount preDiscountAmount = order.calculatePreDiscountAmount();
+        if (preDiscountAmount.isGreaterThan(GIVEAWAY_CRITERIA)) {
             return Menu.CHAMPAGNE.getPrice();
         }
         return BigDecimal.ZERO;
     }),
-    NOTHING("없음", (visitDate, orderedMenu) -> BigDecimal.ZERO);
+    NOTHING("없음", (visitDate, order) -> BigDecimal.ZERO);
 
     private final String name;
     private final BiFunction<VisitDate, Order, BigDecimal> condition;

@@ -13,4 +13,9 @@ public enum StateException implements Exception {
     public IllegalStateException exception() {
         return new IllegalStateException(PREFIX + this.text);
     }
+
+    @Override
+    public String getText() {
+        return text;
+    }
 }

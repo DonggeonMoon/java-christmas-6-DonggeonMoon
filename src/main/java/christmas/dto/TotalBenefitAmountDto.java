@@ -20,7 +20,7 @@ public record TotalBenefitAmountDto(
 
     @Override
     public String toString() {
-        return Formatter.formatAmount(amount);
+        return Formatter.formatTotalBenefitAmount(amount);
     }
 
     public EventBadgeDto calculateEventBadgeDto() {

@@ -1,6 +1,6 @@
 package christmas.constant.menu;
 
-import static christmas.constant.exception.ArgumentException.INVALID_MENU;
+import static christmas.constant.exception.ArgumentException.INVALID_ORDER;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -35,21 +35,21 @@ public enum Menu {
         this.price = price;
     }
 
-    public static Menu from(final String input) {
-        Objects.requireNonNull(input);
+    public static Menu from(final String menuName) {
+        Objects.requireNonNull(menuName);
 
         return Arrays.stream(values())
-                .filter(menu -> menu.name.equals(input))
+                .filter(menu -> menu.name.equals(menuName))
                 .findFirst()
-                .orElseThrow(INVALID_MENU::exception);
-    }
-
-    public boolean isDessert() {
-        return this.category == MenuCategory.DESSERT;
+                .orElseThrow(INVALID_ORDER::exception);
     }
 
     public boolean isMainMenu() {
         return this.category == MenuCategory.MAIN_MENU;
+    }
+
+    public boolean isDessert() {
+        return this.category == MenuCategory.DESSERT;
     }
 
     public boolean isNotDrink() {

@@ -1,7 +1,8 @@
 package christmas.constant.number;
 
 public enum Count {
-    ONE(1);
+    ONE(1),
+    MINIMUM_ORDER(20);
 
     private final Integer value;
 

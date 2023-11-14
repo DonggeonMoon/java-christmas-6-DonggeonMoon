@@ -30,6 +30,6 @@ public enum DayCategory {
         Objects.requireNonNull(dayOfWeek);
 
         return this.dayOfWeeks.stream()
-                .anyMatch(i -> i.equals(dayOfWeek));
+                .anyMatch(dayOfWeekInInteger -> dayOfWeekInInteger.equals(dayOfWeek));
     }
 }

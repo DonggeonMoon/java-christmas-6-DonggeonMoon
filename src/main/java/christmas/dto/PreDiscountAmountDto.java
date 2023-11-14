@@ -1,7 +1,8 @@
 package christmas.dto;
 
-import christmas.util.Formatter;
+import christmas.constant.number.Amount;
 import christmas.model.PreDiscountAmount;
+import christmas.util.Formatter;
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -23,12 +24,22 @@ public record PreDiscountAmountDto(
         return Formatter.formatAmount(amount);
     }
 
-    public PostDiscountAmountDto calculatePostDiscountAmountDto(TotalBenefitAmountDto totalBenefitAmountDto) {
+    public PostDiscountAmountDto calculatePostDiscountAmountDto(final TotalBenefitAmountDto totalBenefitAmountDto) {
+        Objects.requireNonNull(totalBenefitAmountDto);
+
         return PostDiscountAmountDto.from(
                 this.toModel()
                         .subtract(
                                 totalBenefitAmountDto.toModel()
                         )
         );
+    }
+
+    public boolean isUnder(final Amount criteriaAmount) {
+        Objects.requireNonNull(criteriaAmount);
+
+        return amount.compareTo(
+                criteriaAmount.getValue()
+        ) < 0;
     }
 }

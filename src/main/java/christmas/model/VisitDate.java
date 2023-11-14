@@ -1,11 +1,11 @@
 package christmas.model;
 
-import static christmas.constant.calendar.Date.STARRED_DATE;
 import static christmas.constant.calendar.DayCategory.WEEKDAYS;
 import static christmas.constant.calendar.DayCategory.WEEKEND;
 import static christmas.constant.calendar.Period.CHRISTMAS_EVENT;
 import static christmas.constant.exception.ArgumentException.INVALID_DATE;
 
+import christmas.constant.calendar.Date;
 import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -51,7 +51,12 @@ public record VisitDate(
         return date.getDayOfWeek();
     }
 
-    public boolean isStarredDate() {
-        return STARRED_DATE.includes(date);
+    public boolean isNotStarredDate() {
+        return !isStarredDate();
+    }
+
+    private boolean isStarredDate() {
+        return Date.STARRED
+                .includes(date);
     }
 }

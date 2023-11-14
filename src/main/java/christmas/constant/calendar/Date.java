@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public enum Date {
-    STARRED_DATE(
+    STARRED(
             List.of(
                     LocalDate.of(2023, 12, 3),
                     LocalDate.of(2023, 12, 10),
@@ -25,7 +25,7 @@ public enum Date {
     public boolean includes(final LocalDate date) {
         Objects.requireNonNull(date);
 
-        return STARRED_DATE.dates
+        return STARRED.dates
                 .stream()
                 .anyMatch(starredDay -> starredDay.equals(date));
     }

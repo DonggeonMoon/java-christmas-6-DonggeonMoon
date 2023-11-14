@@ -1,5 +1,6 @@
 package christmas.model;
 
+import christmas.constant.number.Amount;
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -18,11 +19,11 @@ public record PreDiscountAmount(
         return order.calculatePreDiscountAmount();
     }
 
-    public boolean isGreaterThan(final BigDecimal amount) {
+    public boolean isGreaterThan(final Amount amount) {
         Objects.requireNonNull(amount);
 
         return this.amount
-                .compareTo(amount) > 0;
+                .compareTo(amount.getValue()) > 0;
     }
 
     public PostDiscountAmount subtract(final TotalBenefitAmount totalBenefitAmount) {
