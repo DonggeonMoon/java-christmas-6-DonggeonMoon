@@ -2,19 +2,18 @@ package christmas.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.BeforeEach;
+import christmas.stub.UnitTestStub;
+import christmas.template.UnitTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ChristmasOutputViewTest {
-    private ChristmasOutputView outputView;
-
-    @BeforeEach
-    void setUp() {
-        outputView = ChristmasOutputView.create();
-    }
-
+class ChristmasOutputViewTest extends UnitTest implements UnitTestStub {
     @Test
+    @DisplayName("ChristmasOutputView 객체 생성")
     void create() {
-        assertThat(outputView).isInstanceOf(ChristmasOutputView.class);
+        outputView = ChristmasOutputView.create();
+
+        assertThat(outputView)
+                .isInstanceOf(ChristmasOutputView.class);
     }
 }

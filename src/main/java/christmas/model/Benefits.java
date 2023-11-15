@@ -44,11 +44,7 @@ public record Benefits(
     }
 
     public TotalBenefitAmount calculateTotalBenefitAmount() {
-        return TotalBenefitAmount.from(this);
-    }
-
-    public TotalBenefitAmount calculateTotalAmount() {
-        return new TotalBenefitAmount(calculateTotalAmountInBigDecimal());
+        return TotalBenefitAmount.from(calculateTotalAmountInBigDecimal());
     }
 
     private BigDecimal calculateTotalAmountInBigDecimal() {

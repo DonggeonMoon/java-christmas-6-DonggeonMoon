@@ -1,29 +1,58 @@
 package christmas.model;
 
-import christmas.constant.menu.Menu;
-import java.time.LocalDate;
-import java.util.EnumMap;
-import java.util.Map;
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import christmas.stub.UnitTestStub;
+import christmas.template.UnitTest;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class BenefitsTest {
-    private static final VisitDate visitDate = VisitDate.from(LocalDate.of(2023, 12, 3));
-    private static final EnumMap<Menu, Integer> menuAndCount = new EnumMap<>(
-            Map.of(Menu.SEAFOOD_PASTA, 2, Menu.RED_WINE, 1, Menu.CHOCOLATE_CAKE, 1));
-
-    private Benefits benefits;
-
+class BenefitsTest extends UnitTest implements UnitTestStub {
     @BeforeEach
     void setUp() {
-        Order order = Order.from(menuAndCount);
-        benefits = Benefits.from(visitDate, order);
+        benefits = Benefits.from(VISIT_DATE, ORDER);
     }
 
     @Test
+    @DisplayName("Benefits 객체 생성")
     void from() {
-        Assertions.assertThat(benefits)
+        assertThat(benefits)
                 .isInstanceOf(Benefits.class);
+    }
+
+    @Test
+    @DisplayName("Benefits 객체 생성2")
+    void from2() {
+        assertThat(Benefits.from(BENEFIT_AND_AMOUNT))
+                .isInstanceOf(Benefits.class);
+    }
+
+    @Test
+    @DisplayName("증정품이 있음")
+    void hasGiveaway() {
+        assertThat(benefits.hasGiveaway())
+                .isTrue();
+    }
+
+    @Test
+    @DisplayName("Giveaway 계산 후 반환")
+    void calculateGiveawayMenu() {
+        assertThat(benefits.calculateGiveawayMenu())
+                .isEqualTo(GIVEAWAY_MENU);
+    }
+
+    @Test
+    @DisplayName("TotalBenefitAmount 계산 후 반환")
+    void calculateTotalBenefitAmount() {
+        assertThat(benefits.calculateTotalBenefitAmount())
+                .isEqualTo(TOTAL_BENEFIT_AMOUNT);
+    }
+
+    @Test
+    @DisplayName("Giveaway 계산 후 반환")
+    void benefits() {
+        assertThat(benefits.hasGiveaway())
+                .isTrue();
     }
 }

@@ -6,10 +6,10 @@ import java.util.Objects;
 public record TotalBenefitAmount(
         BigDecimal amount
 ) {
-    public static TotalBenefitAmount from(final Benefits benefits) {
-        Objects.requireNonNull(benefits);
+    public static TotalBenefitAmount from(BigDecimal amount) {
+        Objects.requireNonNull(amount);
 
-        return benefits.calculateTotalAmount();
+        return new TotalBenefitAmount(amount);
     }
 
     public EventBadge calculateEventBadge() {

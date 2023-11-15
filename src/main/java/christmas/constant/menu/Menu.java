@@ -11,7 +11,7 @@ public enum Menu {
     TAPAS("타파스", MenuCategory.APPETIZER, BigDecimal.valueOf(5500)),
     CAESAR_SALAD("시저 샐러드", MenuCategory.APPETIZER, BigDecimal.valueOf(8000)),
     T_BONE_STEAK("티본스테이크", MenuCategory.MAIN_MENU, BigDecimal.valueOf(55000)),
-    BARBEQUE_RIP("바비큐립", MenuCategory.MAIN_MENU, BigDecimal.valueOf(54000)),
+    BARBEQUE_RIB("바비큐립", MenuCategory.MAIN_MENU, BigDecimal.valueOf(54000)),
     SEAFOOD_PASTA("해산물파스타", MenuCategory.MAIN_MENU, BigDecimal.valueOf(35000)),
     CHRISTMAS_PASTA("크리스마스파스타", MenuCategory.MAIN_MENU, BigDecimal.valueOf(25000)),
     CHOCOLATE_CAKE("초코케이크", MenuCategory.DESSERT, BigDecimal.valueOf(15000)),
